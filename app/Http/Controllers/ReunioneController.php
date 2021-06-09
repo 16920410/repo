@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 use App\Models\Reunione;
-use Illuminate\Http\Request;
+use App\Models\Carrera;
+use App\Models\Puesto;
+use App\Models\Docente;
+use Barryvdh\DomPDF\Facade as PDF;
 
 /**
  * Class ReunioneController
@@ -105,5 +109,23 @@ class ReunioneController extends Controller
 
         return redirect()->route('reuniones.index')
             ->with('success', 'Reunione deleted successfully');
+    }
+
+    public function crearpdf($id)
+    {
+
+
+        $docentes = Docente::all();
+        $puestos = Puesto::all();
+        $carreras = Carrera::all();
+        $reunion = Reunione::find($id);
+        $ordenes = explode(",",$reunion->orden);
+        
+
+
+        $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
+
+
+        return $pdf->download('pdf_file.pdf');
     }
 }

@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Docente;
 use Illuminate\Http\Request;
 use App\Models\Puesto;
-use App\Models\Carrera;
-use App\Models\Reunione;
-use PDF;
+
 
 
 /**
@@ -38,7 +36,7 @@ class DocenteController extends Controller
     {
         $docente = new Docente();
         $puestos = Puesto::all();
-        return view('docente.create', compact('docente','puestos'));
+        return view('docente.create', compact('docente', 'puestos'));
     }
 
     /**
@@ -81,26 +79,9 @@ class DocenteController extends Controller
         $docente = Docente::find($id);
         $puestos = Puesto::all();
 
-        return view('docente.edit', compact('docente','puestos'));
+        return view('docente.edit', compact('docente', 'puestos'));
     }
 
-
-    public function crearpdf()
-    {
-
-
-      $docentes = Docente::all();
-      $puestos = Puesto::all();
-      $carreras = Carrera::all();
-      $reuniones = Reunione::all();
-
-
-      $pdf = PDF::loadView('docente.pdf', compact("docentes", "puestos", "carreras", "reuniones"));
-
-
-      return $pdf->download('pdf_file.pdf');
-
-    }
 
 
     /**
