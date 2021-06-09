@@ -15,7 +15,20 @@ class CreateAsistenciasTable extends Migration
     {
         Schema::create('asistencias', function (Blueprint $table) {
             $table->id();
+            // relaciones
+            $table->unsignedBigInteger('reunion_id');
+            $table->unsignedBigInteger('docente_id')->nullable();
+
+            
+            $table->foreign('reunion_id')
+                ->references('id')->on('reuniones');
+                
+            $table->foreign('docente_id')
+                ->references('id')->on('docentes');
+
             $table->timestamps();
+
+
         });
     }
 

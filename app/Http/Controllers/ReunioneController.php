@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Asistencia;
 use Illuminate\Http\Request;
 
 use App\Models\Reunione;
@@ -36,7 +38,8 @@ class ReunioneController extends Controller
     public function create()
     {
         $reunione = new Reunione();
-        return view('reunione.create', compact('reunione'));
+        $docentes = Docente::all();
+        return view('reunione.create', compact('reunione', 'docentes'));
     }
 
     /**
@@ -50,9 +53,19 @@ class ReunioneController extends Controller
         request()->validate(Reunione::$rules);
 
         $reunione = Reunione::create($request->all());
+        $asistentes = $request->input('asistentes');
+
+        var_dump($reunione->id);
+        foreach ($asistentes as $asistente) {
+            var_dump((int)$asistente);
+            // Asistencia::where(['reunion_id'=>$reunione->id, 'docente_id'=>((int)$asistente)]);
+            Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
+        }
+        // exit();
+        // $asistencia = Asistencia::create();
 
         return redirect()->route('reuniones.index')
-            ->with('success', 'Reunione created successfully.');
+            ->with('success', 'Reunione created successfully.' . var_dump($asistentes));
     }
 
     /**
@@ -77,8 +90,9 @@ class ReunioneController extends Controller
     public function edit($id)
     {
         $reunione = Reunione::find($id);
+        $docentes = Docente::all();
 
-        return view('reunione.edit', compact('reunione'));
+        return view('reunione.edit', compact('reunione', 'docentes'));
     }
 
     /**
@@ -113,19 +127,34 @@ class ReunioneController extends Controller
 
     public function crearpdf($id)
     {
+        $docentess = null;
+        $docentes = [];
+        
+        
+        $asistentes = Asistencia::where('reunion_id', $id)->get();
+        // var_dump($asistentes);
+        // exit();
+        if (count($asistentes)) {
+            $docentess = Docente::where('id', $asistentes[0]->docente_id);
+            foreach ($asistentes as $key => $asistente) {
+                $docentess->orWhere('id', $asistente->docente_id);
+            }
+            $docentes = $docentess->get();
+            // var_dump($docentes);
+        }
 
-
-        $docentes = Docente::all();
         $puestos = Puesto::all();
         $carreras = Carrera::all();
         $reunion = Reunione::find($id);
-        $ordenes = explode(",",$reunion->orden);
-        
+        $ordenes = explode(",", $reunion->orden);
 
+        // print_r($docentes);
+        // exit();
 
         $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
 
 
+        // return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
         return $pdf->download('pdf_file.pdf');
     }
 }

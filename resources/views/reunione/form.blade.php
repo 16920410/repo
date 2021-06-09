@@ -17,6 +17,18 @@
             {!! $errors->first('orden', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 
+        <div class="form-group">
+            {{ Form::label('Asistentes') }}
+            @foreach ($docentes as $docente)
+            <div class="form-check">
+            {{ Form::checkbox('asistentes[]', $docente->id, false, ['class' => 'form-check-input' . ($errors->has('orden') ? ' is-invalid' : ''), 'placeholder' => 'Asistencia', 'id'=> $docente->id]) }}
+            <label class="form-check-label" for="{{$docente->id}}">{{$docente->nombre}}
+            </div>
+                
+            @endforeach
+            {!! $errors->first('orden', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Submit</button>
