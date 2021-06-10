@@ -21,7 +21,7 @@ class CreateAsistenciasTable extends Migration
 
             
             $table->foreign('reunion_id')
-                ->references('id')->on('reuniones');
+                ->references('id')->on('reuniones')->onDelete('cascade');
                 
             $table->foreign('docente_id')
                 ->references('id')->on('docentes');
