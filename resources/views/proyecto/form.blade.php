@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('nresidente') }}
-            {{ Form::number('nresidente', $proyecto->nresidente, ['class' => 'form-control' . ($errors->has('nresidente') ? ' is-invalid' : ''), 'placeholder' => 'Nresidente']) }}
+            {{ Form::number('nresidente', $proyecto->nresidente, ['class' => 'form-control' . ($errors->has('nresidente') ? ' is-invalid' : ''), 'placeholder' => 'Nresidente', 'min'=> '0']) }}
             {!! $errors->first('nresidente', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
