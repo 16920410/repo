@@ -33,7 +33,7 @@ class Proyecto extends Model
 		'departamento' => 'required',
 		'responsable' => 'required',
 		'nresidente' => 'required',
-		'alumno' => 'required',
+		// 'alumno' => 'required',
 		'docente_id' => 'required',
 		'carrera_id' => 'required',
     ];
