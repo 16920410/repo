@@ -36,8 +36,10 @@ class ProyectoController extends Controller
         $proyecto = new Proyecto();
         $docentes = new Docente();
         $carreras = new Carrera();
+        $listaDocentes = Docente::pluck('nombre','id');
+        $listaCarreras = Carrera::pluck('nombre','id');
 
-        return view('proyecto.create', compact('proyecto','docentes','carreras'));
+        return view('proyecto.create', compact('proyecto','docentes','carreras', 'listaDocentes','listaCarreras'));
     }
 
     /**
@@ -78,8 +80,10 @@ class ProyectoController extends Controller
     public function edit($id)
     {
         $proyecto = Proyecto::find($id);
+        $listaDocentes = Docente::pluck('nombre','id');
+        $listaCarreras = Carrera::pluck('nombre','id');
 
-        return view('proyecto.edit', compact('proyecto'));
+        return view('proyecto.edit', compact('proyecto', 'listaDocentes','listaCarreras'));
     }
 
     /**

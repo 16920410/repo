@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('nresidente') }}
-            {{ Form::text('nresidente', $proyecto->nresidente, ['class' => 'form-control' . ($errors->has('nresidente') ? ' is-invalid' : ''), 'placeholder' => 'Nresidente']) }}
+            {{ Form::number('nresidente', $proyecto->nresidente, ['class' => 'form-control' . ($errors->has('nresidente') ? ' is-invalid' : ''), 'placeholder' => 'Nresidente']) }}
             {!! $errors->first('nresidente', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
@@ -35,14 +35,15 @@
 
         <div class="form-group">
             {{ Form::label('docente_id') }}
-            {{ Form::text('docente_id', $proyecto->docente_id, ['class' => 'form-control' . ($errors->has('docente_id') ? ' is-invalid' : ''), 'placeholder' => 'Docente Id']) }}
+            <!-- {{ Form::text('docente_id', $proyecto->docente_id, ['class' => 'form-control' . ($errors->has('docente_id') ? ' is-invalid' : ''), 'placeholder' => 'Docente Id']) }} -->
+            {{ Form::select('docente_id', $listaDocentes, $proyecto->docente_id, ['class' => 'form-control' . ($errors->has('docente_id') ? ' is-invalid' : ''), 'placeholder' => 'Docente Id']) }}
             {!! $errors->first('docente_id', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 
 
         <div class="form-group">
             {{ Form::label('carrera_id') }}
-            {{ Form::text('carrera_id', $proyecto->carrera_id, ['class' => 'form-control' . ($errors->has('carrera_id') ? ' is-invalid' : ''), 'placeholder' => 'Carrera Id']) }}
+            {{ Form::select('carrera_id', $listaCarreras, $proyecto->carrera_id, ['class' => 'form-control' . ($errors->has('carrera_id') ? ' is-invalid' : ''), 'placeholder' => 'Carrera Id']) }}
             {!! $errors->first('carrera_id', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 
