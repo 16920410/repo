@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Docente;
 use Illuminate\Http\Request;
 use App\Models\Puesto;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 
@@ -21,7 +22,7 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        $docentes = Docente::paginate();
+        $docentes = Docente::orderBy('apellido_p', 'asc')->paginate();
 
         return view('docente.index', compact('docentes'))
             ->with('i', (request()->input('page', 1) - 1) * $docentes->perPage());
@@ -113,5 +114,15 @@ class DocenteController extends Controller
 
         return redirect()->route('docentes.index')
             ->with('success', 'Docente eliminado');
+    }
+
+    public function crearpdf()
+    {
+        $docentes= Docente::orderBy('apellido_p', 'asc')->get();
+        $pdf = PDF::loadView('docente.pdf', compact("docentes"));
+        return view('docente.pdf', compact("docentes"));
+        exit();
+        return $pdf->download('pdf_file.pdf');
+
     }
 }

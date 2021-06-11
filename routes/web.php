@@ -38,4 +38,5 @@ Route::resource('proyectos',App\Http\Controllers\ProyectoController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/docentepdf/{id}', [App\Http\Controllers\ReunioneController::class, 'crearpdf']);
+Route::get('/docentepdf', [App\Http\Controllers\DocenteController::class, 'crearpdf']);
+Route::get('/reunionpdf/{id}', [App\Http\Controllers\ReunioneController::class, 'crearpdf']);
