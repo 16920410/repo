@@ -23,7 +23,10 @@ class Docente extends Model
 {
 
     static $rules = [
-		'nombre' => 'required',
+		// 'nombre' => 'required', formed automaticaly
+		'nombre_solo' => 'required',
+		'apellido_m' => 'required',
+		'apellido_p' => 'required',
 		'rfc' => 'required',
 		'telefono' => 'required',
 		'puesto_id' => 'required',
@@ -36,7 +39,7 @@ class Docente extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','rfc','telefono','puesto_id'];
+    protected $fillable = ['nombre','rfc','telefono','puesto_id','nombre_solo','apellido_p','apellido_m'];
 
 
     /**
@@ -46,6 +49,14 @@ class Docente extends Model
     {
         return $this->hasOne('App\Models\Puesto', 'id', 'puesto_id','cargo');
     }
+
+    protected static function boot() {
+      parent::boot();
+  
+      static::saving(function($model){
+          $model->nombre = $model->nombre_solo .' '. $model->apellido_p .' '.$model->apellido_m;
+      }); 
+  }
 
 
 }

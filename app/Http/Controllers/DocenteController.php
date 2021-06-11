@@ -47,10 +47,11 @@ class DocenteController extends Controller
      */
     public function store(Request $request)
     {
+        // $nombreCompleto = $request->input('nombre', $request->nombre_solo.' '.$request->apellido_p.' '.$request->apellido_m);
         request()->validate(Docente::$rules);
-
+        
         $docente = Docente::create($request->all());
-
+        
         return redirect()->route('docentes.index')
             ->with('success', 'Docente agregado.');
     }
