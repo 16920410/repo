@@ -6,6 +6,7 @@ use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use App\Models\Carrera;
 use App\Models\Docente;
+use Barryvdh\DomPDF\Facade as PDF;
 
 /**
  * Class ProyectoController
@@ -115,4 +116,19 @@ class ProyectoController extends Controller
         return redirect()->route('proyectos.index')
             ->with('success', 'Proyecto deleted successfully');
     }
+    public function crearpdfl()
+    {
+        $proyectos= Proyecto::whereNull('alumno')->get();
+        $pdf = PDF::loadView('proyecto.pdflibres', compact("proyectos"));
+        return $pdf->download('pdf_file.pdf');
+
+    }
+    public function crearpdf()
+    {
+        $proyectos= Proyecto::whereNotNull('alumno')->get();
+        $pdf = PDF::loadView('proyecto.pdfasignados', compact("proyectos"));
+        return $pdf->download('proyectos_asignados.pdf');
+
+    }
+
 }

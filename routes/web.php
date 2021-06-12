@@ -34,9 +34,12 @@ Route::resource('tecnologicos',App\Http\Controllers\TecnologicoController::class
 Route::resource('materias',App\Http\Controllers\MateriaController::class);
 Route::resource('materiacursadas',App\Http\Controllers\MateriacursadaController::class);
 Route::resource('proyectos',App\Http\Controllers\ProyectoController::class);
+Route::resource('acuerdos',App\Http\Controllers\AcuerdoController::class);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/proyectosasignados', [App\Http\Controllers\ProyectoController::class, 'crearpdf']);
+Route::get('/proyectoslibres', [App\Http\Controllers\ProyectoController::class, 'crearpdfl']);
 Route::get('/docentepdf', [App\Http\Controllers\DocenteController::class, 'crearpdf']);
 Route::get('/reunionpdf/{id}', [App\Http\Controllers\ReunioneController::class, 'crearpdf']);
