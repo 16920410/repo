@@ -120,8 +120,6 @@ class DocenteController extends Controller
     {
         $docentes= Docente::orderBy('apellido_p', 'asc')->get();
         $pdf = PDF::loadView('docente.pdf', compact("docentes"));
-        return view('docente.pdf', compact("docentes"));
-        exit();
         return $pdf->download('pdf_file.pdf');
 
     }
