@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Acuerdos;
 use App\Models\Asistencia;
 use Illuminate\Http\Request;
 
@@ -38,9 +39,10 @@ class ReunioneController extends Controller
     public function create()
     {
         $reunione = new Reunione();
-        $docentes = Docente::all();
+        $docentes = Docente::orderBy('apellido_p')->get();
+        $acuerdos = [];
         $listaAsistentes = [];
-        return view('reunione.create', compact('reunione', 'docentes', 'listaAsistentes'));
+        return view('reunione.create', compact('reunione', 'docentes', 'listaAsistentes', 'acuerdos'));
     }
 
     /**
@@ -87,11 +89,12 @@ class ReunioneController extends Controller
     {
         $reunione = Reunione::find($id);
         $asistentes =Asistencia::where('reunion_id', $id)->get()->toArray();
+        $acuerdos = Acuerdos::where('reunion_id',$id)->get();
         $listaAsistentes = array_map(function ($el){
             return $el['docente_id'];
         }, $asistentes);
-        $docentes = Docente::all();
-        return view('reunione.edit', compact('reunione', 'docentes','asistentes','listaAsistentes'));
+        $docentes = Docente::orderBy('apellido_p')->get();
+        return view('reunione.edit', compact('reunione', 'docentes','asistentes','listaAsistentes', 'acuerdos'));
     }
 
     /**
