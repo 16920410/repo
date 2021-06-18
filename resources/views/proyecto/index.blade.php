@@ -30,6 +30,9 @@
                     @endif
 
                     <div class="card-body">
+                    <a class="btn btn-primary" href="{{ URL::to('/proyectosasignados') }}">Descargar Proy. asignados</a>
+                    <a class="btn btn-primary" href="{{ URL::to('/proyectoslibres') }}">Descargar Proy. libres</a>
+
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
