@@ -53,17 +53,21 @@ class ReunioneController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate(Reunione::$rules);
+        // exit();
 
         $reunione = Reunione::create($request->all());
         $asistentes = $request->input('asistentes');
+        if ($asistentes)
+            foreach ($asistentes as $asistente) {
+                Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
+            }
 
-        foreach ($asistentes as $asistente) {
-            Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
-        }
-
-        return redirect()->route('reuniones.index')
+        return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
             ->with('success', 'Reunion created successfully.');
+        // return redirect()->route('reuniones.index')
+        //     ->with('success', 'Reunion created successfully.');
     }
 
     /**
@@ -88,13 +92,13 @@ class ReunioneController extends Controller
     public function edit($id)
     {
         $reunione = Reunione::find($id);
-        $asistentes =Asistencia::where('reunion_id', $id)->get()->toArray();
-        $acuerdos = Acuerdos::where('reunion_id',$id)->get();
-        $listaAsistentes = array_map(function ($el){
+        $asistentes = Asistencia::where('reunion_id', $id)->get()->toArray();
+        $acuerdos = Acuerdos::where('reunion_id', $id)->get();
+        $listaAsistentes = array_map(function ($el) {
             return $el['docente_id'];
         }, $asistentes);
         $docentes = Docente::orderBy('apellido_p')->get();
-        return view('reunione.edit', compact('reunione', 'docentes','asistentes','listaAsistentes', 'acuerdos'));
+        return view('reunione.edit', compact('reunione', 'docentes', 'asistentes', 'listaAsistentes', 'acuerdos'));
     }
 
     /**
@@ -110,24 +114,24 @@ class ReunioneController extends Controller
 
         $updated = $reunione->update($request->all());
 
-        $nuevosAsistentes = $request->input('asistentes')? $request->input('asistentes'): [] ;
-        $asistentes = Asistencia::where('reunion_id', $reunione->id )->get();
+        $nuevosAsistentes = $request->input('asistentes') ? $request->input('asistentes') : [];
+        $asistentes = Asistencia::where('reunion_id', $reunione->id)->get();
         var_dump($nuevosAsistentes);
-        var_dump("asistentes viejo",$asistentes->toArray());
+        var_dump("asistentes viejo", $asistentes->toArray());
 
         foreach ($asistentes as $asistente) {
             // si el elemento no está en la nueva lista, se borra de la BD
-            if(array_search($asistente->docente_id, $nuevosAsistentes)===false){
+            if (array_search($asistente->docente_id, $nuevosAsistentes) === false) {
                 var_dump("deleting", $asistente->id);
                 $asistente->delete();
             }
-            var_dump(array_search($asistente->id, $nuevosAsistentes)===false);
+            var_dump(array_search($asistente->id, $nuevosAsistentes) === false);
         }
         foreach ($nuevosAsistentes as $key => $nAsistente) {
             // si el elemento nuevo no está en la base de datos, se agrega
-            $existe = Asistencia::where('reunion_id', $reunione->id )->where('docente_id', $nAsistente)->count()>0;
+            $existe = Asistencia::where('reunion_id', $reunione->id)->where('docente_id', $nAsistente)->count() > 0;
             if (!$existe) {
-                var_dump("no existe, creando",$nAsistente);
+                var_dump("no existe, creando", $nAsistente);
                 Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$nAsistente)]);
             }
         }
@@ -153,8 +157,8 @@ class ReunioneController extends Controller
     {
         $docentess = null;
         $docentes = [];
-        
-        
+
+
         $asistentes = Asistencia::where('reunion_id', $id)->get();
         // var_dump($asistentes);
         // exit();
@@ -180,5 +184,73 @@ class ReunioneController extends Controller
 
         // return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
         return $pdf->download('pdf_file.pdf');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeorden(Request $request)
+    {
+
+
+        return redirect()->route('reuniones.index')
+            ->with('success', 'Reunion created successfully.');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeacuerdo(Request $request)
+    {
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateorden(Request $request)
+    {
+        var_dump($request);
+        exit();
+        request()->validate(Reunione::$rules);
+
+        $reunione = Reunione::create($request->all());
+        $asistentes = $request->input('asistentes');
+
+        foreach ($asistentes as $asistente) {
+            Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
+        }
+
+        return redirect()->route('reuniones.index')
+            ->with('success', 'Reunion created successfully.');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateacuerdo(Request $request)
+    {
+        var_dump($request);
+        exit();
+        request()->validate(Reunione::$rules);
+
+        $reunione = Reunione::create($request->all());
+        $asistentes = $request->input('asistentes');
+
+        foreach ($asistentes as $asistente) {
+            Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
+        }
+
+        return redirect()->route('reuniones.index')
+            ->with('success', 'Reunion created successfully.');
     }
 }
