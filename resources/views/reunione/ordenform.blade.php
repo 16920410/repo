@@ -39,10 +39,7 @@ Create Reunione
                                     </div>
                                     <button type="submit" class="btn btn-primary ">Submit</button>
                                 </form>
-                            </div>
-                            <div class="box-footer mt20">
                                 @foreach ($ordenes as $orden)
-                                div class="col-2">
                                 <div class="col-2">
                                     <div class="form-group">
                                         {{ Form::label('Num. orden') }}
@@ -59,6 +56,10 @@ Create Reunione
                                 </div>
 
                                 @endforeach
+                            </div>
+                            <div class="box-footer mt-4">
+                            <a class="btn btn-secondary" href="{{ route('reuniones.index') }}">Terminar</a>
+                            <a class="btn btn-success" href="{{ route('reuniones.acuerdos.create',['reunione'=>$reunion->id]) }}">Continuar</a>
                             </div>
                         </div>
                     </div>

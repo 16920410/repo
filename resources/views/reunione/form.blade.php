@@ -31,8 +31,9 @@
         </div>
     </div>
 
-    <div class="box-footer mt20">
+    <div class="box-footer mt-4">
         <div class="form-group">
+            <a class="btn btn-secondary" href="{{ route('reuniones.index') }}">Terminar</a>
             <button type="submit" class="btn btn-primary ">Continuar</button>
         </div>
     </div>

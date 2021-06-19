@@ -8,5 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Acuerdos extends Model
 {
     use HasFactory;
+    static $rules = [
+        'orden_id' => 'required',
+        'descripcion' => 'required'
+
+    ];
     protected $fillable =['reunion_id','descripcion'];
+    
 }
