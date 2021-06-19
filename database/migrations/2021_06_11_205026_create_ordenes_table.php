@@ -15,7 +15,7 @@ class CreateOrdenesTable extends Migration
     {
         Schema::create('ordenes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reunion_id');
+            $table->unsignedBigInteger('reunion_id')->nullable();
             $table->integer('num_orden');
             $table->string('descripcion');
             $table->timestamps();

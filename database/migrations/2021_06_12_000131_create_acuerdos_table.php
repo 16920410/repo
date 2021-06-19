@@ -15,7 +15,7 @@ class CreateAcuerdosTable extends Migration
     {
         Schema::create('acuerdos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reunion_id');
+            $table->unsignedBigInteger('reunion_id')->nullable();;
             $table->unsignedBigInteger('orden_id');
             $table->string('descripcion');
             $table->timestamps();

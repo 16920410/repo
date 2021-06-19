@@ -10,7 +10,9 @@ class Ordenes extends Model
     use HasFactory;
     static $rules = [
         'num_orden' => 'required',
-        'descripcion' => 'required'
+        'descripcion' => 'required',
+        'reunion_id' => 'required'
 
     ];
+    public $fillable = ['num_orden','descripcion','reunion_id'];
 }

@@ -41,27 +41,40 @@ class OrdenController extends Controller
         // exit();
 
         $ordenes = Ordenes::where('reunion_id', $reunion->id)->get();
-        $num_orden = count($ordenes)+1;
+        $num_orden = count($ordenes) + 1;
         return view('reunione.ordenform', compact('ordenes', 'num_orden', 'reunion'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      * @param  Reunione $reunione
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Reunione $reunione)
+    public function store(Reunione $reunione, Request $request)
     {
-        request()->validate(Ordenes::$rules);
+        $request->merge(['reunion_id' => $reunione->id]);
+        $validation = $request->validate(Ordenes::$rules);
+        $id = $reunione->id;
 
-        // var_dump($reunione);
+        $orden = Ordenes::create($validation);
+
+
+        // $orden = new Ordenes($req);
+        // $orden->reunion_id = $reunione->id;
+        $req = $request->all();
+        // $orden = new Ordenes($req->);
+        // $orden = Ordenes::create(['reunion_id'=> 10, 'num_orden'=> 1,'descripcion'=> 'descrs']);
+
+        var_dump($orden);
+
 
         // exit();
 
-        return redirect()->route('reuniones.acuerdos.create',['reunione'=>$reunione->id])
-            ->with('success', 'Reunion created successfully.');
+
+        return redirect()->route('reuniones.ordenes.create', ['reunione' => $id])
+            ->with('success', 'Orden created successfully.');
     }
 
     /**
@@ -99,19 +112,41 @@ class OrdenController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  Reunione $reunione
+     * @param  Ordenes $ordene
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reunione $reunione)
+    public function update(Reunione $reunione, $orden)
     {
-        request()->validate(Reunione::$rules);
+        // $orden
+        $request = request();
+        $request->merge(['reunion_id' => $reunione->id]);
+        $request->merge(['id' => $orden]);
+        $validated = $request->validate(Ordenes::$rules);
+        $ordene = Ordenes::where('id', $orden)->where('reunion_id', $reunione->id);
+        // var_dump($ordene, $reunion, $request->all());
 
-        $updated = $reunione->update($request->all());
+        switch ($request->submitbutton) {
+            case 'Eliminar':
+                $ordene->delete();
+                return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
+                    ->with('success', 'Orden deleted successfully');
 
-        $nuevosAsistentes = $request->input('asistentes') ? $request->input('asistentes') : [];
+                break;
+
+            case 'Actualizar':
+
+                $ordene->update($validated);
+                return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
+                    ->with('success', 'Orden updated successfully');
+                break;
+        }
 
 
-        return redirect()->route('reuniones.index')
-            ->with('success', 'Reunion updated successfully');
+        // $nuevosAsistentes = $request->input('asistentes') ? $request->input('asistentes') : [];
+
+
+        return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
+            ->with('success', 'Orden updated successfully');
     }
 
     /**
@@ -119,11 +154,13 @@ class OrdenController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Reunione $reunion, Ordenes $orden)
     {
-        $reunione = Reunione::find($id)->delete();
+        // $reunione = Ordenes::find($orden)->delete();
+        var_dump($orden);
+        exit();
 
-        return redirect()->route('reuniones.index')
+        return redirect()->route('reuniones.ordenes.create',)
             ->with('success', 'Reunion deleted successfully');
     }
 
