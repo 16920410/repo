@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAcuerdosTable extends Migration
+class CreateOrdenesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateAcuerdosTable extends Migration
      */
     public function up()
     {
-        Schema::create('acuerdos', function (Blueprint $table) {
+        Schema::create('ordenes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('reunion_id');
-            $table->unsignedBigInteger('orden_id');
+            $table->integer('num_orden');
             $table->string('descripcion');
             $table->timestamps();
-
             $table->foreign('reunion_id')->references('id')->on('reuniones')->onDelete('cascade');
-            $table->foreign('orden_id')->references('id')->on('ordenes')->onDelete('cascade');
         });
     }
 
@@ -32,6 +30,6 @@ class CreateAcuerdosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('acuerdos');
+        Schema::dropIfExists('ordenes');
     }
 }

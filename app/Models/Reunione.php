@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,7 +23,6 @@ class Reunione extends Model
     static $rules = [
 		'fecha' => 'required',
 		'lugar' => 'required',
-		'orden' => 'required',
     ];
 
     protected $perPage = 20;

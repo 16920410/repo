@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Create Reunione
+Create Reunione
 @endsection
 
 @section('content')
+<div>
     <section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -16,15 +17,16 @@
                         <span class="card-title">Create Reunione</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('reuniones.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('reuniones.store') }}" role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('reunione.form')
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        
     </section>
+</div>
 @endsection

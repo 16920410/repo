@@ -59,10 +59,13 @@ class ReunioneController extends Controller
 
         $reunione = Reunione::create($request->all());
         $asistentes = $request->input('asistentes');
-        if ($asistentes)
+        if ($asistentes){
             foreach ($asistentes as $asistente) {
                 Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
             }
+
+        }
+            
 
         return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
             ->with('success', 'Reunion created successfully.');
