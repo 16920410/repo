@@ -67,8 +67,8 @@ class ReunioneController extends Controller
         }
             
 
-        // return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
-        //     ->with('success', 'Reunion created successfully.');
+        return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
+            ->with('success', 'Reunion created successfully.');
         // return redirect()->route('reuniones.index')
         //     ->with('success', 'Reunion created successfully.');
     }
@@ -139,9 +139,8 @@ class ReunioneController extends Controller
             }
         }
         return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
-        ->with('success', 'Reunion Updated successfully.');
-        // return redirect()->route('reuniones.index')
-        //     ->with('success', 'Reunion updated successfully');
+        ->with('success', 'Reunion updated successfully.');
+        
     }
 
     /**
