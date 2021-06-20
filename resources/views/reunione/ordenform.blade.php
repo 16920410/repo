@@ -82,6 +82,8 @@ Create Reunione
                                 @endforeach
                             </div>
                             <div class="box-footer mt-4">
+                                <a class="btn btn-danger" href="{{ route('reuniones.edit',['reunione'=>$reunion->id]) }}">Atras</a>
+
                                 <a class="btn btn-secondary" href="{{ route('reuniones.index') }}">Terminar</a>
                                 <a class="btn btn-success" href="{{ route('reuniones.acuerdos.create',['reunione'=>$reunion->id]) }}">Continuar</a>
                             </div>

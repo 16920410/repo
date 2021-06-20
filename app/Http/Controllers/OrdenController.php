@@ -57,21 +57,8 @@ class OrdenController extends Controller
         $request->merge(['reunion_id' => $reunione->id]);
         $validation = $request->validate(Ordenes::$rules);
         $id = $reunione->id;
-
         $orden = Ordenes::create($validation);
-
-
-        // $orden = new Ordenes($req);
-        // $orden->reunion_id = $reunione->id;
         $req = $request->all();
-        // $orden = new Ordenes($req->);
-        // $orden = Ordenes::create(['reunion_id'=> 10, 'num_orden'=> 1,'descripcion'=> 'descrs']);
-
-        var_dump($orden);
-
-
-        // exit();
-
 
         return redirect()->route('reuniones.ordenes.create', ['reunione' => $id])
             ->with('success', 'Orden created successfully.');
