@@ -10,9 +10,10 @@ class Acuerdos extends Model
     use HasFactory;
     static $rules = [
         'orden_id' => 'required',
-        'descripcion' => 'required'
+        'descripcion' => 'required',
+        'reunion_id' => 'required',
 
     ];
-    protected $fillable =['reunion_id','descripcion'];
+    protected $fillable =['reunion_id','orden_id','descripcion'];
     
 }

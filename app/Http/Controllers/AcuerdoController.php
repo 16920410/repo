@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Reunione;
 use App\Models\Acuerdos;
+use App\Models\Ordenes;
 use Barryvdh\DomPDF\Facade as PDF;
 
 /**
@@ -34,9 +35,16 @@ class AcuerdoController extends Controller
      */
     public function create(Reunione $reunione)
     {
-        $acuerdo = new Reunione();
-        $acuerdos = Acuerdos::where('reunion_id', $reunione->id);
-        return view('reunione.acuerdoform', compact('reunione', 'acuerdo', 'acuerdo'));
+        $reunion = $reunione;
+        // var_dump($reunion);
+        // exit();
+        $nacuerdo = new Acuerdos();
+        $ordenes= Ordenes::where('reunion_id',$reunion->id)->pluck('descripcion','id');
+        $acuerdos = Acuerdos::where('reunion_id', $reunion->id)->get();
+        // var_dump($ordenes);
+        // exit();
+        $num_orden = count($acuerdos) + 1;
+        return view('reunione.acuerdoform', compact('acuerdos', 'reunion', 'ordenes', 'nacuerdo'));
     }
 
     /**
@@ -45,18 +53,19 @@ class AcuerdoController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Reunione $reunione)
+    public function store(Reunione $reunione, Request $request)
     {
-        request()->validate(Acuerdos::$rules);
-        $reunion = $reunione;
-        // $req = $request;
-        var_dump($reunion);
-        // var_dump($req);
+        $request->merge(['reunion_id' => $reunione->id]);
         
+        $validation = $request->validate(Acuerdos::$rules);
+        $id = $reunione->id;
+        var_dump($request->all(), $validation);
+        // exit();
+        $acuerdo = Acuerdos::create($validation);
+        $req = $request->all();
 
-
-        return redirect()->route('reuniones.acuerdos.create',['id'=> $reunione->id])
-            ->with('success', 'Reunion created successfully.');
+        return redirect()->route('reuniones.acuerdos.create', ['reunione' => $id])
+            ->with('success', 'Orden created successfully.');
     }
 
     /**
@@ -82,7 +91,7 @@ class AcuerdoController extends Controller
     {
         $reunione = Reunione::find($id);
 
-        return view('reunione.edit', compact('reunione', 'docentes','asistentes','listaAsistentes'));
+        return view('reunione.edit', compact('reunione', 'docentes', 'asistentes', 'listaAsistentes'));
     }
 
     /**
@@ -92,18 +101,31 @@ class AcuerdoController extends Controller
      * @param  Reunione $reunione
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reunione $reunione)
+    public function update(Reunione $reunione, $acuerdo)
     {
-        request()->validate(Reunione::$rules);
+        $request = request();
+        $request->merge(['reunion_id' => $reunione->id]);
+        $request->merge(['id' => $acuerdo]);
+        $validated = $request->validate(Acuerdos::$rules);
+        $acuerdo = Acuerdos::where('id', $acuerdo)->where('reunion_id', $reunione->id);
 
-        $updated = $reunione->update($request->all());
+        switch ($request->submitbutton) {
+            case 'Eliminar':
+                $acuerdo->delete();
+                return redirect()->route('reuniones.acuerdos.create', ['reunione' => $reunione->id])
+                    ->with('success', 'Orden deleted successfully');
 
-        $nuevosAsistentes = $request->input('asistentes')? $request->input('asistentes'): [] ;
+                break;
 
+            case 'Actualizar':
 
-        return redirect()->route('reuniones.index')
-            ->with('success', 'Reunion updated successfully');
+                $acuerdo->update($validated);
+                return redirect()->route('reuniones.acuerdos.create', ['reunione' => $reunione->id])
+                    ->with('success', 'Orden updated successfully');
+                break;
+        }
     }
+
 
     /**
      * @param int $id
@@ -122,9 +144,9 @@ class AcuerdoController extends Controller
     {
         $docentess = null;
         $docentes = [];
-        
+
         $reunion = Reunione::find($id);
-        $ordenes = explode(",", $reunion->orden);
+        $acuerdoes = explode(",", $reunion->orden);
 
         // print_r($docentes);
         // exit();
