@@ -37,8 +37,6 @@ class OrdenController extends Controller
     public function create(Reunione $reunione)
     {
         $reunion = $reunione;
-        // var_dump($reunion);
-        // exit();
 
         $ordenes = Ordenes::where('reunion_id', $reunion->id)->get();
         $num_orden = count($ordenes) + 1;
@@ -104,13 +102,11 @@ class OrdenController extends Controller
      */
     public function update(Reunione $reunione, $orden)
     {
-        // $orden
         $request = request();
         $request->merge(['reunion_id' => $reunione->id]);
         $request->merge(['id' => $orden]);
         $validated = $request->validate(Ordenes::$rules);
         $ordene = Ordenes::where('id', $orden)->where('reunion_id', $reunione->id);
-        // var_dump($ordene, $reunion, $request->all());
 
         switch ($request->submitbutton) {
             case 'Eliminar':
@@ -129,27 +125,12 @@ class OrdenController extends Controller
         }
 
 
-        // $nuevosAsistentes = $request->input('asistentes') ? $request->input('asistentes') : [];
 
 
         return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
             ->with('success', 'Orden updated successfully');
     }
 
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function destroy(Reunione $reunion, Ordenes $orden)
-    {
-        // $reunione = Ordenes::find($orden)->delete();
-        var_dump($orden);
-        exit();
-
-        return redirect()->route('reuniones.ordenes.create',)
-            ->with('success', 'Reunion deleted successfully');
-    }
 
     public function crearpdf($id)
     {
@@ -159,8 +140,6 @@ class OrdenController extends Controller
         $reunion = Reunione::find($id);
         $ordenes = explode(",", $reunion->orden);
 
-        // print_r($docentes);
-        // exit();
 
         $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
 

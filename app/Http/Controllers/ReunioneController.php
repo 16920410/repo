@@ -55,7 +55,6 @@ class ReunioneController extends Controller
     {
 
         request()->validate(Reunione::$rules);
-        // exit();
 
         $reunione = Reunione::create($request->all());
         $asistentes = $request->input('asistentes');
@@ -69,8 +68,6 @@ class ReunioneController extends Controller
 
         return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
             ->with('success', 'Reunion created successfully.');
-        // return redirect()->route('reuniones.index')
-        //     ->with('success', 'Reunion created successfully.');
     }
 
     /**
@@ -163,15 +160,12 @@ class ReunioneController extends Controller
 
 
         $asistentes = Asistencia::where('reunion_id', $id)->get();
-        // var_dump($asistentes);
-        // exit();
         if (count($asistentes)) {
             $docentess = Docente::where('id', $asistentes[0]->docente_id);
             foreach ($asistentes as $key => $asistente) {
                 $docentess->orWhere('id', $asistente->docente_id);
             }
             $docentes = $docentess->get();
-            // var_dump($docentes);
         }
 
         $puestos = Puesto::all();
@@ -179,8 +173,6 @@ class ReunioneController extends Controller
         $reunion = Reunione::find($id);
         $ordenes = explode(",", $reunion->orden);
 
-        // print_r($docentes);
-        // exit();
 
         $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
 
@@ -189,71 +181,5 @@ class ReunioneController extends Controller
         return $pdf->download('pdf_file.pdf');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeorden(Request $request)
-    {
-
-
-        return redirect()->route('reuniones.index')
-            ->with('success', 'Reunion created successfully.');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeacuerdo(Request $request)
-    {
-    }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function updateorden(Request $request)
-    {
-        var_dump($request);
-        exit();
-        request()->validate(Reunione::$rules);
-
-        $reunione = Reunione::create($request->all());
-        $asistentes = $request->input('asistentes');
-
-        foreach ($asistentes as $asistente) {
-            Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
-        }
-
-        return redirect()->route('reuniones.index')
-            ->with('success', 'Reunion created successfully.');
-    }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function updateacuerdo(Request $request)
-    {
-        var_dump($request);
-        exit();
-        request()->validate(Reunione::$rules);
-
-        $reunione = Reunione::create($request->all());
-        $asistentes = $request->input('asistentes');
-
-        foreach ($asistentes as $asistente) {
-            Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
-        }
-
-        return redirect()->route('reuniones.index')
-            ->with('success', 'Reunion created successfully.');
-    }
+    
 }

@@ -140,21 +140,4 @@ class AcuerdoController extends Controller
             ->with('success', 'Reunion deleted successfully');
     }
 
-    public function crearpdf($id)
-    {
-        $docentess = null;
-        $docentes = [];
-
-        $reunion = Reunione::find($id);
-        $acuerdoes = explode(",", $reunion->orden);
-
-        // print_r($docentes);
-        // exit();
-
-        $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
-
-
-        // return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
-        return $pdf->download('pdf_file.pdf');
-    }
 }
