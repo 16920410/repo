@@ -10,7 +10,9 @@ use App\Models\Reunione;
 use App\Models\Carrera;
 use App\Models\Puesto;
 use App\Models\Docente;
+use App\Models\Ordenes;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ReunioneController
@@ -160,6 +162,12 @@ class ReunioneController extends Controller
 
 
         $asistentes = Asistencia::where('reunion_id', $id)->get();
+        $ordenes = DB::table('ordenes')->where('ordenes.reunion_id', $id)->join('acuerdos', 'acuerdos.orden_id','=','ordenes.id')
+        ->select(['ordenes.descripcion as orden','ordenes.num_orden', 'acuerdos.descripcion as acuerdo'])
+        ->orderBy('num_orden')->get();
+        $ordenes =json_decode($ordenes, true);
+
+
         if (count($asistentes)) {
             $docentess = Docente::where('id', $asistentes[0]->docente_id);
             foreach ($asistentes as $key => $asistente) {
@@ -171,8 +179,6 @@ class ReunioneController extends Controller
         $puestos = Puesto::all();
         $carreras = Carrera::all();
         $reunion = Reunione::find($id);
-        $ordenes = explode(",", $reunion->orden);
-
 
         $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
 

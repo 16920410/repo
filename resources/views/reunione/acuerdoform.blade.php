@@ -28,7 +28,7 @@ Create Reunione
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Orden del Día</span>
+                        <span class="card-title">Acuerdos</span>
                     </div>
                     <div class="card-body">
                         <div class="box box-info padding-1">
@@ -45,8 +45,8 @@ Create Reunione
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                {{ Form::label('Descripción') }}
-                                                {{ Form::text('descripcion', $nacuerdo->descripcion , ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Orden']) }}
+                                                {{ Form::label('Acuerdo') }}
+                                                {{ Form::text('descripcion', $nacuerdo->descripcion , ['class' => 'form-control' . ($errors->has('descripcion') ? ' is-invalid' : ''), 'placeholder' => 'Descripción']) }}
                                                 {!! $errors->first('descripcion', '<p class="invalid-feedback">:message</p>') !!}
                                             </div>
                                         </div>

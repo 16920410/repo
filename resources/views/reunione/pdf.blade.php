@@ -4,7 +4,7 @@
 <body>
 
 
-    <table style="border: 1px solid black">
+    <table style="border: 1px solid black; border-collapse: collapse;">
         <thead class="thead">
             <tr>
                 <th>Fecha</th>
@@ -17,7 +17,7 @@
             <tr>
                 <td>{{ $reunion->fecha }}</td>
 
-                <td align="center">{{ $reunion->lugar }}</td>
+                <td>{{ $reunion->lugar }}</td>
 
 
             </tr>
@@ -28,7 +28,7 @@
     <br>
 
 
-    <table style="width: 100%">
+    <table style="width: 100% ;border-collapse: collapse;">
         <thead class="thead" style="border: 1px solid black">
             <tr>
                 <th>Orden del dia</th>
@@ -36,9 +36,9 @@
             </tr>
         </thead>
         <tbody style="border: 1px solid black; border-top: none">
-            @foreach ($ordenes as $key=>$orden)
+            @foreach ($ordenes as $orden)
             <tr>
-                <td>{{ ($key+1).".- ".$orden }}</td>
+                <td>{{ "$orden[num_orden].- $orden[orden]"}}</td>
 
             </tr>
             @endforeach
@@ -61,12 +61,36 @@
             </tr>
         </thead>
         <tbody>
-            
+
             @foreach ($docentes as $key=>$docente)
             <tr>
                 <td style=" border: 1px solid black;border-collapse: collapse;">{{ $key+1 }}</td>
                 <td style=" border: 1px solid black;border-collapse: collapse;">{{ $docente->nombre }}</td>
                 <td style=" border: 1px solid black;border-collapse: collapse;"> </td>
+
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <table style="width: 100% ;border-collapse: collapse;">
+        <thead class="thead" style="width:100%; border: 1px solid black;border-collapse: collapse;">
+            <tr>
+                <th colspan="2" style=" background: black; color:white">Acuerdos de la reunión</th>
+            </tr>
+            <tr style="border: 1px solid black;">
+                <th style=" border: 1px solid black;border-collapse: collapse;">No. orden</th>
+                <th style=" border: 1px solid black;border-collapse: collapse; text-align: left;padding-left: 1rem;">Acuerdos</th>
+
+
+            </tr>
+        </thead>
+        <tbody style="border: 1px solid black; border-top: none">
+            @foreach ($ordenes as $orden)
+            <tr style="border: 1px solid black; border-top: none">
+                <td style="text-align: center; border: 1px solid black;border-collapse: collapse;width:15%">{{ "$orden[num_orden]"}}</td>
+                <td style="padding-left: 1.5rem;">{{ "$orden[acuerdo]"}}</td>
 
             </tr>
             @endforeach
