@@ -44,6 +44,7 @@
                         <a class="nav-link" href="{{ route('materias.index') }}">{{ __('Materias') }}</a>
                         <a class="nav-link" href="{{ route('materiacursadas.index') }}">{{ __('Materias cursadas') }}</a>
                         <a class="nav-link" href="{{ route('proyectos.index') }}">{{ __('Proyectos Residencia') }}</a>
+                        <a class="nav-link" href="{{ URL::to('/liberacion') }}">{{ __('Liberación Act.') }}</a>
 
 
 

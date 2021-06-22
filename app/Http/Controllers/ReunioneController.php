@@ -186,6 +186,19 @@ class ReunioneController extends Controller
         // return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
         return $pdf->download('pdf_file.pdf');
     }
+    public function pdfliberacion()
+    {
+        $docentess = null;
+        $docentes = [];
+
+
+     
+        return view('reunione.pdfliberacion');
+        $pdf = PDF::loadView('reunione.pdfliberacion');
+
+
+        return $pdf->download('Liberación.pdf');
+    }
 
     
 }

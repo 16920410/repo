@@ -45,6 +45,7 @@ Route::get('/proyectosasignados', [App\Http\Controllers\ProyectoController::clas
 Route::get('/proyectoslibres', [App\Http\Controllers\ProyectoController::class, 'crearpdfl']);
 Route::get('/docentepdf', [App\Http\Controllers\DocenteController::class, 'crearpdf']);
 Route::get('/reunionpdf/{id}', [App\Http\Controllers\ReunioneController::class, 'crearpdf']);
+Route::get('/liberacion', [App\Http\Controllers\ReunioneController::class, 'pdfliberacion']);
 
 
 
