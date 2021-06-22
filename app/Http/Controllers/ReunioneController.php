@@ -13,6 +13,9 @@ use App\Models\Docente;
 use App\Models\Ordenes;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Boolean;
+
+use function GuzzleHttp\Promise\all;
 
 /**
  * Class ReunioneController
@@ -27,7 +30,7 @@ class ReunioneController extends Controller
      */
     public function index()
     {
-        $reuniones = Reunione::paginate();
+        $reuniones = Reunione::orderBy('fecha', 'desc')->paginate();
 
         return view('reunione.index', compact('reuniones'))
             ->with('i', (request()->input('page', 1) - 1) * $reuniones->perPage());
@@ -49,25 +52,31 @@ class ReunioneController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @param  Boolean $continue
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Boolean $continue)
     {
-
         request()->validate(Reunione::$rules);
-
+        $request = request();
+        $continue = $request->all()['continue'];
+        // var_dump($request->all());
+        // var_dump($continue, "Continuar");
+        // var_dump(strcmp($continue, "Continuar"));
+        // var_dump(strcmp($continue, "Continuar"));
         $reunione = Reunione::create($request->all());
         $asistentes = $request->input('asistentes');
-        if ($asistentes){
+        if ($asistentes) {
             foreach ($asistentes as $asistente) {
                 Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
             }
-
         }
-            
+        // exit();
 
+
+        if (strcmp($continue, "Continuar") != 0)
+            return redirect()->route('reuniones.index')->with('success', 'Reunion created successfully.');
         return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
             ->with('success', 'Reunion created successfully.');
     }
@@ -138,8 +147,7 @@ class ReunioneController extends Controller
             }
         }
         return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
-        ->with('success', 'Reunion updated successfully.');
-        
+            ->with('success', 'Reunion updated successfully.');
     }
 
     /**
@@ -162,10 +170,10 @@ class ReunioneController extends Controller
 
 
         $asistentes = Asistencia::where('reunion_id', $id)->get();
-        $ordenes = DB::table('ordenes')->where('ordenes.reunion_id', $id)->join('acuerdos', 'acuerdos.orden_id','=','ordenes.id')
-        ->select(['ordenes.descripcion as orden','ordenes.num_orden', 'acuerdos.descripcion as acuerdo'])
-        ->orderBy('num_orden')->get();
-        $ordenes =json_decode($ordenes, true);
+        $ordenes = DB::table('ordenes')->where('ordenes.reunion_id', $id)->join('acuerdos', 'acuerdos.orden_id', '=', 'ordenes.id')
+            ->select(['ordenes.descripcion as orden', 'ordenes.num_orden', 'acuerdos.descripcion as acuerdo'])
+            ->orderBy('num_orden')->get();
+        $ordenes = json_decode($ordenes, true);
 
 
         if (count($asistentes)) {
@@ -192,13 +200,11 @@ class ReunioneController extends Controller
         $docentes = [];
 
 
-     
+
         return view('reunione.pdfliberacion');
         $pdf = PDF::loadView('reunione.pdfliberacion');
 
 
         return $pdf->download('Liberación.pdf');
     }
-
-    
 }

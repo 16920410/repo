@@ -33,8 +33,13 @@
 
     <div class="box-footer mt-4">
         <div class="form-group">
-            <a class="btn btn-secondary" href="{{ route('reuniones.index') }}">Terminar</a>
-            <button type="submit" class="btn btn-primary ">Continuar</button>
+            <a class="btn btn-danger" href="{{ route('reuniones.index') }}">Cancelar</a>
+            @if (!$reunione->id)
+            <input type="submit" class="btn btn-secondary" name="continue" value="Terminar">
+
+            @endif
+            <input type="submit" class="btn btn-primary" name="continue" value="Continuar">
+
         </div>
     </div>
 </div>
