@@ -34,6 +34,7 @@ Route::resource('tecnologicos', App\Http\Controllers\TecnologicoController::clas
 Route::resource('materias', App\Http\Controllers\MateriaController::class);
 Route::resource('materiacursadas', App\Http\Controllers\MateriacursadaController::class);
 Route::resource('proyectos', App\Http\Controllers\ProyectoController::class);
+Route::resource('plan-estudios', App\Http\Controllers\PlanEstudioController::class);
 
 Route::resource('reuniones.ordenes',App\Http\Controllers\OrdenController::class);
 Route::resource('reuniones.acuerdos',App\Http\Controllers\AcuerdoController::class);
