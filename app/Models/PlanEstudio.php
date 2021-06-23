@@ -21,6 +21,7 @@ class PlanEstudio extends Model
 {
     
     static $rules = [
+		'nombre' => 'required',
 		'clave' => 'required',
     ];
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MateriasPlan;
 use App\Models\PlanEstudio;
+use App\Models\PlanEstudios;
 use Illuminate\Http\Request;
 
 /**
@@ -46,8 +48,9 @@ class PlanEstudioController extends Controller
         request()->validate(PlanEstudio::$rules);
 
         $planEstudio = PlanEstudio::create($request->all());
+        $id = $planEstudio->id;
 
-        return redirect()->route('plan-estudios.index')
+        return redirect()->route('plan-estudios.materias-plan.create',['plan_estudio'=>$id])
             ->with('success', 'PlanEstudio created successfully.');
     }
 
@@ -90,7 +93,7 @@ class PlanEstudioController extends Controller
 
         $planEstudio->update($request->all());
 
-        return redirect()->route('plan-estudios.index')
+        return redirect()->route('plan-estudios.materias-plan.create',['plan_estudio'=>$planEstudio->id])
             ->with('success', 'PlanEstudio updated successfully');
     }
 
@@ -99,9 +102,12 @@ class PlanEstudioController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy($plan_estudio, $materias_plan)
     {
-        $planEstudio = PlanEstudio::find($id)->delete();
+        // $planEstudio = PlanEstudio::find($id)->delete();
+        var_dump($materias_plan, $plan_estudio);
+        exit();
+
 
         return redirect()->route('plan-estudios.index')
             ->with('success', 'PlanEstudio deleted successfully');
