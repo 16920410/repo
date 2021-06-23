@@ -45,6 +45,7 @@
                         <a class="nav-link" href="{{ route('materiacursadas.index') }}">{{ __('Materias cursadas') }}</a>
                         <a class="nav-link" href="{{ route('proyectos.index') }}">{{ __('Proyectos Residencia') }}</a>
                         <a class="nav-link" href="{{ route('plan-estudios.index') }}">{{ __('Planes de estudio') }}</a>
+                        <a class="nav-link" href="{{ route('convalidaciones.index') }}">{{ __('Convalidación') }}</a>
                         <a class="nav-link" href="{{ URL::to('/liberacion') }}">{{ __('Liberación Act.') }}</a>
 
 

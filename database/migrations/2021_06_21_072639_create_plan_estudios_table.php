@@ -41,15 +41,51 @@ class CreatePlanEstudiosTable extends Migration
             $table->foreign('materia_id')->references('id')->on('materias')->onDelete('cascade');
 
         });
-        Schema::create('convalidaciones', function (Blueprint $table) {
+        Schema::create('porcentajes', function (Blueprint $table) {
             // $table->id();
             $table->unsignedBigInteger('materia_externa');
             $table->unsignedBigInteger('materia_interna');
+            $table->integer('porcentaje');
 
             $table->timestamps();
 
             $table->foreign('materia_interna')->references('id')->on('materias')->onDelete('cascade');
             $table->foreign('materia_externa')->references('id')->on('materias')->onDelete('cascade');
+        });
+        Schema::create('convalidaciones', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre_alumno');
+            $table->unsignedBigInteger('plan_externo');
+            $table->unsignedBigInteger('plan_interno');
+            $table->unsignedBigInteger('tecnologico_procedente');
+            $table->unsignedBigInteger('tecnologico_receptor');
+
+
+            $table->timestamps();
+            $table->index(['plan_externo','plan_interno']);
+
+            $table->foreign('plan_externo')->references('id')->on('plan_estudios')->onDelete('restrict');
+            $table->foreign('plan_interno')->references('id')->on('plan_estudios')->onDelete('restrict');
+            $table->foreign('tecnologico_procedente')->references('id')->on('tecnologicos')->onDelete('restrict');
+            $table->foreign('tecnologico_receptor')->references('id')->on('tecnologicos')->onDelete('restrict');
+        });
+        Schema::create('convalidacion_materias', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre_alumno');
+            
+
+            $table->unsignedBigInteger('convalidacion_id');
+            $table->unsignedBigInteger('materia_cursada');
+            $table->unsignedBigInteger('materia_convalidada');
+            $table->integer('calificacion');
+            $table->integer('porcentaje');
+
+
+            $table->timestamps();
+
+            $table->foreign('materia_cursada')->references('id')->on('materias')->onDelete('restrict');
+            $table->foreign('materia_convalidada')->references('id')->on('materias')->onDelete('restrict');
+            $table->foreign('convalidacion_id')->references('id')->on('convalidaciones')->onDelete('restrict');
         });
     }
 
@@ -60,9 +96,11 @@ class CreatePlanEstudiosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('plan_estudios');
+        Schema::dropIfExists('convalidacion_materias');
         Schema::dropIfExists('materias_plan');
         Schema::dropIfExists('convalidaciones');
+        Schema::dropIfExists('plan_estudios');
+        Schema::dropIfExists('porcentajes');
         Schema::dropIfExists('carreras_tecnologicos');
         Schema::table('carreras', function (Blueprint $table) {
             $table->dropColumn('plan_id');
