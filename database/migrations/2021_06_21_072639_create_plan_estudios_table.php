@@ -71,9 +71,6 @@ class CreatePlanEstudiosTable extends Migration
         });
         Schema::create('convalidacion_materias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_alumno');
-            
-
             $table->unsignedBigInteger('convalidacion_id');
             $table->unsignedBigInteger('materia_cursada');
             $table->unsignedBigInteger('materia_convalidada');

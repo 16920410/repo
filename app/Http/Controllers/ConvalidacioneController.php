@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Convalidacione;
+use App\Models\ConvalidacionMateria;
+use App\Models\Materia;
+use App\Models\MateriasPlan;
+use App\Models\PlanEstudio;
+use App\Models\Tecnologico;
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +37,9 @@ class ConvalidacioneController extends Controller
     public function create()
     {
         $convalidacione = new Convalidacione();
-        return view('convalidacione.create', compact('convalidacione'));
+        $planes = PlanEstudio::all()->pluck('nombre','id');
+        $tecnologicos = Tecnologico::all()->pluck('nombre','id');
+        return view('convalidacione.create', compact('convalidacione','planes','tecnologicos'));
     }
 
     /**
@@ -47,7 +54,7 @@ class ConvalidacioneController extends Controller
 
         $convalidacione = Convalidacione::create($request->all());
 
-        return redirect()->route('convalidaciones.index')
+        return redirect()->route('convalidaciones.edit',['convalidacione'=>$convalidacione->id])
             ->with('success', 'Convalidacione created successfully.');
     }
 
@@ -72,9 +79,15 @@ class ConvalidacioneController extends Controller
      */
     public function edit($id)
     {
+        $planes = PlanEstudio::all()->pluck('nombre','id');
+        $tecnologicos = Tecnologico::all()->pluck('nombre','id');
         $convalidacione = Convalidacione::find($id);
+        $materia = new ConvalidacionMateria();
 
-        return view('convalidacione.edit', compact('convalidacione'));
+        $materias_cursadas = MateriasPlan::where('plan_id', $convalidacione->plan_externo)->join('materias','materias.id','=','materias_plan.materia_id')->get()->pluck('clave','id');
+        $materias_convalidar= MateriasPlan::where('plan_id', $convalidacione->plan_interno)->join('materias','materias.id','=','materias_plan.materia_id')->get()->pluck('clave','id');
+        $materias_convalidadas = ConvalidacionMateria::where('convalidacion_id', $convalidacione->id)->get();
+        return view('convalidacione.edit', compact('convalidacione','materia','materias_cursadas','materias_convalidar','planes','tecnologicos','materias_convalidadas'));
     }
 
     /**
