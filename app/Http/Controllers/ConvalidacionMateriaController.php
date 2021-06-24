@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ConvalidacionMateria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ConvalidacionMateriaController
@@ -90,8 +91,15 @@ class ConvalidacionMateriaController extends Controller
         // var_dump($convalidacione, $convalidacion_materia);
         // exit();
         $convalidacione = ConvalidacionMateria::find($convalidacion_materia)->delete();
-
+        
         return redirect()->route('convalidaciones.edit',['convalidacione'=>$convalidacione])
-            ->with('success', 'Convalidacione deleted successfully');
+        ->with('success', 'Convalidacione deleted successfully');
     }
+    // materias-convalidadas
+    public function materiasConvalidadas($cursada, $convalidada){
+
+        $porcentajes = DB::table('porcentajes')->where('materia_externa',$cursada)->where('materia_interna', $convalidada)->get();
+        return response()->json('asdasdsadas');
+    }
+    
 }

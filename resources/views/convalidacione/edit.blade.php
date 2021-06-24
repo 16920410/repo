@@ -124,4 +124,54 @@ Update Convalidacione
         </div>
     </div>
 </section>
+<script defer>
+    function defer(method) {
+        if (window.jQuery)
+            method();
+        else
+            setTimeout(function() {
+                defer(method)
+            }, 50);
+    }
+    let init = function() {
+        window.$('[name="materia_cursada"]').on('change', (e) => {
+            console.log('ch ch ch changes', e.target.value, $('[name="materia_convalidada"]')[0].selectedOptions[0].value);
+            let cursada = e.target.value
+            let convalidada = $('[name="materia_convalidada"]')[0].selectedOptions[0].value
+            if (e.target.value == $('[name="materia_convalidada"]')[0].selectedOptions[0].value) {
+                $('[name="porcentaje"]')[0].value = 100
+                $('[name="porcentaje"]')[0].disabled = true
+                console.log('same');
+                return
+            }
+            $('[name="porcentaje"]')[0].disabled = false
+            $('[name="porcentaje"]')[0].value = ''
+            getPorcentajes(cursada, convalidada)
+        })
+        window.$('[name="materia_convalidada"]').on('change', (e) => {
+            console.log('ch ch ch changes', e.target.value, $('[name="materia_cursada"]')[0].selectedOptions[0].value);
+            let cursada = $('[name="materia_cursada"]')[0].selectedOptions[0].value
+            let convalidada = e.target.value
+            if (convalidada == cursada) {
+                $('[name="porcentaje"]')[0].value = 100
+                $('[name="porcentaje"]')[0].disabled = true
+                console.log('same');
+                return
+            }
+            $('[name="porcentaje"]')[0].disabled = false
+            $('[name="porcentaje"]')[0].value = ''
+            getPorcentajes(cursada, convalidada)
+
+
+        })
+        return 0
+
+    }
+
+    let getPorcentajes = function (cursada, convalidada){
+        base = 'http://127.0.0.1:8000/materias-convalidadas'
+        fetch(`${base}/${cursada}/${convalidada}`).then(e => console.log(e))
+    }
+    defer(init)
+</script>
 @endsection
