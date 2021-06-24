@@ -38,7 +38,11 @@ Route::resource('plan-estudios', App\Http\Controllers\PlanEstudioController::cla
 Route::resource('plan-estudios.materias-plan', App\Http\Controllers\MateriasPlanController::class);
 Route::resource('convalidaciones', App\Http\Controllers\ConvalidacioneController::class);
 Route::resource('convalidaciones.convalidacion-materias', App\Http\Controllers\ConvalidacionMateriaController::class);
+Route::resource('liberacions', App\Http\Controllers\LiberacionController::class);
+
 Route::get('/materias-convalidadas/{cursada}/{convalidada}', [App\Http\Controllers\ConvalidacionMateriaController::class, 'materiasConvalidadas']);
+
+
 
 Route::resource('reuniones.ordenes',App\Http\Controllers\OrdenController::class);
 Route::resource('reuniones.acuerdos',App\Http\Controllers\AcuerdoController::class);
@@ -50,7 +54,7 @@ Route::get('/proyectosasignados', [App\Http\Controllers\ProyectoController::clas
 Route::get('/proyectoslibres', [App\Http\Controllers\ProyectoController::class, 'crearpdfl']);
 Route::get('/docentepdf', [App\Http\Controllers\DocenteController::class, 'crearpdf']);
 Route::get('/reunionpdf/{id}', [App\Http\Controllers\ReunioneController::class, 'crearpdf']);
-Route::get('/liberacion', [App\Http\Controllers\ReunioneController::class, 'pdfliberacion']);
+//Route::get('/liberacion', [App\Http\Controllers\ReunioneController::class, 'pdfliberacion']);
 
 
 
