@@ -21,6 +21,7 @@ class ConvalidacionMateriaController extends Controller
     public function store(Request $request, $id)
     {
         
+        
         if ((request()->all()['materia_cursada']!= null) && (request()->all()['materia_cursada'] == request()->all()['materia_convalidada'])) 
         {
             # code...
@@ -29,6 +30,16 @@ class ConvalidacionMateriaController extends Controller
         $validated = request()->validate(ConvalidacionMateria::$rules);
 
         $convalidacion = ConvalidacionMateria::create($validated);
+
+        $tablaP = DB::table('porcentajes');
+        // insertar nuevo registro de porcentaje si no existe
+        $porcentaje = $tablaP->where('materia_externa', $convalidacion->materia_cursada)->where('materia_interna', $convalidacion->materia_convalidada);
+        if (!$porcentaje->exists() && !($convalidacion->materia_cursada == $convalidacion->materia_convalidada)){
+            $insert = $tablaP->insert(['materia_externa'=>$convalidacion->materia_cursada,
+            'materia_interna'=>$convalidacion->materia_convalidada,
+            'porcentaje'=>$convalidacion->porcentaje]);
+        }
+
 
         return redirect()->route('convalidaciones.edit',['convalidacione'=>$convalidacion->convalidacion_id])
             ->with('success', 'Convalidacione created successfully.');

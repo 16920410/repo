@@ -138,6 +138,10 @@ Update Convalidacione
             console.log('ch ch ch changes', e.target.value, $('[name="materia_convalidada"]')[0].selectedOptions[0].value);
             let cursada = e.target.value
             let convalidada = $('[name="materia_convalidada"]')[0].selectedOptions[0].value
+            let porcentaje = $('[name="porcentaje"]')[0]
+            if (!cursada || !convalidada) {
+                return ''
+            }
             if (e.target.value == $('[name="materia_convalidada"]')[0].selectedOptions[0].value) {
                 $('[name="porcentaje"]')[0].value = 100
                 $('[name="porcentaje"]')[0].disabled = true
@@ -146,12 +150,20 @@ Update Convalidacione
             }
             $('[name="porcentaje"]')[0].disabled = false
             $('[name="porcentaje"]')[0].value = ''
-            getPorcentajes(cursada, convalidada)
+            console.log(getPorcentajes(cursada, convalidada).then(e => {
+                porcentaje.value = e
+                $('[name="porcentaje"]')[0].disabled = e != ''
+
+            }))
+
         })
         window.$('[name="materia_convalidada"]').on('change', (e) => {
             console.log('ch ch ch changes', e.target.value, $('[name="materia_cursada"]')[0].selectedOptions[0].value);
             let cursada = $('[name="materia_cursada"]')[0].selectedOptions[0].value
             let convalidada = e.target.value
+            if (!cursada || !convalidada) {
+                return ''
+            }
             if (convalidada == cursada) {
                 $('[name="porcentaje"]')[0].value = 100
                 $('[name="porcentaje"]')[0].disabled = true
@@ -159,8 +171,12 @@ Update Convalidacione
                 return
             }
             $('[name="porcentaje"]')[0].disabled = false
-            $('[name="porcentaje"]')[0].value = ''
-            getPorcentajes(cursada, convalidada)
+            let porcentaje = $('[name="porcentaje"]')[0]
+            console.log(getPorcentajes(cursada, convalidada).then(e => {
+                porcentaje.value = e
+                $('[name="porcentaje"]')[0].disabled = e != ''
+
+            }))
 
 
         })
@@ -168,17 +184,19 @@ Update Convalidacione
 
     }
 
-    let getPorcentajes = function (cursada, convalidada){
+    let getPorcentajes = function(cursada, convalidada) {
 
-        if (!cursada || !convalidada) {
-            return ''
-        }
+
         let base = 'http://127.0.0.1:8000/materias-convalidadas'
         let url = `${base}/${cursada}/${convalidada}`
         console.log(url);
-        fetch(`${base}/${cursada}/${convalidada}`).then(e => {
-            return e.json()
-        }).then(e => console.log(e))
+        return fetch(`${base}/${cursada}/${convalidada}`).then(e => {
+                return e.json()
+            }).then(e => {
+                console.log(e);
+                return e
+            })
+            .then(e => e.length ? e[0].porcentaje : '')
     }
     defer(init)
 </script>
