@@ -169,8 +169,16 @@ Update Convalidacione
     }
 
     let getPorcentajes = function (cursada, convalidada){
-        base = 'http://127.0.0.1:8000/materias-convalidadas'
-        fetch(`${base}/${cursada}/${convalidada}`).then(e => console.log(e))
+
+        if (!cursada || !convalidada) {
+            return ''
+        }
+        let base = 'http://127.0.0.1:8000/materias-convalidadas'
+        let url = `${base}/${cursada}/${convalidada}`
+        console.log(url);
+        fetch(`${base}/${cursada}/${convalidada}`).then(e => {
+            return e.json()
+        }).then(e => console.log(e))
     }
     defer(init)
 </script>

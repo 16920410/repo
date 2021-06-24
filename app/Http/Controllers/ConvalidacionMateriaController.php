@@ -99,7 +99,8 @@ class ConvalidacionMateriaController extends Controller
     public function materiasConvalidadas($cursada, $convalidada){
 
         $porcentajes = DB::table('porcentajes')->where('materia_externa',$cursada)->where('materia_interna', $convalidada)->get();
-        return response()->json('asdasdsadas');
+        $arr = [];
+        return response()->json($porcentajes);
     }
     
 }
