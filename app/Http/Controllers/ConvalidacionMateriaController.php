@@ -27,6 +27,9 @@ class ConvalidacionMateriaController extends Controller
             # code...
             request()->merge(['porcentaje'=>100]);
         }
+        // var_dump($request->all());
+
+        // exit();
         $validated = request()->validate(ConvalidacionMateria::$rules);
 
         $convalidacion = ConvalidacionMateria::create($validated);

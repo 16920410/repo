@@ -37,16 +37,34 @@ Update Convalidacione
                             <div class="row">
                                 <div class="col-3">
                                     <div class="form-group">
-                                        {{ Form::label('Materia cursada') }}
-                                        {{ Form::select('materia_cursada', $materias_cursadas, $materia->materia_cursada, ['class' => 'form-control' . ($errors->has('materia_cursada') ? ' is-invalid' : ''), 'placeholder' => 'Materia Cursada']) }}
-                                        {!! $errors->first('materia_cursada', '<div class="invalid-feedback">:message</div>') !!}
+                                        {{ Form::label('Materia Cursada') }}
+                                        <select class="form-control {{$errors->has('materia_cursada')? 'is-invalid' : ''}}" name="materia_cursada" id="materia_cursada" placeholder="Materia Cursada">
+                                            <option value="">Materia Cursada </option>
+                                            @foreach ($materias_cursadas as $cursada)
+                                            <option value="{{$cursada->id}}">{{"$cursada->clave - $cursada->nombre  $materia->materia_cursada"}} </option>
+                                            @endforeach
+                                        </select>
+
+                                        @if ($errors)
+                                        {!! $errors->first('materia_cursada','<div class="invalid-feedback">:message</div>') !!}
+
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-3">
                                     <div class="form-group">
-                                        {{ Form::label('Materia convalidada') }}
-                                        {{ Form::select('materia_convalidada', $materias_convalidar, $materia->materia_convalidada, ['class' => 'form-control' . ($errors->has('materia_convalidada') ? ' is-invalid' : ''), 'placeholder' => 'Materia Cursada']) }}
-                                        {!! $errors->first('materia_convalidada', '<div class="invalid-feedback">:message</div>') !!}
+                                        {{ Form::label('Materia Convalidada') }}
+                                        <select class="form-control {{$errors->has('materia_convalidada')? 'is-invalid' : ''}}" name="materia_convalidada" id="materia_convalidada" placeholder="Materia Convalidada">
+                                            <option value="">Materia Convalidada </option>
+                                            @foreach ($materias_convalidar as $convalidada)
+                                            <option value="{{$convalidada->id}}">{{"$convalidada->clave - $convalidada->nombre "}} </option>
+                                            @endforeach
+                                        </select>
+
+                                        @if ($errors)
+                                        {!! $errors->first('materia_convalidada','<div class="invalid-feedback">:message</div>') !!}
+
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-2">
@@ -84,16 +102,36 @@ Update Convalidacione
                             @csrf
                             <div class="box-body">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-3">
                                         <div class="form-group">
-                                            {{ Form::label('Materia cursada') }}
-                                            {{ Form::select("materia_cursada_$key", $materias_convalidar, $convalidada->materia_cursada, ['placeholder' => 'Materia Cursada','disabled'=> true]) }}
+                                            {{ Form::label('Materia Cursada') }}
+                                            <select class="form-control" placeholder="Materia Cursada" disabled>
+                                                <option value="">Materia Cursada </option>
+                                                @foreach ($materias_cursadas as $cursada)
+                                                <option value="{{$cursada->id}}" {{$cursada->id == $convalidada->materia_cursada? 'selected':''}}>{{"$cursada->clave - $cursada->nombre  $materia->materia_cursada"}} </option>
+                                                @endforeach
+                                            </select>
+
+                                            @if ($errors)
+                                            {!! $errors->first('materia_cursada','<div class="invalid-feedback">:message</div>') !!}
+
+                                            @endif
                                         </div>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-3">
                                         <div class="form-group">
-                                            {{ Form::label('Materia convalidada') }}
-                                            {{ Form::select('materia_convalidada', $materias_convalidar, $convalidada->materia_convalidada, ['placeholder' => 'Materia Cursada','disabled'=> true]) }}
+                                            {{ Form::label('Materia convalida') }}
+                                            <select class="form-control" placeholder="Materia convalidada" disabled>
+                                                <option value="">Materia convalida </option>
+                                                @foreach ($materias_convalidar as $convalida)
+                                                <option value="{{$convalida->id}}" {{$convalida->id == $convalidada->materia_convalidada? 'selected':''}}>{{"$convalida->clave - $convalida->nombre "}} </option>
+                                                @endforeach
+                                            </select>
+
+                                            @if ($errors)
+                                            {!! $errors->first('materia_convalida','<div class="invalid-feedback">:message</div>') !!}
+
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col">
@@ -161,20 +199,22 @@ Update Convalidacione
             console.log('ch ch ch changes', e.target.value, $('[name="materia_cursada"]')[0].selectedOptions[0].value);
             let cursada = $('[name="materia_cursada"]')[0].selectedOptions[0].value
             let convalidada = e.target.value
+            let porcentaje = $('[name="porcentaje"]')[0]
             if (!cursada || !convalidada) {
                 return ''
             }
             if (convalidada == cursada) {
-                $('[name="porcentaje"]')[0].value = 100
-                $('[name="porcentaje"]')[0].disabled = true
+                porcentaje.value = 100
+                porcentaje.disabled = true
                 console.log('same');
                 return
             }
-            $('[name="porcentaje"]')[0].disabled = false
-            let porcentaje = $('[name="porcentaje"]')[0]
+            porcentaje.disabled = false
             console.log(getPorcentajes(cursada, convalidada).then(e => {
                 porcentaje.value = e
-                $('[name="porcentaje"]')[0].disabled = e != ''
+
+                $('[name="porcentaje"]').prop('readonly',true)
+                console.log(porcentaje.attributes);
 
             }))
 
