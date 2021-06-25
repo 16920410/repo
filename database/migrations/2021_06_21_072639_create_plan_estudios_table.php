@@ -82,7 +82,7 @@ class CreatePlanEstudiosTable extends Migration
 
             $table->foreign('materia_cursada')->references('id')->on('materias')->onDelete('restrict');
             $table->foreign('materia_convalidada')->references('id')->on('materias')->onDelete('restrict');
-            $table->foreign('convalidacion_id')->references('id')->on('convalidaciones')->onDelete('restrict');
+            $table->foreign('convalidacion_id')->references('id')->on('convalidaciones')->onDelete('cascade');
         });
     }
 
