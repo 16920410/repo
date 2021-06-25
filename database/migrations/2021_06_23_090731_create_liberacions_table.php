@@ -29,11 +29,13 @@ class CreateLiberacionsTable extends Migration
         Schema::create('actividades', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
+            $table->timestamps();
         });
         Schema::create('reporte_actividades', function (Blueprint $table) {
             $table->unsignedBigInteger('liberacion_id');
             $table->unsignedBigInteger('actividad_id');
             $table->integer('evaluacion');
+            $table->timestamps();
 
             $table->foreign('liberacion_id')
             ->references('id')->on('liberacions')->onDelete('cascade');
@@ -51,8 +53,8 @@ class CreateLiberacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('liberacions');
-        Schema::dropIfExists('actividades');
         Schema::dropIfExists('reporte_actividades');
+        Schema::dropIfExists('actividades');
+        Schema::dropIfExists('liberacions');
     }
 }
