@@ -160,7 +160,7 @@ class ConvalidacioneController extends Controller
 
         // var_dump($convalidacion);
         $pdf = PDF::loadView('convalidacione.pdfconvalidacion', compact('convalidacion', 'materias_convalidadas'));
-        // return $pdf->download('convalidacion.pdf');
+        return $pdf->download('convalidacion.pdf');
         return view('convalidacione.pdfconvalidacion', compact('convalidacion', 'materias_convalidadas'));
     }
 }
