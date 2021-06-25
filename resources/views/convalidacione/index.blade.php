@@ -58,6 +58,7 @@
 
                                             <td>
                                                 <form action="{{ route('convalidaciones.destroy',$convalidacione->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary" href="{{ URL::to('/pdfconvalidacion',$convalidacione->id) }}"><i class="fa fa-fw fa-file-pdf-o "></i> Imprimir-pdf</a>
                                                     <a class="btn btn-sm btn-primary " href="{{ route('convalidaciones.show',$convalidacione->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('convalidaciones.edit',$convalidacione->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf

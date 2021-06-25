@@ -28,7 +28,7 @@ class ConvalidacioneController extends Controller
             ->join('plan_estudios as p1', 'p1.id', '=', 'convalidaciones.plan_interno')
             ->join('tecnologicos as t', 't.id', '=', 'convalidaciones.tecnologico_procedente')
             ->join('tecnologicos as t1', 't1.id', '=', 'convalidaciones.tecnologico_receptor')
-            ->select(['p.nombre as plan_externo', 'p1.nombre as plan_interno','t.nombre as tecnologico_procedente','t1.nombre as tecnologico_receptor','convalidaciones.id','convalidaciones.nombre_alumno'])->paginate();
+            ->select(['p.nombre as plan_externo', 'p1.nombre as plan_interno', 't.nombre as tecnologico_procedente', 't1.nombre as tecnologico_receptor', 'convalidaciones.id', 'convalidaciones.nombre_alumno'])->paginate();
         // var_dump($convalidaciones);
         // exit();
 
@@ -129,5 +129,31 @@ class ConvalidacioneController extends Controller
 
         return redirect()->route('convalidaciones.index')
             ->with('success', 'Convalidacione deleted successfully');
+    }
+
+    public function pdfconvalidacion($id)
+    {
+        $convalidacion = Convalidacione::find($id)->join('plan_estudios as p', 'p.id', '=', 'convalidaciones.plan_externo')
+            ->join('plan_estudios as p1', 'p1.id', '=', 'convalidaciones.plan_interno')
+            ->join('tecnologicos as t', 't.id', '=', 'convalidaciones.tecnologico_procedente')
+            ->join('tecnologicos as t1', 't1.id', '=', 'convalidaciones.tecnologico_receptor')
+            ->select(['p.nombre as plan_externo', 'p1.nombre as plan_interno', 
+            'p.clave as plan_externo_clave', 'p1.clave as plan_interno_clave', 
+            't.nombre as tecnologico_procedente', 't1.nombre as tecnologico_receptor', 
+            'convalidaciones.id', 'convalidaciones.nombre_alumno'])->get()[0];
+        // var_dump($convalidaciones);
+        // exit();
+        $materias_convalidadas = ConvalidacionMateria::where('convalidacion_id', $id)
+            ->join('materias as m', 'm.id', '=', 'convalidacion_materias.materia_cursada')
+            ->join('materias as m1', 'm1.id', '=', 'convalidacion_materias.materia_convalidada')
+            ->select([
+                'm.nombre as cursada', 'm.clave as cursada_clave', 
+                'm1.nombre as convalidada', 'm1.clave as convalidada_clave',
+                 'convalidacion_materias.porcentaje', 'convalidacion_materias.calificacion'
+            ])->get();
+
+            // var_dump($convalidacion);
+
+        return view('convalidacione.pdfconvalidacion', compact('convalidacion', 'materias_convalidadas'));
     }
 }
