@@ -39,10 +39,10 @@
                         <a class="nav-link" href="{{ route('puestos.index') }}">{{ __('Puestos') }}</a>
                         <a class="nav-link" href="{{ route('docentes.index') }}">{{ __('Docentes') }}</a>
                         <a class="nav-link" href="{{ route('reuniones.index') }}">{{ __('Reunion Academia') }}</a>
-                        <a class="nav-link" href="{{ route('carreras.index') }}">{{ __('Carreras') }}</a>
+                        <!-- <a class="nav-link" href="{{ route('carreras.index') }}">{{ __('Carreras') }}</a> -->
                         <a class="nav-link" href="{{ route('tecnologicos.index') }}">{{ __('Tecnologicos') }}</a>
                         <a class="nav-link" href="{{ route('materias.index') }}">{{ __('Materias') }}</a>
-                        <a class="nav-link" href="{{ route('materiacursadas.index') }}">{{ __('Materias cursadas') }}</a>
+                        <!-- <a class="nav-link" href="{{ route('materiacursadas.index') }}">{{ __('Materias cursadas') }}</a> -->
                         <a class="nav-link" href="{{ route('proyectos.index') }}">{{ __('Proyectos Residencia') }}</a>
                         <a class="nav-link" href="{{ route('plan-estudios.index') }}">{{ __('Planes de estudio') }}</a>
                         <a class="nav-link" href="{{ route('convalidaciones.index') }}">{{ __('Convalidación') }}</a>
