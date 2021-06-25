@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Liberacion
+    Actividade
 @endsection
 
 @section('content')
@@ -13,15 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Liberación') }}
+                                {{ __('Actividade') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('liberacions.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('actividades.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
-                                </a>
-                                <a href="{{ route('actividades.index') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Actividades') }}
                                 </a>
                               </div>
                         </div>
@@ -38,31 +35,26 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-
-										<th>Fecha</th>
-										<th>Docente</th>
-										<th>Semestre</th>
+                                        
+										<th>Descripcion</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($liberacions as $liberacion)
+                                    @foreach ($actividades as $actividade)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-
-											<td>{{ $liberacion->fecha }}</td>
-											<td>{{ $liberacion->Docente->nombre }}</td>
-											<td>{{ $liberacion->semestre }}</td>
+                                            
+											<td>{{ $actividade->descripcion }}</td>
 
                                             <td>
-                                                <form action="{{ route('liberacions.destroy',$liberacion->id) }}" method="POST">
-
-                                                    <a class="btn btn-sm btn-success" href="{{ route('liberacions.edit',$liberacion->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
-                                                    <a class="btn btn-sm btn-primarybtn btn-primary">Descargar PDF</a>
+                                                <form action="{{ route('actividades.destroy',$actividade->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('actividades.show',$actividade->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('actividades.edit',$actividade->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -72,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $liberacions->links() !!}
+                {!! $actividades->links() !!}
             </div>
         </div>
     </div>
