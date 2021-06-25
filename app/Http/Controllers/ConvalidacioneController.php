@@ -24,7 +24,13 @@ class ConvalidacioneController extends Controller
      */
     public function index()
     {
-        $convalidaciones = Convalidacione::paginate();
+        $convalidaciones = Convalidacione::join('plan_estudios as p', 'p.id', '=', 'convalidaciones.plan_externo')
+            ->join('plan_estudios as p1', 'p1.id', '=', 'convalidaciones.plan_interno')
+            ->join('tecnologicos as t', 't.id', '=', 'convalidaciones.tecnologico_procedente')
+            ->join('tecnologicos as t1', 't1.id', '=', 'convalidaciones.tecnologico_receptor')
+            ->select(['p.nombre as plan_externo', 'p1.nombre as plan_interno','t.nombre as tecnologico_procedente','t1.nombre as tecnologico_receptor','convalidaciones.id','convalidaciones.nombre_alumno'])->paginate();
+        // var_dump($convalidaciones);
+        // exit();
 
         return view('convalidacione.index', compact('convalidaciones'))
             ->with('i', (request()->input('page', 1) - 1) * $convalidaciones->perPage());
@@ -38,9 +44,9 @@ class ConvalidacioneController extends Controller
     public function create()
     {
         $convalidacione = new Convalidacione();
-        $planes = PlanEstudio::all()->pluck('nombre','id');
-        $tecnologicos = Tecnologico::all()->pluck('nombre','id');
-        return view('convalidacione.create', compact('convalidacione','planes','tecnologicos'));
+        $planes = PlanEstudio::all()->pluck('nombre', 'id');
+        $tecnologicos = Tecnologico::all()->pluck('nombre', 'id');
+        return view('convalidacione.create', compact('convalidacione', 'planes', 'tecnologicos'));
     }
 
     /**
@@ -55,7 +61,7 @@ class ConvalidacioneController extends Controller
 
         $convalidacione = Convalidacione::create($request->all());
 
-        return redirect()->route('convalidaciones.edit',['convalidacione'=>$convalidacione->id])
+        return redirect()->route('convalidaciones.edit', ['convalidacione' => $convalidacione->id])
             ->with('success', 'Convalidacione created successfully.');
     }
 
@@ -80,19 +86,19 @@ class ConvalidacioneController extends Controller
      */
     public function edit($id)
     {
-        $planes = PlanEstudio::all()->pluck('nombre','id');
-        $tecnologicos = Tecnologico::all()->pluck('nombre','id');
+        $planes = PlanEstudio::all()->pluck('nombre', 'id');
+        $tecnologicos = Tecnologico::all()->pluck('nombre', 'id');
         $convalidacione = Convalidacione::find($id);
         $materia = new ConvalidacionMateria();
         $materias_cursadas = MateriasPlan::where('plan_id', $convalidacione->plan_externo)
-        ->join('materias','materias.id','=','materias_plan.materia_id')->select(['clave','nombre','id'])->get();
-        $materias_convalidar= MateriasPlan::where('plan_id', $convalidacione->plan_interno)
-        ->join('materias','materias.id','=','materias_plan.materia_id')->select(['clave','nombre','id'])->get();
+            ->join('materias', 'materias.id', '=', 'materias_plan.materia_id')->select(['clave', 'nombre', 'id'])->get();
+        $materias_convalidar = MateriasPlan::where('plan_id', $convalidacione->plan_interno)
+            ->join('materias', 'materias.id', '=', 'materias_plan.materia_id')->select(['clave', 'nombre', 'id'])->get();
         $materias_convalidadas = ConvalidacionMateria::where('convalidacion_id', $convalidacione->id)->get();
 
         // $materias_cursadas= $materias_cursadas->pluck('clave','id');
         // $materias_convalidar=$materias_convalidar->pluck('clave','id');
-        return view('convalidacione.edit', compact('convalidacione','materia','materias_cursadas','materias_convalidar','planes','tecnologicos','materias_convalidadas'));
+        return view('convalidacione.edit', compact('convalidacione', 'materia', 'materias_cursadas', 'materias_convalidar', 'planes', 'tecnologicos', 'materias_convalidadas'));
     }
 
     /**
