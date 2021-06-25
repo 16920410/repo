@@ -10,6 +10,7 @@ use App\Models\MateriasPlan;
 use App\Models\PlanEstudio;
 use App\Models\Tecnologico;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 /**
  * Class ConvalidacioneController
@@ -137,23 +138,26 @@ class ConvalidacioneController extends Controller
             ->join('plan_estudios as p1', 'p1.id', '=', 'convalidaciones.plan_interno')
             ->join('tecnologicos as t', 't.id', '=', 'convalidaciones.tecnologico_procedente')
             ->join('tecnologicos as t1', 't1.id', '=', 'convalidaciones.tecnologico_receptor')
-            ->select(['p.nombre as plan_externo', 'p1.nombre as plan_interno', 
-            'p.clave as plan_externo_clave', 'p1.clave as plan_interno_clave', 
-            't.nombre as tecnologico_procedente', 't1.nombre as tecnologico_receptor', 
-            'convalidaciones.id', 'convalidaciones.nombre_alumno'])->get()[0];
+            ->select([
+                'p.nombre as plan_externo', 'p1.nombre as plan_interno',
+                'p.clave as plan_externo_clave', 'p1.clave as plan_interno_clave',
+                't.nombre as tecnologico_procedente', 't1.nombre as tecnologico_receptor',
+                'convalidaciones.id', 'convalidaciones.nombre_alumno'
+            ])->get()[0];
         // var_dump($convalidaciones);
         // exit();
         $materias_convalidadas = ConvalidacionMateria::where('convalidacion_id', $id)
             ->join('materias as m', 'm.id', '=', 'convalidacion_materias.materia_cursada')
             ->join('materias as m1', 'm1.id', '=', 'convalidacion_materias.materia_convalidada')
             ->select([
-                'm.nombre as cursada', 'm.clave as cursada_clave', 
+                'm.nombre as cursada', 'm.clave as cursada_clave',
                 'm1.nombre as convalidada', 'm1.clave as convalidada_clave',
-                 'convalidacion_materias.porcentaje', 'convalidacion_materias.calificacion'
+                'convalidacion_materias.porcentaje', 'convalidacion_materias.calificacion'
             ])->get();
 
-            // var_dump($convalidacion);
-
+        // var_dump($convalidacion);
+        $pdf = PDF::loadView('convalidacione.pdfconvalidacion', compact('convalidacion', 'materias_convalidadas'));
+        // return $pdf->download('convalidacion.pdf');
         return view('convalidacione.pdfconvalidacion', compact('convalidacion', 'materias_convalidadas'));
     }
 }

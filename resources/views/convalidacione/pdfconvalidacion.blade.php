@@ -1,29 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convalidación</title>
-    <style>
-        table {
-            width: 80%;
-            margin: 0 auto;
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
 
-        th,
-        td {
-            border: 1px solid black;
-        }
-        .estudiante{
-            width: 80%;
-            margin: 0 auto;
-        }
-    </style>
-</head>
+<style>
+    body {
+        width: 100%;
+    }
+
+    table {
+        width: 80%;
+        margin: 0 auto;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid black;
+    }
+
+    .estudiante {
+        width: 80%;
+        margin: 0 auto;
+    }
+</style>
 
 <body>
     <div class="info">
@@ -64,9 +63,9 @@
                 <th> Porcentaje %</th>
             </thead>
             <tbody>
-            @foreach ($materias_convalidadas as $key => $materia)
+                @foreach ($materias_convalidadas as $key => $materia)
                 <tr>
-                <td>{{$key+1}}</td>
+                    <td>{{$key+1}}</td>
                     <td>{{$materia->cursada}}</td>
                     <td>{{$materia->cursada_clave}}</td>
                     <td>{{$materia->calificacion}}</td>
@@ -74,10 +73,10 @@
                     <td>{{$materia->convalidada_clave}}</td>
                     <td>{{$materia->porcentaje}}</td>
                 </tr>
-                
-            @endforeach
-                
-                
+
+                @endforeach
+
+
             </tbody>
         </table>
     </div>
