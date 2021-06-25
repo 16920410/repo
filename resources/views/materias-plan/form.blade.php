@@ -3,13 +3,22 @@
 
         <div class="form-group">
             {{ Form::label('plan_id') }}
-            {{ Form::text('plan_id', $plan, ['class' => 'form-control' . ($errors->has('plan_id') ? ' is-invalid' : ''), 'placeholder' => $planEstudio->nombre]) }}
+            {{ Form::select('plan_id',$planesEstudio, $plan, ['class' => 'form-control' . ($errors->has('plan_id') ? ' is-invalid' : ''), 'placeholder' => $planEstudio->nombre]) }}
             {!! $errors->first('plan_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        
         <div class="form-group">
             {{ Form::label('materia_id') }}
-            {{ Form::select('materia_id', $materias, null, ['class' => 'form-control' . ($errors->has('materia_id') ? ' is-invalid' : ''), 'placeholder' => 'Materia Id']) }}
-            {!! $errors->first('materia_id', '<div class="invalid-feedback">:message</div>') !!}
+            <select class="form-control {{($errors->has('materia_id') ? ' is-invalid' : '')}}" name="materia_id" id="materia_id">
+                <option value="">Seleccionar Materia</option>
+                @foreach ($materias as $materia)
+                <option value="{{$materia->id}}">{{"$materia->clave - $materia->nombre"}}</option>
+                @endforeach
+            </select>
+            @if ($errors)
+            {!! $errors->first('materia_id','<div class="invalid-feedback">:message</div>') !!}
+
+            @endif
         </div>
 
     </div>

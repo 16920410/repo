@@ -41,15 +41,14 @@ Create Materias Plan
                             <div class="col-2">
                                 <div class="form-group">
                                     {{ Form::label('plan_id') }}
-                                    {{ Form::text('plan_id', $planE->plan_id, ['class' => 'form-control' . ($errors->has('plan_id') ? ' is-invalid' : ''), 'placeholder' =>'nombre','disabled'=>true]) }}
-                                    {!! $errors->first('plan_id', '<div class="invalid-feedback">:message</div>') !!}
+                                    {{ Form::hidden('plan_id',$planE->plan_id) }}
+                                    {{ Form::select('plan_nom',$planesEstudio, $planE->plan_id, ['class' => 'form-control' . ($errors->has('plan_id') ? ' is-invalid' : ''), 'placeholder' =>'nombre','disabled'=>true]) }}
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     {{ Form::label('materia_id') }}
-                                    {{ Form::select('materia_id', $materias, $planE->materia_id, ['class' => 'form-control' . ($errors->has('materia_id') ? ' is-invalid' : ''), 'placeholder' => 'Materia Id','disabled'=>true]) }}
-                                    {!! $errors->first('materia_id', '<div class="invalid-feedback">:message</div>') !!}
+                                    {{ Form::text('materia_id',$planE->materia->clave." - ".$planE->materia->nombre , ['class' => 'form-control' . ($errors->has('materia_id') ? ' is-invalid' : ''), 'placeholder' => 'Materia Id','disabled'=>true]) }}
                                 </div>
                             </div>
                             <div class="col">

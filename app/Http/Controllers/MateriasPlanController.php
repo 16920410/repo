@@ -36,15 +36,17 @@ class MateriasPlanController extends Controller
      */
     public function create($plan)
     {
-        $materias = Materia::all()->pluck('clave','id');
+        $materias = Materia::all(['id','nombre','clave']);
         $planEstudio = PlanEstudios::find($plan);
+        $planesEstudio = PlanEstudios::all()->pluck('nombre', 'id');
         $planes = MateriasPlan::where('plan_id',$plan)->get();
+        $materiasSel = Materia::all(['id','nombre','clave'])->pluck('nombre','id');
         // $plan = $planEstudio;
         // var_dump($plan, $planEstudio);
         // var_dump($materias);
         // exit();
         $materiasPlan = new MateriasPlan();
-        return view('materias-plan.create', compact('planEstudio','materias','plan','planes'));
+        return view('materias-plan.create', compact('planEstudio','materias','plan','planes','planesEstudio','materiasSel'));
     }
 
     /**
