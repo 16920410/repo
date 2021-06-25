@@ -77,7 +77,7 @@ Update Convalidacione
                                 <div class="col-2">
                                     <div class="form-group">
                                         {{ Form::label('porcentaje de validación') }}
-                                        {{ Form::number('porcentaje', $materia->porcentaje, ['class' => 'form-control' . ($errors->has('porcentaje') ? ' is-invalid' : ''), 'placeholder' => '0','min'=>'0']) }}
+                                        {{ Form::number('porcentaje', $materia->porcentaje?$materia->porcentaje:0, ['class' => 'form-control' . ($errors->has('porcentaje') ? ' is-invalid' : ''), 'placeholder' => '0','min'=>'0']) }}
                                         {!! $errors->first('porcentaje', '<div class="invalid-feedback">:message</div>') !!}
                                     </div>
                                     <div class="form-group">
@@ -120,9 +120,9 @@ Update Convalidacione
                                     </div>
                                     <div class="col-3">
                                         <div class="form-group">
-                                            {{ Form::label('Materia convalida') }}
+                                            {{ Form::label('Materia Convalidada') }}
                                             <select class="form-control" placeholder="Materia convalidada" disabled>
-                                                <option value="">Materia convalida </option>
+                                                <option value="">Materia convalidada </option>
                                                 @foreach ($materias_convalidar as $convalida)
                                                 <option value="{{$convalida->id}}" {{$convalida->id == $convalidada->materia_convalidada? 'selected':''}}>{{"$convalida->clave - $convalida->nombre "}} </option>
                                                 @endforeach
@@ -143,7 +143,7 @@ Update Convalidacione
                                     <div class="col">
                                         <div class="form-group">
                                             {{ Form::label('porcentaje') }}
-                                            {{ Form::text('porcentaje', $convalidada->porcentaje, ['placeholder' => 'Materia Cursada','disabled'=> true]) }}
+                                            {{ Form::text('porcentaje', $convalidada->porcentaje? $convalidada->porcentaje:0, ['placeholder' => 'Materia Cursada','disabled'=> true]) }}
                                         </div>
                                     </div>
                                     <div class="col d-flex align-items-end">
@@ -156,6 +156,9 @@ Update Convalidacione
                         </form>
                     </div>
                     @endforeach
+                </div>
+                <div class="card-footer">
+                <a href="{{route('convalidaciones.index')}}" class="btn btn-secondary">Terminar</a>
                 </div>
             </div>
             @endif
@@ -174,31 +177,8 @@ Update Convalidacione
     let init = function() {
         window.$('[name="materia_cursada"]').on('change', (e) => {
             console.log('ch ch ch changes', e.target.value, $('[name="materia_convalidada"]')[0].selectedOptions[0].value);
-            let cursada = e.target.value
-            let convalidada = $('[name="materia_convalidada"]')[0].selectedOptions[0].value
-            let porcentaje = $('[name="porcentaje"]')[0]
-            if (!cursada || !convalidada) {
-                return ''
-            }
-            if (e.target.value == $('[name="materia_convalidada"]')[0].selectedOptions[0].value) {
-                $('[name="porcentaje"]')[0].value = 100
-                $('[name="porcentaje"]')[0].disabled = true
-                console.log('same');
-                return
-            }
-            $('[name="porcentaje"]')[0].disabled = false
-            $('[name="porcentaje"]')[0].value = ''
-            console.log(getPorcentajes(cursada, convalidada).then(e => {
-                porcentaje.value = e
-                $('[name="porcentaje"]')[0].disabled = e != ''
-
-            }))
-
-        })
-        window.$('[name="materia_convalidada"]').on('change', (e) => {
-            console.log('ch ch ch changes', e.target.value, $('[name="materia_cursada"]')[0].selectedOptions[0].value);
             let cursada = $('[name="materia_cursada"]')[0].selectedOptions[0].value
-            let convalidada = e.target.value
+            let convalidada = $('[name="materia_convalidada"]')[0].selectedOptions[0].value
             let porcentaje = $('[name="porcentaje"]')[0]
             if (!cursada || !convalidada) {
                 return ''
@@ -213,15 +193,32 @@ Update Convalidacione
             console.log(getPorcentajes(cursada, convalidada).then(e => {
                 porcentaje.value = e
 
-                $('[name="porcentaje"]').prop('readonly',true)
-                console.log(porcentaje.attributes);
-
+                $('[name="porcentaje"]').prop('readonly',e!='0')
             }))
 
+        })
+        window.$('[name="materia_convalidada"]').on('change', (e) => {
+            console.log('ch ch ch changes', e.target.value, $('[name="materia_cursada"]')[0].selectedOptions[0].value);
+            let cursada = $('[name="materia_cursada"]')[0].selectedOptions[0].value
+            let convalidada = $('[name="materia_convalidada"]')[0].selectedOptions[0].value
+            let porcentaje = $('[name="porcentaje"]')[0]
+            if (!cursada || !convalidada) {
+                return ''
+            }
+            if (convalidada == cursada) {
+                porcentaje.value = 100
+                porcentaje.disabled = true
+                console.log('same');
+                return
+            }
+            porcentaje.disabled = false
+            console.log(getPorcentajes(cursada, convalidada).then(e => {
+                porcentaje.value = e
 
+                $('[name="porcentaje"]').prop('readonly',e!='0')
+            }))
         })
         return 0
-
     }
 
     let getPorcentajes = function(cursada, convalidada) {
@@ -236,7 +233,7 @@ Update Convalidacione
                 console.log(e);
                 return e
             })
-            .then(e => e.length ? e[0].porcentaje : '')
+            .then(e => e.length ? e[0].porcentaje : 0)
     }
     defer(init)
 </script>
