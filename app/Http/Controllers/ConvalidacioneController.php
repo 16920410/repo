@@ -134,7 +134,8 @@ class ConvalidacioneController extends Controller
 
     public function pdfconvalidacion($id)
     {
-        $convalidacion = Convalidacione::find($id)->join('plan_estudios as p', 'p.id', '=', 'convalidaciones.plan_externo')
+        $convalidacion = Convalidacione::where('convalidaciones.id',$id)->
+        join('plan_estudios as p', 'p.id', '=', 'convalidaciones.plan_externo')
             ->join('plan_estudios as p1', 'p1.id', '=', 'convalidaciones.plan_interno')
             ->join('tecnologicos as t', 't.id', '=', 'convalidaciones.tecnologico_procedente')
             ->join('tecnologicos as t1', 't1.id', '=', 'convalidaciones.tecnologico_receptor')
@@ -144,7 +145,7 @@ class ConvalidacioneController extends Controller
                 't.nombre as tecnologico_procedente', 't1.nombre as tecnologico_receptor',
                 'convalidaciones.id', 'convalidaciones.nombre_alumno'
             ])->get()[0];
-        // var_dump($convalidaciones);
+        // var_dump($convalidacion,$id);
         // exit();
         $materias_convalidadas = ConvalidacionMateria::where('convalidacion_id', $id)
             ->join('materias as m', 'm.id', '=', 'convalidacion_materias.materia_cursada')
@@ -157,7 +158,7 @@ class ConvalidacioneController extends Controller
 
         // var_dump($convalidacion);
         $pdf = PDF::loadView('convalidacione.pdfconvalidacion', compact('convalidacion', 'materias_convalidadas'));
-        return $pdf->download('convalidacion.pdf');
+        // return $pdf->download('convalidacion.pdf');
         return view('convalidacione.pdfconvalidacion', compact('convalidacion', 'materias_convalidadas'));
     }
 }

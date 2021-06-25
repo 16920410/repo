@@ -23,7 +23,7 @@
 
         th,
         td {
-            width: 100%;
+            /* width: 100%; */
             border: 1px solid black;
             border-collapse: collapse;
         }
@@ -51,10 +51,6 @@
             <tr>
                 <td>Clave del Plan de Estudios: {{$convalidacion->plan_externo_clave}}</td>
                 <td>Clave del Plan de Estudios: {{$convalidacion->plan_interno_clave}}</td>
-            </tr>
-            <tr>
-                <td>Institución de procedencia: {{$convalidacion->tecnologico_procedente}}</td>
-                <td>Institución receptora: {{$convalidacion->tecnologico_receptor}}</td>
             </tr>
             <tr>
                 <td>Institución de procedencia: {{$convalidacion->tecnologico_procedente}}</td>
