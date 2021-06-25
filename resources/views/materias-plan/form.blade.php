@@ -3,10 +3,10 @@
 
         <div class="form-group">
             {{ Form::label('plan_id') }}
-            {{ Form::select('plan_id',$planesEstudio, $plan, ['class' => 'form-control' . ($errors->has('plan_id') ? ' is-invalid' : ''), 'placeholder' => $planEstudio->nombre]) }}
+            {{ Form::select('plan_id',$planesEstudio, $plan, ['class' => 'form-control' . ($errors->has('plan_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar Plan', 'disabled'=>'true']) }}
             {!! $errors->first('plan_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        
+
         <div class="form-group">
             {{ Form::label('materia_id') }}
             <select class="form-control {{($errors->has('materia_id') ? ' is-invalid' : '')}}" name="materia_id" id="materia_id">

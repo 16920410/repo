@@ -137,13 +137,13 @@ Update Convalidacione
                                     <div class="col">
                                         <div class="form-group">
                                             {{ Form::label('Calificación') }}
-                                            {{ Form::text('calificacion', $convalidada->calificacion, ['placeholder' => 'Materia Cursada','disabled'=> true]) }}
+                                            {{ Form::text('calificacion', $convalidada->calificacion, ['class'=>'form-control','placeholder' => 'Materia Cursada','disabled'=> true]) }}
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             {{ Form::label('porcentaje') }}
-                                            {{ Form::text('porcentaje', $convalidada->porcentaje? $convalidada->porcentaje:0, ['placeholder' => 'Materia Cursada','disabled'=> true]) }}
+                                            {{ Form::text('porcentaje', $convalidada->porcentaje? $convalidada->porcentaje:0, ['class'=>'form-control','placeholder' => 'Materia Cursada','disabled'=> true]) }}
                                         </div>
                                     </div>
                                     <div class="col d-flex align-items-end">

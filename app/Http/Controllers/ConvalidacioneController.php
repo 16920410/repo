@@ -89,7 +89,9 @@ class ConvalidacioneController extends Controller
     {
         $planes = PlanEstudio::all()->pluck('nombre', 'id');
         $tecnologicos = Tecnologico::all()->pluck('nombre', 'id');
-        $convalidacione = Convalidacione::find($id);
+        $convalidacione = Convalidacione::where('id',$id)->get()[0];
+        // var_dump($convalidacione);
+        // exit();
         $materia = new ConvalidacionMateria();
         $materias_cursadas = MateriasPlan::where('plan_id', $convalidacione->plan_externo)
             ->join('materias', 'materias.id', '=', 'materias_plan.materia_id')->select(['clave', 'nombre', 'id'])->get();

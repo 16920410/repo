@@ -104,7 +104,7 @@ class ConvalidacionMateriaController extends Controller
     {
         // var_dump($convalidacione, $convalidacion_materia);
         // exit();
-        $convalidacione = ConvalidacionMateria::find($convalidacion_materia)->delete();
+        $convalidacion = ConvalidacionMateria::where('id',$convalidacion_materia)->delete();
         
         return redirect()->route('convalidaciones.edit',['convalidacione'=>$convalidacione])
         ->with('success', 'Convalidacione deleted successfully');
