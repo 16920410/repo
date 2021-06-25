@@ -51,8 +51,8 @@ Create Materias Plan
                                     {{ Form::text('materia_id',$planE->materia->clave." - ".$planE->materia->nombre , ['class' => 'form-control' . ($errors->has('materia_id') ? ' is-invalid' : ''), 'placeholder' => 'Materia Id','disabled'=>true]) }}
                                 </div>
                             </div>
-                            <div class="col">
-                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                            <div class="col d-flex align-items-end">
+                                <button type="submit" class="btn btn-danger mb-3"><i class="fa fa-fw fa-trash"></i> Delete</button>
                             </div>
 
                         </div>
