@@ -118,10 +118,11 @@ class LiberacionController extends Controller
         $docentes = [];
         $lista_actividades = ReporteActividade::where('liberacion_id',$id)->get();
         $liberacion = Liberacion::where('id',$id)->first();
+        $presidente = Docente::where('puesto_id','3')->first();
+        $secretario = Docente::where('puesto_id','2')->first();
 
 
-
-        return view('liberacion.pdfliberacion', compact('lista_actividades','liberacion'));
+        return view('liberacion.pdfliberacion', compact('lista_actividades','liberacion','presidente', 'secretario'));
         $pdf = PDF::loadView('liberacion.pdfliberacion');
 
 

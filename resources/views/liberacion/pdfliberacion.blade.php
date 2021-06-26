@@ -36,7 +36,7 @@
     <br>
     <div class="categoriesDiv" style="width:135%">
         <table style="border: hidden">
-            <th>Ex Hacienda de Nazareno Xoxocotlán Oax., a</th>
+            <th>Ex Hacienda de Nazareno Xoxocotlán Oax., a {{date('d-m-Y', strtotime($liberacion->created_at))}}</th>
         </table>
     </div>
 
@@ -67,7 +67,7 @@
             <th>Por medio de la presente, se hace de su conocimiento que durante el
                 semestre
             </th>
-            <th><u>__{{$liberacion->semestre}}__   </u>, se evaluó el cumplimiento de las siguientes
+            <th><u>__{{$liberacion->semestre}}__ </u>, se evaluó el cumplimiento de las siguientes
                 actividades:
             </th>
 
@@ -114,7 +114,7 @@
             </tr>
             @endforeach
             <tr>
- 
+
             <tr>
                 <td>Otros (especificar):</td>
                 <td></td>
@@ -136,14 +136,36 @@
     <br>
 
     <div>
-        <table style="border: 1px solid black; width: 80%; height: 200px;  border-collapse: collapse; ">
+        <table style="border: 1px solid black; width: 80%; height: 150px;  border-collapse: collapse; ">
 
             <tr>
-                <th valign="top" WIDTH="500">Presidente de la Academia</th>
-                <td WIDTH="50"></td>
-                <th valign="top" WIDTH="500">Vo. Bo. Jefe del Departamento academico</th>
+                <th valign="top" WIDTH="300">Presidente de la Academia</th>
+                <td WIDTH="50" style="border-bottom: none;"></td>
+                <th valign="top" WIDTH="300">Vo. Bo. Jefe del Departamento academico</th>
 
             </tr>
+            <tr>
+                @if ($presidente)
+
+                <th valign="bottom">{{$presidente->nombre}}</th>
+                @else
+
+                <th valign="bottom">No hay presidente elegido</th>
+                @endif
+
+
+                <td WIDTH="50" style="border-top: none;"></td>
+                @if ($secretario)
+                <th valign="bottom">{{$secretario->nombre}}</th>
+                @else
+
+                <th valign="bottom">No hay secretario elegido</th>
+                @endif
+
+
+
+            </tr>
+
 
 
         </table>
