@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actividade;
+use App\Models\Liberacion;
 use App\Models\ReporteActividade;
 use Illuminate\Http\Request;
 
@@ -29,10 +31,29 @@ class ReporteActividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Liberacion $liberacion)
     {
+        $reportes = ReporteActividade::where('liberacion_id', $liberacion->id);
+        // var_dump($liberacion->docente);
+        // exit();
+        $lista_actividades = Actividade::all();
+        if (!$reportes->exists()) {
+            foreach ($lista_actividades as $key => $actividad) {
+                ReporteActividade::create(['liberacion_id' => $liberacion->id, 'actividad_id' => $actividad->id, 'evaluacion' => 0]);
+            }
+        }
+
+        $reportes = $reportes->join('actividades as a', 'a.id', '=', 'reporte_actividades.actividad_id')->get();
         $reporteActividade = new ReporteActividade();
-        return view('reporte-actividade.create', compact('reporteActividade'));
+        $actividades = Actividade::all()->pluck('descripcion', 'id');
+        // $infolib = Liberacion::where('id', $liberacion->id)->get();
+
+
+        // if ($actividades) {
+        //     var_dump($actividades);
+        //     exit();
+        // }
+        return view('reporte-actividade.create', compact('lista_actividades', 'liberacion', 'reportes'));
     }
 
     /**
@@ -84,13 +105,13 @@ class ReporteActividadeController extends Controller
      * @param  ReporteActividade $reporteActividade
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReporteActividade $reporteActividade)
+    public function update(Request $request, Liberacion $liberacion, $reporteActividade)
     {
-        request()->validate(ReporteActividade::$rules);
+        $validated = request()->validate(ReporteActividade::$rules);
+        $reporte = ReporteActividade::where('liberacion_id', $liberacion->id)->where('actividad_id',$reporteActividade)->update($validated);
 
-        $reporteActividade->update($request->all());
 
-        return redirect()->route('reporte-actividades.index')
+        return redirect()->route('liberacions.reporte-actividades.create', $liberacion->id)
             ->with('success', 'ReporteActividade updated successfully');
     }
 

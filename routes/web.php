@@ -57,7 +57,7 @@ Route::get('/proyectoslibres', [App\Http\Controllers\ProyectoController::class, 
 Route::get('/docentepdf', [App\Http\Controllers\DocenteController::class, 'crearpdf']);
 Route::get('/reunionpdf/{id}', [App\Http\Controllers\ReunioneController::class, 'crearpdf']);
 Route::get('/pdfconvalidacion/{id}', [App\Http\Controllers\ConvalidacioneController::class, 'pdfconvalidacion']);
-//Route::get('/liberacion', [App\Http\Controllers\ReunioneController::class, 'pdfliberacion']);
+Route::get('/pdfliberacion/{id}', [App\Http\Controllers\LiberacionController::class, 'pdfliberacion']);
 
 
 

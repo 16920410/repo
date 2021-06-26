@@ -1,24 +1,42 @@
-<div class="box box-info padding-1">
-    <div class="box-body">
-        
-        <div class="form-group">
-            {{ Form::label('liberacion_id') }}
-            {{ Form::text('liberacion_id', $reporteActividade->liberacion_id, ['class' => 'form-control' . ($errors->has('liberacion_id') ? ' is-invalid' : ''), 'placeholder' => 'Liberacion Id']) }}
-            {!! $errors->first('liberacion_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('actividad_id') }}
-            {{ Form::text('actividad_id', $reporteActividade->actividad_id, ['class' => 'form-control' . ($errors->has('actividad_id') ? ' is-invalid' : ''), 'placeholder' => 'Actividad Id']) }}
-            {!! $errors->first('actividad_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('evaluacion') }}
-            {{ Form::text('evaluacion', $reporteActividade->evaluacion, ['class' => 'form-control' . ($errors->has('evaluacion') ? ' is-invalid' : ''), 'placeholder' => 'Evaluacion']) }}
-            {!! $errors->first('evaluacion', '<div class="invalid-feedback">:message</p>') !!}
+@foreach ($reportes as $key => $actividad)
+<form method="POST" action="{{ route('liberacions.reporte-actividades.update',['liberacion'=>$liberacion->id,'reporte_actividade'=>$actividad->id]) }}" role="form" enctype="multipart/form-data">
+    {{ method_field('PATCH') }}
+    @csrf
+    <div class="row">
+        <div class="col-6">
+        {{ Form::hidden('actividad_id',$actividad->actividad_id) }}
+        {{ Form::hidden('liberacion_id',$actividad->liberacion_id) }}
+            <p>{{$actividad->descripcion}}</p>
         </div>
 
+        <div class="col-1">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="2" id="si" name="evaluacion" {{$actividad->evaluacion == 2? 'checked':''}}>
+                <label class="form-check-label" for="si">
+                    Si
+                </label>
+            </div>
+        </div>
+        <div class="col-1">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="1" id="no" name="evaluacion" {{$actividad->evaluacion == 1? 'checked':''}}>
+                <label class="form-check-label" for="no">
+                    No
+                </label>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="0" id="na" name="evaluacion" {{$actividad->evaluacion == 0? 'checked':''}}>
+                <label class="form-check-label" for="na">
+                    No aplica
+                </label>
+            </div>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Guardar respuesta</button>
+        </div>
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</div>
+
+</form>
+@endforeach
