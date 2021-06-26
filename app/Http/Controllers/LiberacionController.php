@@ -118,8 +118,8 @@ class LiberacionController extends Controller
 
 
 
-        return view('reunione.pdfliberacion');
-        $pdf = PDF::loadView('reunione.pdfliberacion');
+        return view('liberacion.pdfliberacion');
+        $pdf = PDF::loadView('liberacion.pdfliberacion');
 
 
         return $pdf->download('Liberación.pdf');
