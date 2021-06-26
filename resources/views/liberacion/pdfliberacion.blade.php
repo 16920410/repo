@@ -1,16 +1,32 @@
-<!DOCTYPE html>
 <html>
+<style>
+    table {
+        /* width: 200px; */
+        margin: 0 auto;
+    }
+
+    td {
+        border: 1px solid black;
+    }
+</style>
+<style>
+    body {
+        width: 100%;
+    }
+
+    .categoriesDiv {
+        width: 80%;
+        margin: auto;
+    }
+</style>
 
 <body>
 
 
     <br>
     <br>
-    <style>
-        .categoriesDiv {
-            width: 50%;
-        }
-    </style>
+
+
 
 
     <div class="categoriesDiv" style="width:90%">
@@ -26,24 +42,36 @@
 
 
     <table style="border: hidden">
-        <th>ANEXO XXXVII. CARTA DE LIBERACIÓN DE ACTIVIDADES ACADÉMICAS</th>
+        <thead>
+            <th>ANEXO XXXVII. CARTA DE LIBERACIÓN DE ACTIVIDADES ACADÉMICAS</th>
+
+        </thead>
     </table>
 
     <table style="border: hidden">
-        <th>Departamento Académico de: Ciencias Económico – Administrativas</th>
+        <thead>
+            <th>Departamento Académico de: Ciencias Económico – Administrativas</th>
+        </thead>
+
     </table>
 
     <br>
-    <div class="categoriesDiv" style="width:135%">
+    <div class="categoriesDiv">
         <table style="border: hidden">
-            <th>Ex Hacienda de Nazareno Xoxocotlán Oax., a {{date('d-m-Y', strtotime($liberacion->created_at))}}</th>
+            <thead>
+
+                <th>Ex Hacienda de Nazareno Xoxocotlán Oax., a {{date('d-m-Y', strtotime($liberacion->created_at))}}</th>
+            </thead>
         </table>
     </div>
 
     <br>
-    <div class="categoriesDiv" style="width:148%">
-        <table style="border: hidden">
-            <th>Asunto: Constancia de liberación de actividades académicas.</th>
+    <div class="categoriesDiv">
+        <table style="border: hidden; text-align:right">
+            <thead>
+
+                <th>Asunto: Constancia de liberación de actividades académicas.</th>
+            </thead>
         </table>
     </div>
 
@@ -78,22 +106,13 @@
 
 
 
-    <style>
-        table {
-            /* width: 200px; */
-            margin: 0 auto;
-        }
 
-        td {
-            border: 1px solid black;
-        }
-    </style>
 
 
     <br>
 
 
-    <table style="width: 80% ;border-collapse: collapse;">
+    <table style="width: 80% ;border-collapse: collapse; margin:auto">
         <thead class="thead" style="border: 1px solid black">
             <tr>
                 <th>Actividades</th>
@@ -137,51 +156,41 @@
 
     <div>
         <table style="border: 1px solid black; width: 80%; height: 150px;  border-collapse: collapse; ">
+            <thead>
+                <tr>
+                    <th valign="top" WIDTH="300">Presidente de la Academia</th>
+                    <th WIDTH="50" style="border-bottom: none;"></th>
+                    <th valign="top" WIDTH="300">Vo. Bo. Jefe del Departamento academico</th>
 
-            <tr>
-                <th valign="top" WIDTH="300">Presidente de la Academia</th>
-                <td WIDTH="50" style="border-bottom: none;"></td>
-                <th valign="top" WIDTH="300">Vo. Bo. Jefe del Departamento academico</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @if ($presidente)
 
-            </tr>
-            <tr>
-                @if ($presidente)
+                    <th valign="bottom">{{$presidente->nombre}}</th>
+                    @else
 
-                <th valign="bottom">{{$presidente->nombre}}</th>
-                @else
-
-                <th valign="bottom">No hay presidente elegido</th>
-                @endif
-
-
-                <td WIDTH="50" style="border-top: none;"></td>
-                @if ($secretario)
-                <th valign="bottom">{{$secretario->nombre}}</th>
-                @else
-
-                <th valign="bottom">No hay secretario elegido</th>
-                @endif
+                    <th valign="bottom">No hay presidente elegido</th>
+                    @endif
 
 
+                    <td WIDTH="50" style="border-top: none;"></td>
+                    @if ($secretario)
+                    <th valign="bottom">{{$secretario->nombre}}</th>
+                    @else
 
-            </tr>
+                    <th valign="bottom">No hay secretario elegido</th>
+                    @endif
+
+                </tr>
+            </tbody>
 
 
 
         </table>
         <br>
 
-
-
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
 
 
 
