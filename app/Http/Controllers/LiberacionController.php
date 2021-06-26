@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Liberacion;
 use Illuminate\Http\Request;
 use App\Models\Docente;
+use App\Models\ReporteActividade;
 use Barryvdh\DomPDF\Facade as PDF;
 
 /**
@@ -111,14 +112,16 @@ class LiberacionController extends Controller
         return redirect()->route('liberacions.index')
             ->with('success', 'Liberacion deleted successfully');
     }
-    public function pdfliberacion()
+    public function pdfliberacion($id)
     {
         $docentess = null;
         $docentes = [];
+        $lista_actividades = ReporteActividade::where('liberacion_id',$id)->get();
+        $liberacion = Liberacion::where('id',$id)->first();
 
 
 
-        return view('liberacion.pdfliberacion');
+        return view('liberacion.pdfliberacion', compact('lista_actividades','liberacion'));
         $pdf = PDF::loadView('liberacion.pdfliberacion');
 
 

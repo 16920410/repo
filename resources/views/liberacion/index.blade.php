@@ -60,7 +60,7 @@ Liberacion
                                         <form action="{{ route('liberacions.destroy',$liberacion->id) }}" method="POST">
 
                                             <a class="btn btn-sm btn-success" href="{{ route('liberacions.edit',$liberacion->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
-                                            <a class="btn btn-sm btn-primarybtn btn-primary">Descargar PDF</a>
+                                            <a href="{{URL::to('/pdfliberacion',$liberacion->id) }}" class="btn btn-sm btn-primarybtn btn-primary">Descargar PDF</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
