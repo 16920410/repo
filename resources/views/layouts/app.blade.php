@@ -109,7 +109,7 @@
             </div>
         </nav>
 
-
+<!--
 
         <div   style="width:100%" height="55">
             <table style="border: 1px solid black;  width: 100%; height: 70px;  border-collapse: collapse; cellpadding: 10px;">
@@ -135,7 +135,7 @@
             </table>
         </div
 
-
+-->
 
 
         <main class="py-4">
