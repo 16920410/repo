@@ -20,6 +20,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+
+
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -59,6 +62,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+
+
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -72,6 +78,9 @@
                                 </li>
                             @endif
                         @else
+
+
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -88,12 +97,46 @@
                                         @csrf
                                     </form>
                                 </div>
+
+
                             </li>
                         @endguest
                     </ul>
+
+
                 </div>
+
             </div>
         </nav>
+
+
+
+        <div   style="width:100%" height="55">
+            <table style="border: 1px solid black;  width: 100%; height: 70px;  border-collapse: collapse; cellpadding: 10px;">
+            <tr style="border: hidden" margin: 200px align='center'>
+                <td  WIDTH="300">
+
+                    <div   >
+                        <img src="https://www.voaxaca.tecnm.mx/wp-content/uploads/2020/05/itvo.ico" width="55" height="55">
+                    </div>
+                </td>
+
+                <div>
+                <td  WIDTH="300" >
+
+                    <div  align='center' >
+                        <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/143x144/b71e1ec458ba74cacd37f8cbadb4ab3d/infor.jpg" width="55" height="55">
+                    </div>
+                </td>
+                </div>
+            </tr>
+
+
+            </table>
+        </div
+
+
+
 
         <main class="py-4">
             @yield('content')

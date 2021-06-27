@@ -114,7 +114,7 @@
             </tr>
             @endforeach
             <tr>
- 
+
             <tr>
                 <td>Otros (especificar):</td>
                 <td></td>
@@ -147,6 +147,7 @@
 
 
         </table>
+    </div>
         <br>
 
 

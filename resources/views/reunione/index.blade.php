@@ -38,7 +38,7 @@
 
 										<th>Fecha</th>
 										<th>Lugar</th>
-										<th>Orden</th>
+									<!--	<th>Orden</th> -->
 
                                         <th></th>
                                     </tr>
@@ -50,7 +50,7 @@
 
 											<td>{{ $reunione->fecha }}</td>
 											<td>{{ $reunione->lugar }}</td>
-											<td>{{ $reunione->orden }}</td>
+											<!--<td>{{ $reunione->orden }}</td> -->
 
                                             <td>
                                                 <form action="{{ route('reuniones.destroy',$reunione->id) }}" method="POST">
