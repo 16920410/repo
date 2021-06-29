@@ -51,7 +51,7 @@ Create Reunione
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mb-4">Submit</button>
+                                    <button type="submit" class="btn btn-primary mb-4">Guardar</button>
                                 </form>
 
 
@@ -84,8 +84,10 @@ Create Reunione
                             <div class="box-footer mt-4">
                                 <a class="btn btn-danger" href="{{ route('reuniones.edit',['reunione'=>$reunion->id]) }}">Atras</a>
 
-                                <a class="btn btn-secondary" href="{{ route('reuniones.index') }}">Terminar</a>
+
                                 <a class="btn btn-success" href="{{ route('reuniones.acuerdos.create',['reunione'=>$reunion->id]) }}">Continuar</a>
+
+                                <a class="btn btn-secondary" href="{{ route('reuniones.index') }}">Terminar</a>
                             </div>
                         </div>
                     </div>

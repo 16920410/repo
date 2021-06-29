@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Reunione') }}
+                                {{ __('Reuniones') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('reuniones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Nueva Reunión') }}
                                 </a>
                               </div>
                         </div>
@@ -56,7 +56,7 @@
                                                 <form action="{{ route('reuniones.destroy',$reunione->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('reuniones.show',$reunione->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('reuniones.edit',$reunione->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
-                                                    <a class="btn btn-sm btn-primarybtn btn-primary" href="{{ URL::to('/reunionpdf',$reunione->id) }}">Descargar PDF</a>
+                                                    <a class="btn btn-sm btn-outline-secondary" href="{{ URL::to('/reunionpdf',$reunione->id) }}">Descargar PDF</a>
 
 
                                                     @csrf

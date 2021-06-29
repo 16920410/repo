@@ -48,11 +48,14 @@
                         <a class="nav-link" href="{{ route('tecnologicos.index') }}">{{ __('Tecnologicos') }}</a>
                         <a class="nav-link" href="{{ route('materias.index') }}">{{ __('Materias') }}</a>
                         <!-- <a class="nav-link" href="{{ route('materiacursadas.index') }}">{{ __('Materias cursadas') }}</a> -->
-                        <a class="nav-link" href="{{ route('proyectos.index') }}">{{ __('Proyectos Residencia') }}</a>
+
                         <a class="nav-link" href="{{ route('plan-estudios.index') }}">{{ __('Planes de estudio') }}</a>
                         <a class="nav-link" href="{{ route('convalidaciones.index') }}">{{ __('Convalidación') }}</a>
 
                         <a class="nav-link" href="{{ route('liberacions.index') }}">{{ __('Liberación Ac') }}</a>
+
+
+                        <a class="nav-link" href="{{ route('proyectos.index') }}">{{ __('Proyectos Residencia') }}</a>
 
                         <!--<a class="nav-link" href="{{ URL::to('/liberacion') }}">{{ __('Liberación Act.') }}</a>
                         -->
@@ -70,13 +73,13 @@
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Acceso') }}</a>
                         </li>
                         @endif
 
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
                         </li>
                         @endif
                         @else

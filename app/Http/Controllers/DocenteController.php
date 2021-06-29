@@ -50,9 +50,9 @@ class DocenteController extends Controller
     {
         // $nombreCompleto = $request->input('nombre', $request->nombre_solo.' '.$request->apellido_p.' '.$request->apellido_m);
         request()->validate(Docente::$rules);
-        
+
         $docente = Docente::create($request->all());
-        
+
         return redirect()->route('docentes.index')
             ->with('success', 'Docente agregado.');
     }
@@ -120,7 +120,7 @@ class DocenteController extends Controller
     {
         $docentes= Docente::orderBy('apellido_p', 'asc')->get();
         $pdf = PDF::loadView('docente.pdf', compact("docentes"));
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->download('Docentes.pdf');
 
     }
 }

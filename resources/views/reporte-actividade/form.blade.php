@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="col">
-            <button type="submit" class="btn btn-primary">Guardar respuesta</button>
+            <button type="submit" class="btn btn-primary">Guardar dato</button>
         </div>
     </div>
 

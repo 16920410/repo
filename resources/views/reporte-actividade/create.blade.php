@@ -13,13 +13,15 @@ Create Reporte Actividade
 
             <div class="card card-default">
                 <div class="card-header">
-                    <span class="card-title">{{$liberacion->docente->nombre}}</span>
+
+
+                    <span class="card-title"> Docente: {{$liberacion->docente->nombre}}</span>
                 </div>
                 <div class="card-body">
                     <div class="box box-info padding-1">
                         <div class="box-body">
                             <div class="col mt-4">
-                                <h4>Evaluacion</h4>
+                                <h4>Evaluación</h4>
                             </div>
                             <div class="form-group mt-4">
                                 <div class="row">
@@ -30,11 +32,11 @@ Create Reporte Actividade
                                         <h5>Cumplimiento</h5>
                                     </div>
                                 </div>
-                                
+
 
                                     @include('reporte-actividade.form')
 
-                                
+
                             </div>
 
                         </div>

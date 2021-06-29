@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Convalidacione') }}
+                                {{ __('Convalidaciones') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('convalidaciones.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Nueva convalidación') }}
                                 </a>
                               </div>
                         </div>
@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Nombre Alumno</th>
 										<th>Plan Externo</th>
 										<th>Plan Interno</th>
@@ -49,7 +49,7 @@
                                     @foreach ($convalidaciones as $convalidacione)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $convalidacione->nombre_alumno }}</td>
 											<td>{{ $convalidacione->plan_externo }}</td>
 											<td>{{ $convalidacione->plan_interno }}</td>

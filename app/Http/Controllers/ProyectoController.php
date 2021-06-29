@@ -120,14 +120,14 @@ class ProyectoController extends Controller
     {
         $proyectos= Proyecto::whereNull('alumno')->get();
         $pdf = PDF::loadView('proyecto.pdflibres', compact("proyectos"));
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->download('Proyectos Disponibles.pdf');
 
     }
     public function crearpdf()
     {
         $proyectos= Proyecto::whereNotNull('alumno')->get();
         $pdf = PDF::loadView('proyecto.pdfasignados', compact("proyectos"));
-        return $pdf->download('proyectos_asignados.pdf');
+        return $pdf->download('Proyectos Asignados.pdf');
 
     }
 

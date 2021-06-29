@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Materia</span>
+                        <span class="card-title">Registrar Materias</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('materias.store') }}"  role="form" enctype="multipart/form-data">

@@ -1,15 +1,27 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        <div class="form-group">
-            {{ Form::label('fecha') }}
-            {{ Form::date('fecha', $reunione->fecha? date('Y-m-d', strtotime($reunione->fecha)): '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'value'=>date('d-m-Y', strtotime($reunione->fecha))]) }}
-            {!! $errors->first('fecha', '<p class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('lugar') }}
-            {{ Form::text('lugar', $reunione->lugar, ['class' => 'form-control' . ($errors->has('lugar') ? ' is-invalid' : ''), 'placeholder' => 'Lugar']) }}
-            {!! $errors->first('lugar', '<p class="invalid-feedback">:message</p>') !!}
-        </div>
+
+    <table style="border: 1px; width: 50%; height: 50px;  border-collapse: collapse; ">
+        <tr >
+            <th>
+                <div class="form-group">
+                    {{ Form::label('fecha') }}
+                    {{ Form::date('fecha', $reunione->fecha? date('Y-m-d', strtotime($reunione->fecha)): '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'value'=>date('d-m-Y', strtotime($reunione->fecha))]) }}
+                    {!! $errors->first('fecha', '<p class="invalid-feedback">:message</p>') !!}
+                </div>
+            </th>
+            <th>
+                <div class="form-group">
+                    {{ Form::label('lugar') }}
+                    {{ Form::text('lugar', $reunione->lugar, ['class' => 'form-control' . ($errors->has('lugar') ? ' is-invalid' : ''), 'placeholder' => 'Lugar']) }}
+                    {!! $errors->first('lugar', '<p class="invalid-feedback">:message</p>') !!}
+                </div>
+            <th>
+
+
+
+        </tr>
+    </table>
 
         <div class="form-group">
 

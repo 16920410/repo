@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('plan-estudios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Nuevo Plan') }}
                                 </a>
                               </div>
                         </div>
@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Nombre</th>
 										<th>Clave</th>
 
@@ -46,17 +46,17 @@
                                     @foreach ($planEstudios as $planEstudio)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $planEstudio->nombre }}</td>
 											<td>{{ $planEstudio->clave }}</td>
 
                                             <td>
                                                 <form action="{{ route('plan-estudios.destroy',$planEstudio->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('plan-estudios.show',$planEstudio->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('plan-estudios.edit',$planEstudio->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('plan-estudios.show',$planEstudio->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('plan-estudios.edit',$planEstudio->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>

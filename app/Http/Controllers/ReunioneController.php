@@ -192,7 +192,7 @@ class ReunioneController extends Controller
 
 
         // return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
-        return $pdf->download('pdf_file.pdf');
+        return $pdf->download('Acta de reunión.pdf');
     }
-    
+
 }
