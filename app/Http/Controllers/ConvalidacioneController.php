@@ -11,6 +11,7 @@ use App\Models\PlanEstudio;
 use App\Models\Tecnologico;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Date;
 
 /**
  * Class ConvalidacioneController
@@ -58,11 +59,14 @@ class ConvalidacioneController extends Controller
      */
     public function store(Request $request)
     {
-        // var_dump(request()->all());
-        request()->validate(Convalidacione::$rules);
-        // exit();
+        var_dump(request()->all());
 
-        $convalidacione = Convalidacione::create($request->all());
+        $validated = request()->validate(Convalidacione::$rules);
+        $formatDate = date('d-m-Y',strtotime($validated['fecha']));
+        $validated['fecha'] = $formatDate;
+        // var_dump($formatDate);
+        // exit();
+        $convalidacione = Convalidacione::create($validated);
 
         return redirect()->route('convalidaciones.edit', ['convalidacione' => $convalidacione->id])
             ->with('success', 'Convalidacione created successfully.');
