@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MateriasPlan;
 use App\Models\PlanEstudio;
 use App\Models\PlanEstudios;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 /**
@@ -102,11 +103,19 @@ class PlanEstudioController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($plan_estudio, $materias_plan)
+    public function destroy($plan_estudio)
     {
-        // $planEstudio = PlanEstudio::find($id)->delete();
-        var_dump($materias_plan, $plan_estudio);
-        exit();
+        try{
+            PlanEstudio::find($plan_estudio)->delete();
+        }
+        catch(QueryException $err){
+            
+            return redirect()->route('plan-estudios.index')
+            ->with('success', 'El plan es usado por una o más convalidaciones');
+
+        }
+        // var_dump($plan_estudio);
+        // exit();
 
 
         return redirect()->route('plan-estudios.index')

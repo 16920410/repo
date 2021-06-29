@@ -28,6 +28,11 @@
                             <p>{{ $message }}</p>
                         </div>
                     @endif
+                    @if ($message = Session::get('info'))
+                        <div class="alert alert-success">
+                            <p>{{ $message }} sdaaaaaaaaaaa</p>
+                        </div>
+                    @endif
 
                     <div class="card-body">
                         <div class="table-responsive">
