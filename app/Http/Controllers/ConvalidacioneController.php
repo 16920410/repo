@@ -58,7 +58,9 @@ class ConvalidacioneController extends Controller
      */
     public function store(Request $request)
     {
+        // var_dump(request()->all());
         request()->validate(Convalidacione::$rules);
+        // exit();
 
         $convalidacione = Convalidacione::create($request->all());
 
@@ -145,7 +147,7 @@ class ConvalidacioneController extends Controller
                 'p.nombre as plan_externo', 'p1.nombre as plan_interno',
                 'p.clave as plan_externo_clave', 'p1.clave as plan_interno_clave',
                 't.nombre as tecnologico_procedente', 't1.nombre as tecnologico_receptor',
-                'convalidaciones.id', 'convalidaciones.nombre_alumno'
+                'convalidaciones.id', 'convalidaciones.nombre_alumno', 'convalidaciones.fecha'
             ])->get()[0];
         // var_dump($convalidacion,$id);
         // exit();

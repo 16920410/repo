@@ -27,15 +27,26 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
-
-        .estudiante {
+        .info{
             width: 80%;
             margin: 0 auto;
         }
+
+        .estudiante {
+            width: 100%;
+            margin: 1em auto;
+            padding-left: 1.25em;
+        }
+        .fecha{
+            text-align: right;
+            padding-right: 1.25em;
+        }
+
     </style>
-    <!-- <div class="info"> -->
-    <div class="estudiante">Nombre del estudiante: {{$convalidacion->nombre_alumno}}</div>
-    <!-- <div class="div"> -->
+    <div class="info">
+        <div class="fecha">Fecha: {{$convalidacion->fecha}}</div>
+        <div class="estudiante">Nombre del estudiante: {{$convalidacion->nombre_alumno}}</div>
+    </div>
     <table>
         <thead>
             <tr>

@@ -33,6 +33,7 @@ class Convalidacione extends Model
 		'plan_interno' => 'required',
 		'tecnologico_procedente' => 'required',
 		'tecnologico_receptor' => 'required',
+		'fecha' => 'required',
     ];
 
     protected $perPage = 20;
@@ -42,7 +43,7 @@ class Convalidacione extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre_alumno','plan_externo','plan_interno','tecnologico_procedente','tecnologico_receptor'];
+    protected $fillable = ['nombre_alumno','plan_externo','plan_interno','tecnologico_procedente','tecnologico_receptor', 'fecha'];
 
 
     /**
