@@ -52,10 +52,13 @@ class Docente extends Model
 
     protected static function boot() {
       parent::boot();
-  
+
       static::saving(function($model){
           $model->nombre = $model->nombre_solo .' '. $model->apellido_p .' '.$model->apellido_m;
-      }); 
+      });
+
+
+
   }
 
 

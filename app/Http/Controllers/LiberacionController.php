@@ -122,8 +122,8 @@ class LiberacionController extends Controller
         $secretario = Docente::where('puesto_id','2')->first();
 
 
-        // return view('liberacion.pdfliberacion', compact('lista_actividades','liberacion','presidente', 'secretario'));
-        $pdf = PDF::loadView('liberacion.pdfliberacion',compact('lista_actividades','liberacion','presidente', 'secretario'));
+         return view('liberacion.pdfliberacion', compact('lista_actividades','liberacion','presidente', 'secretario'));
+        //$pdf = PDF::loadView('liberacion.pdfliberacion',compact('lista_actividades','liberacion','presidente', 'secretario'));
 
 
         return $pdf->download('Liberación.pdf');
