@@ -75,7 +75,13 @@
 
 
     <div class="info">
+
+
+
         <div class="fecha">Fecha: {{$convalidacion->fecha}}</div>
+
+
+
         <div class="estudiante">Nombre del estudiante: {{$convalidacion->nombre_alumno}}</div>
     </div>
     <br>
