@@ -34,7 +34,7 @@ class Proyecto extends Model
 		'responsable' => 'required',
 		'nresidente' => 'required',
 		// 'alumno' => 'required',
-		'docente_id' => 'required',
+		// 'docente_id' => 'required',
 		'carrera_id' => 'required',
     ];
 
