@@ -130,23 +130,6 @@ class ReunioneController extends Controller
         foreach($asistentes as $docente){
             $docente->update(['asistencia'=> !(array_search($docente->docente_id,$nuevosAsistentes) === false)]);
         }
-
-        // foreach ($asistentes as $asistente) {
-        //     // si el elemento no está en la nueva lista, se pone asistencia como falso
-        //     if (array_search($asistente->docente_id, $nuevosAsistentes) === false) {
-        //         var_dump("updating", $asistente->id);
-        //         $asistente->update(['asistencia'=>false]);
-        //     }
-        //     var_dump(array_search($asistente->id, $nuevosAsistentes) === false);
-        // }
-        // foreach ($nuevosAsistentes as $key => $nAsistente) {
-        //     // si el elemento nuevo no está en la base de datos, se agrega
-        //     $existe = Asistencia::where('reunion_id', $reunione->id)->where('docente_id', $nAsistente)->count() > 0;
-        //     if (!$existe) {
-        //         var_dump("no existe, creando", $nAsistente);
-        //         Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$nAsistente)]);
-        //     }
-        // }
         return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
             ->with('success', 'Reunion updated successfully.');
     }
