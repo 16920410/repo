@@ -176,25 +176,16 @@ class ReunioneController extends Controller
             ->orderBy('num_orden')->get();
         $ordenes = json_decode($ordenes, true);
         
-        // get docentes list from asistencia
-        if (count($asistentes)) {
-            $docentess = Docente::where('id', $asistentes[0]->docente_id);
-            foreach ($asistentes as $key => $asistente) {
-                $docentess->orWhere('id', $asistente->docente_id);
-            }
-            $docentes = $docentess->get();
-        }
-        $lista_completa = Docente::all();
-        var_dump($lista_completa);
+      
         // exit();
         $puestos = Puesto::all();
         $carreras = Carrera::all();
         $reunion = Reunione::find($id);
 
-        $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes","lista_completa"));
+        $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes", "asistentes"));
 
 
-        return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes","lista_completa"));
+        return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes","asistentes"));
         return $pdf->download('Acta de reunión.pdf');
     }
 }

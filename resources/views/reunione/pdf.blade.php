@@ -48,6 +48,7 @@
     <br>
 
 
+
     <table style="width:100%; border-collapse: collapse;">
         <thead class="thead" style="width:100%; border: 1px solid black;border-collapse: collapse;">
             <tr>
@@ -62,11 +63,11 @@
         </thead>
         <tbody>
 
-            @foreach ($docentes as $key=>$docente)
+            @foreach ($asistentes as $key=>$asistencia)
             <tr>
                 <td style=" border: 1px solid black;border-collapse: collapse;">{{ $key+1 }}</td>
-                <td style=" border: 1px solid black;border-collapse: collapse;">{{ $docente->nombre }}</td>
-                <td style=" border: 1px solid black;border-collapse: collapse;"> </td>
+                <td style=" border: 1px solid black;border-collapse: collapse;">{{ $asistencia->docente->nombre }}</td>
+                <td style=" border: 1px solid black;border-collapse: collapse;"> {{ $asistencia->asistencia? "": "No asistió"}} </td>
 
             </tr>
             @endforeach
