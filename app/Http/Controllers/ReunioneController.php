@@ -44,10 +44,10 @@ class ReunioneController extends Controller
     public function create()
     {
         $reunione = new Reunione();
-        $docentes = Docente::orderBy('apellido_p')->get();
+        $asistentes = Docente::orderBy('apellido_p')->get();
         $acuerdos = [];
         $listaAsistentes = [];
-        return view('reunione.create', compact('reunione', 'docentes', 'listaAsistentes', 'acuerdos'));
+        return view('reunione.create', compact('reunione', 'asistentes', 'listaAsistentes', 'acuerdos'));
     }
 
     /**
@@ -60,19 +60,16 @@ class ReunioneController extends Controller
     {
         request()->validate(Reunione::$rules);
         $request = request();
+        // Obtenemos el valor de continue
         $continue = $request->all()['continue'];
-        // var_dump($request->all());
-        // var_dump($continue, "Continuar");
-        // var_dump(strcmp($continue, "Continuar"));
-        // var_dump(strcmp($continue, "Continuar"));
-        $reunione = Reunione::create($request->all());
         $asistentes = $request->input('asistentes');
-        if ($asistentes) {
-            foreach ($asistentes as $asistente) {
-                Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$asistente)]);
-            }
+        // creamos la instancia de la reunión
+        $reunione = Reunione::create($request->all());
+        $docentes = Docente::all();
+        // Creamos una asistencia por docente, si está en la lista ponemos su asistencia como verdadero, sino, como falso
+        foreach($docentes as $docente){
+            Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => $docente->id,'asistencia'=> !(array_search($docente->id,$asistentes) === false)]);
         }
-        // exit();
 
 
         if (strcmp($continue, "Continuar") != 0)
@@ -103,13 +100,11 @@ class ReunioneController extends Controller
     public function edit($id)
     {
         $reunione = Reunione::find($id);
-        $asistentes = Asistencia::where('reunion_id', $id)->get()->toArray();
+        $asistentes = Asistencia::where('reunion_id', $id)->join('docentes as d','d.id', '=', 'asistencias.docente_id')
+        ->select(['d.id', 'asistencia','d.nombre'])->get();
         $acuerdos = Acuerdos::where('reunion_id', $id)->get();
-        $listaAsistentes = array_map(function ($el) {
-            return $el['docente_id'];
-        }, $asistentes);
         $docentes = Docente::orderBy('apellido_p')->get();
-        return view('reunione.edit', compact('reunione', 'docentes', 'asistentes', 'listaAsistentes', 'acuerdos'));
+        return view('reunione.edit', compact('reunione', 'docentes', 'asistentes', 'acuerdos'));
     }
 
     /**
@@ -130,22 +125,28 @@ class ReunioneController extends Controller
         var_dump($nuevosAsistentes);
         var_dump("asistentes viejo", $asistentes->toArray());
 
-        foreach ($asistentes as $asistente) {
-            // si el elemento no está en la nueva lista, se borra de la BD
-            if (array_search($asistente->docente_id, $nuevosAsistentes) === false) {
-                var_dump("deleting", $asistente->id);
-                $asistente->delete();
-            }
-            var_dump(array_search($asistente->id, $nuevosAsistentes) === false);
+        $docentes = Docente::all();
+        // Actualizamos cada asistencia dependiendo si está en la lista o no
+        foreach($asistentes as $docente){
+            $docente->update(['asistencia'=> !(array_search($docente->docente_id,$nuevosAsistentes) === false)]);
         }
-        foreach ($nuevosAsistentes as $key => $nAsistente) {
-            // si el elemento nuevo no está en la base de datos, se agrega
-            $existe = Asistencia::where('reunion_id', $reunione->id)->where('docente_id', $nAsistente)->count() > 0;
-            if (!$existe) {
-                var_dump("no existe, creando", $nAsistente);
-                Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$nAsistente)]);
-            }
-        }
+
+        // foreach ($asistentes as $asistente) {
+        //     // si el elemento no está en la nueva lista, se pone asistencia como falso
+        //     if (array_search($asistente->docente_id, $nuevosAsistentes) === false) {
+        //         var_dump("updating", $asistente->id);
+        //         $asistente->update(['asistencia'=>false]);
+        //     }
+        //     var_dump(array_search($asistente->id, $nuevosAsistentes) === false);
+        // }
+        // foreach ($nuevosAsistentes as $key => $nAsistente) {
+        //     // si el elemento nuevo no está en la base de datos, se agrega
+        //     $existe = Asistencia::where('reunion_id', $reunione->id)->where('docente_id', $nAsistente)->count() > 0;
+        //     if (!$existe) {
+        //         var_dump("no existe, creando", $nAsistente);
+        //         Asistencia::create(['reunion_id' => $reunione->id, 'docente_id' => ((int)$nAsistente)]);
+        //     }
+        // }
         return redirect()->route('reuniones.ordenes.create', ['reunione' => $reunione->id])
             ->with('success', 'Reunion updated successfully.');
     }
@@ -174,8 +175,8 @@ class ReunioneController extends Controller
             ->select(['ordenes.descripcion as orden', 'ordenes.num_orden', 'acuerdos.descripcion as acuerdo'])
             ->orderBy('num_orden')->get();
         $ordenes = json_decode($ordenes, true);
-
-
+        
+        // get docentes list from asistencia
         if (count($asistentes)) {
             $docentess = Docente::where('id', $asistentes[0]->docente_id);
             foreach ($asistentes as $key => $asistente) {
@@ -183,16 +184,17 @@ class ReunioneController extends Controller
             }
             $docentes = $docentess->get();
         }
-
+        $lista_completa = Docente::all();
+        var_dump($lista_completa);
+        // exit();
         $puestos = Puesto::all();
         $carreras = Carrera::all();
         $reunion = Reunione::find($id);
 
-        $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
+        $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes","lista_completa"));
 
 
-        // return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes"));
+        return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes","lista_completa"));
         return $pdf->download('Acta de reunión.pdf');
     }
-
 }

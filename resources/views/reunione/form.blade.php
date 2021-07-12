@@ -32,10 +32,10 @@
             <br>
             <br>
 
-            @foreach ($docentes as $docente)
+            @foreach ($asistentes as $asistente)
             <div class="form-check">
-                {{ Form::checkbox('asistentes[]', $docente->id, (array_search($docente->id, $listaAsistentes)!==false), ['class' => 'form-check-input' . ($errors->has('orden') ? ' is-invalid' : ''), 'placeholder' => 'Asistencia', 'id'=> $docente->id]) }}
-                <label class="form-check-label" for="{{$docente->id}}"> {{$docente->nombre}}
+                {{ Form::checkbox('asistentes[]', $asistente->id, $asistente->asistencia, ['class' => 'form-check-input' . ($errors->has('orden') ? ' is-invalid' : ''), 'placeholder' => 'Asistencia', 'id'=> $asistente->id]) }}
+                <label class="form-check-label" for="{{$asistente->id}}"> {{$asistente->nombre}}
             </div>
 
             @endforeach
