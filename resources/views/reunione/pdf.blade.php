@@ -2,9 +2,49 @@
 <html>
 
 <body>
+<table>
+            <tr style="border: hidden" margin: 200px align='center'>
+                <td  WIDTH="100">
 
 
-    <table style="border: 1px solid black; border-collapse: collapse;">
+                        <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/266x269/098876ab69c3cb3ac9d5da55ba47083e/itvo.jpg" width="100" height="100">
+
+                </td>
+
+
+                <td  WIDTH="750" >
+
+
+                        <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/143x144/b71e1ec458ba74cacd37f8cbadb4ab3d/infor.jpg" width="100" height="100">
+
+                </td>
+
+            </tr>
+
+
+            </table>
+
+            <br>
+            <br>
+
+
+            <table style="width: 100% ;border-collapse: collapse;">
+        <thead class="thead" style="border: 1px solid black">
+            <tr>
+                <th>ACTA DE REUNIÓN DE ACADEMIA</th>
+            </tr>
+        </thead>
+
+
+    </table>
+
+
+    <br>
+            <br>
+
+
+
+    <table style="border: hidden">
         <thead class="thead">
             <tr>
                 <th>Fecha</th>
@@ -17,7 +57,7 @@
             <tr>
                 <td>{{ $reunion->fecha }}</td>
 
-                <td>{{ $reunion->lugar }}</td>
+                <td align='center'>{{ $reunion->lugar }}</td>
 
 
             </tr>

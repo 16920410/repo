@@ -12,7 +12,7 @@
                         {!! $errors->first('nombre', '<div class="invalid-feedback">:message</p>') !!}
                     </div>
                     <div class="form-group">
-                        {{ Form::label('Apellido paterno') }}
+                        {{ Form::label('Apellido materno') }}
                         {{ Form::text('apellido_p', $docente->apellido_p, ['class' => 'form-control' . ($errors->has('apellido_p') ? ' is-invalid' : ''), 'placeholder' => 'Apellido paterno']) }}
                         {!! $errors->first('Apellido paterno', '<div class="invalid-feedback">:message</p>') !!}
                     </div>
@@ -25,7 +25,7 @@
 
                 <th>
                 <div class="form-group">
-                    {{ Form::label('Apellido materno') }}
+                    {{ Form::label('Apellido paterno') }}
                     {{ Form::text('apellido_m', $docente->apellido_m, ['class' => 'form-control' . ($errors->has('apellido_m') ? ' is-invalid' : ''), 'placeholder' => 'Apellido materno']) }}
                     {!! $errors->first('apellido materno', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
@@ -43,6 +43,9 @@
                                 @endforeach
                             </select>
                 </div>
+
+
+
 
                 </th>
 

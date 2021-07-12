@@ -3,6 +3,17 @@
 
 <body>
 
+<div class="categoriesDiv" style="width:90%">
+        <table style="border: hidden">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SEP_Logo_2019.svg/1200px-SEP_Logo_2019.svg.png" width="200" height="100" HSPACE="130">
+<img src="https://www.voaxaca.tecnm.mx/wp-content/themes/TecNM-ITVO/images/pleca-ITVO.png" width="200" height="100" align="right">
+
+        </table>
+    </div>
+    <br>
+    <br>
+
 
     <table style="width:100%; border-collapse: collapse;">
         <thead class="thead" style="width:100%; border: 1px solid black;border-collapse: collapse;">

@@ -24,7 +24,7 @@
             <th>
                 <div class="form-group">
                     {{ Form::label('fecha') }}
-                    {{ Form::date('fecha', $convalidacione->fecha? date('Y-m-d', strtotime($convalidacione->fecha)): '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'value'=>date('d-m-Y', strtotime($convalidacione->fecha))]) }}
+                    {{ Form::date('fecha', $convalidacione->fecha? date('d-m-Y', strtotime($convalidacione->fecha)): '', ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'placeholder' => 'Fecha', 'value'=>date('d-m-Y', strtotime($convalidacione->fecha))]) }}
                     {!! $errors->first('fecha', '<p class="invalid-feedback">:message</p>') !!}
                 </div>
 
