@@ -23,6 +23,9 @@ class Reunione extends Model
     static $rules = [
 		'fecha' => 'required',
 		'lugar' => 'required',
+    'hora_inicio'=>'required',
+    'hora_fin'=>'required',
+
     ];
 
     protected $perPage = 20;
@@ -32,7 +35,7 @@ class Reunione extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha','lugar','orden'];
+    protected $fillable = ['fecha','lugar','orden','hora_inicio','hora_fin'];
 
 
 

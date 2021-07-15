@@ -101,7 +101,7 @@ class ReunioneController extends Controller
     {
         $reunione = Reunione::find($id);
         $asistentes = Asistencia::where('reunion_id', $id)->join('docentes as d','d.id', '=', 'asistencias.docente_id')
-        ->select(['d.id', 'asistencia','d.nombre'])->get();
+        ->select(['d.id', 'asistencia','d.nombre'])->orderBy('apellido_p')->get();
         $acuerdos = Acuerdos::where('reunion_id', $id)->get();
         $docentes = Docente::orderBy('apellido_p')->get();
         return view('reunione.edit', compact('reunione', 'docentes', 'asistentes', 'acuerdos'));
