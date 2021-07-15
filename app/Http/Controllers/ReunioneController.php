@@ -165,10 +165,13 @@ class ReunioneController extends Controller
         $carreras = Carrera::all();
         $reunion = Reunione::find($id);
 
-        $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes", "asistentes"));
+        $secretario = Docente::join('puestos as p','docentes.puesto_id','=','p.id')->where('p.cargo', 'Secretario de la academia')->first();
+        $presidente = Docente::join('puestos as p','docentes.puesto_id','=','p.id')->where('p.cargo', 'Presidente de la academia')->first();
+
+        $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes", "asistentes","secretario","presidente"));
 
 
-        return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes","asistentes"));
+        return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes","asistentes","secretario","presidente"));
         return $pdf->download('Acta de reunión.pdf');
     }
 }

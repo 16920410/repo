@@ -2,33 +2,33 @@
 <html>
 
 <body>
-<table>
-            <tr style="border: hidden" margin: 200px align='center'>
-                <td  WIDTH="100">
+    <table>
+        <tr style="border: hidden" margin: 200px align='center'>
+            <td WIDTH="100">
 
 
-                        <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/266x269/098876ab69c3cb3ac9d5da55ba47083e/itvo.jpg" width="100" height="100">
+                <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/266x269/098876ab69c3cb3ac9d5da55ba47083e/itvo.jpg" width="100" height="100">
 
-                </td>
-
-
-                <td  WIDTH="750" >
+            </td>
 
 
-                        <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/143x144/b71e1ec458ba74cacd37f8cbadb4ab3d/infor.jpg" width="100" height="100">
-
-                </td>
-
-            </tr>
+            <td WIDTH="750">
 
 
-            </table>
+                <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/143x144/b71e1ec458ba74cacd37f8cbadb4ab3d/infor.jpg" width="100" height="100">
 
-            <br>
-            <br>
+            </td>
+
+        </tr>
 
 
-            <table style="width: 100% ;border-collapse: collapse;">
+    </table>
+
+    <br>
+    <br>
+
+
+    <table style="width: 100% ;border-collapse: collapse;">
         <thead class="thead" style="border: 1px solid black">
             <tr>
                 <th>ACTA DE REUNIÓN DE ACADEMIA</th>
@@ -40,7 +40,7 @@
 
 
     <br>
-            <br>
+    <br>
 
 
 
@@ -105,7 +105,7 @@
 
             @foreach ($asistentes as $key=>$asistencia)
             <tr>
-                <td style=" border: 1px solid black;border-collapse: collapse;">{{ $key+1 }}</td>
+                <td style=" border: 1px solid black;border-collapse: collapse; text-align: center;">{{ $key+1 }}</td>
                 <td style=" border: 1px solid black;border-collapse: collapse;">{{ $asistencia->docente->nombre }}</td>
                 <td style=" border: 1px solid black;border-collapse: collapse;"> {{ $asistencia->asistencia? "": "No asistió"}} </td>
 
@@ -137,6 +137,45 @@
             @endforeach
         </tbody>
     </table>
+    <br>
+    <br>
+    <table style="width: 100% ;border-collapse: collapse;">
+        <tbody style="border: 1px solid black; border-right:1px solid black">
+            <tr>
+                <td style="border-right:1px solid black; padding-left:1em;"><b>Hora de inicio</b></td>
+                <td style="border-right:1px solid black; padding-left:1em;">{{$reunion->hora_inicio}}</td>
+                <td style="border-right:1px solid black; padding-left:1em;"><b>Hora de término</b></td>
+                <td style="border-right:1px solid black; padding-left:1em;">{{$reunion->hora_fin}}</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<br>
+<br>
+<table style="width: 100% ;border-collapse: collapse;">
+    <thead style="color: white; background: #000; font-weight: bold;">
+        <tr>
+            <th style="width: 50%;">ELABORÓ Y DA FÉ</th>
+            <th>DA FÉ</th>
+        </tr>
+    </thead>
+    <tbody style="border: 1px solid black; border-right:1px solid black">
+        <tr style="height: 100px;">
+            <td style="border-right:1px solid black; padding-left:1em;"><b></b></td>
+            <td style="border-right:1px solid black; padding-left:1em;"></td>
+        </tr>
+        <tr>
+            <td style="border-right:1px solid black; padding-left:1em; text-align: center;"><b>{{$secretario?$secretario->nombre: 'No asignado'}}</b></td>
+            <td style="border-right:1px solid black; padding-left:1em; text-align: center;">{{$presidente? $presidente->nombre: 'No asignado'}}</td>
+        </tr>
+    </tbody>
+    <tfoot style="color: white; background: #000; font-weight: bold;">
+        <tr>
+            <td style="border-right:1px solid black; padding-left:1em; text-align: center;">{{$secretario?$secretario->cargo: 'No asignado'}}</td>
+            <td style="border-right:1px solid black; padding-left:1em; text-align: center;">{{$presidente? $presidente->cargo: 'No asignado'}}</td>
+        </tr>
+    </tfoot>
+</table>
 </body>
 
 </html>
