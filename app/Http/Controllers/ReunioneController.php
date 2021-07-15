@@ -171,7 +171,7 @@ class ReunioneController extends Controller
         $pdf = PDF::loadView('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes", "asistentes","secretario","presidente"));
 
 
-        return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes","asistentes","secretario","presidente"));
+        // return view('reunione.pdf', compact("docentes", "puestos", "carreras", "reunion", "ordenes","asistentes","secretario","presidente"));
         return $pdf->download('Acta de reunión.pdf');
     }
 }
