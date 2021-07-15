@@ -74,8 +74,8 @@
 											<td>{{ $proyecto->departamento }}</td>
 											<td>{{ $proyecto->responsable }}</td>
 											<td>{{ $proyecto->nresidente }}</td>
-											<td>{{ $proyecto->alumno }}</td>
-											<td>{{ $proyecto->Docente->nombre }}</td>
+											<td>{{ $proyecto->alumno?:'Sin Alumnos asignados' }}</td>
+											<td>{{ $proyecto->Docente? $proyecto->Docente->nombre:'Sin Docente asignado' }}</td>
 											<td>{{ $proyecto->Carrera->nombre }}</td>
 
                                             <td>

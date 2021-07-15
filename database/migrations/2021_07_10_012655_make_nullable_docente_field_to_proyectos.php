@@ -14,8 +14,9 @@ class MakeNullableDocenteFieldToProyectos extends Migration
     public function up()
     {
         Schema::table('proyectos', function (Blueprint $table) {
-            $table->unsignedBigInteger('carrera_id')->nullable()->change();
-            //
+            $table->unsignedBigInteger('docente_id')->nullable()->change();
+            $table->string('alumno')->nullable()->change();
+
         });
     }
     
@@ -27,8 +28,9 @@ class MakeNullableDocenteFieldToProyectos extends Migration
     public function down()
     {
         Schema::table('proyectos', function (Blueprint $table) {
-            $table->unsignedBigInteger('carrera_id')->nullable(false)->change();
-            //
+            $table->unsignedBigInteger('docente_id')->nullable(false)->change();
+            $table->string('alumno')->nullable(false)->change();
+
         });
     }
 }
