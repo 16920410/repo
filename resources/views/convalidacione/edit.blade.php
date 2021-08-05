@@ -224,7 +224,7 @@ Update Convalidacione
     let getPorcentajes = function(cursada, convalidada) {
 
 
-        let base = 'http://127.0.0.1:8000/materias-convalidadas'
+        let base = 'https://academiaitvo.herokuapp.com/materias-convalidadas'
         let url = `${base}/${cursada}/${convalidada}`
         console.log(url);
         return fetch(`${base}/${cursada}/${convalidada}`).then(e => {
