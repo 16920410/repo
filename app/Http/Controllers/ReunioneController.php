@@ -13,7 +13,7 @@ use App\Models\Docente;
 use App\Models\Ordenes;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Boolean;
+
 
 use function GuzzleHttp\Promise\all;
 
@@ -52,11 +52,11 @@ class ReunioneController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param  Boolean $continue
+     * @param  bool $continue
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Boolean $continue)
+    public function store(Request $request, bool $continue)
     {
         request()->validate(Reunione::$rules);
         $request = request();
