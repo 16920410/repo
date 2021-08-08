@@ -56,7 +56,7 @@ class ReunioneController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, bool $continue)
+    public function store(Request $request)
     {
         request()->validate(Reunione::$rules);
         $request = request();
