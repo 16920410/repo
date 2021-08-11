@@ -26,7 +26,6 @@ class AddIdToReporteActividades extends Migration
     public function down()
     {
         Schema::table('reporte_actividades', function (Blueprint $table) {
-            $table->dropColumn('id');
         });
     }
 }
