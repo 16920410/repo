@@ -100,9 +100,9 @@ class ConvalidacioneController extends Controller
         // exit();
         $materia = new ConvalidacionMateria();
         $materias_cursadas = MateriasPlan::where('plan_id', $convalidacione->plan_externo)
-            ->join('materias', 'materias.id', '=', 'materias_plan.materia_id')->select(['clave', 'nombre', 'id'])->get();
+            ->join('materias', 'materias.id', '=', 'materias_plan.materia_id')->select(['clave', 'nombre', 'materias.id'])->get();
         $materias_convalidar = MateriasPlan::where('plan_id', $convalidacione->plan_interno)
-            ->join('materias', 'materias.id', '=', 'materias_plan.materia_id')->select(['clave', 'nombre', 'id'])->get();
+            ->join('materias', 'materias.id', '=', 'materias_plan.materia_id')->select(['clave', 'nombre', 'materias.id'])->get();
         $materias_convalidadas = ConvalidacionMateria::where('convalidacion_id', $convalidacione->id)->get();
 
         // $materias_cursadas= $materias_cursadas->pluck('clave','id');
