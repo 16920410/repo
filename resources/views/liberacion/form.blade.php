@@ -15,12 +15,35 @@
                                 </option>
                                 @endforeach
                             </select>
+            {!! $errors->first('docente_id', '<p class="invalid-feedback">:message</p>') !!}
         </div>
 
         <div class="form-group">
             {{ Form::label('semestre') }}
             {{ Form::text('semestre', $liberacion->semestre, ['class' => 'form-control' . ($errors->has('semestre') ? ' is-invalid' : ''), 'placeholder' => 'Semestre']) }}
             {!! $errors->first('semestre', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('Elaboró') }}
+                            <select class="form-control" name="elaboro_id">
+                                @foreach ($docentes as $docente)
+                                <option value="{{$docente->id}}">{{$docente->nombre}}
+                                </option>
+                                @endforeach
+                            </select>
+            {!! $errors->first('elaboro_id', '<p class="invalid-feedback">:message</p>') !!}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('Da fe:') }}
+                            <select class="form-control" name="valido_id">
+                                @foreach ($docentes as $docente)
+                                <option value="{{$docente->id}}">{{$docente->nombre}}
+                                </option>
+                                @endforeach
+                            </select>
+            {!! $errors->first('valido_id', '<p class="invalid-feedback">:message</p>') !!}
         </div>
 
     </div>

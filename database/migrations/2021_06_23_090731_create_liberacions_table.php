@@ -16,15 +16,21 @@ class CreateLiberacionsTable extends Migration
         Schema::create('liberacions', function (Blueprint $table) {
             $table->id();
             $table->string('fecha');
-            
-            $table->unsignedBigInteger('docente_id');
-            
-            $table->foreign('docente_id')
-            ->references('id')->on('docentes')->onDelete('cascade');
-            
             $table->string('semestre');
             
             $table->timestamps();
+           
+            
+            
+            $table->unsignedBigInteger('docente_id');
+            $table->unsignedBigInteger('elaboro_id');
+            $table->unsignedBigInteger('valido_id');
+            $table->foreign('docente_id')
+            ->references('id')->on('docentes')->onDelete('cascade');
+            $table->foreign('elaboro_id')
+            ->references('id')->on('docentes')->onDelete('cascade');
+            $table->foreign('valido_id')
+            ->references('id')->on('docentes')->onDelete('cascade');
         });
         Schema::create('actividades', function (Blueprint $table) {
             $table->id();

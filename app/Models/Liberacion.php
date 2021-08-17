@@ -25,7 +25,9 @@ class Liberacion extends Model
 		'fecha' => 'required',
 		'docente_id' => 'required',
 		'semestre' => 'required',
-    ];
+    'elaboro_id' => 'required',
+		'valido_id' => 'required',
+  ];
 
     protected $perPage = 20;
 
@@ -34,7 +36,7 @@ class Liberacion extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha','docente_id','semestre'];
+    protected $fillable = ['fecha','docente_id','semestre', 'elaboro_id', 'valido_id'];
 
 
     /**
