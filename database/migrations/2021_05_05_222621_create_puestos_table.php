@@ -16,6 +16,7 @@ class CreatePuestosTable extends Migration
         Schema::create('puestos', function (Blueprint $table) {
             $table->id();
             $table->string('cargo');
+            $table->boolean('unico')->default(false);
             $table->timestamps();
         });
     }

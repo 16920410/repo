@@ -28,7 +28,7 @@ class Docente extends Model
 		'apellido_m' => 'required',
 		'apellido_p' => 'required',
 		'rfc' => 'required',
-		'telefono' => 'required',
+		'telefono' => ['required','max:10'],
 		'puesto_id' => 'required',
     ];
 

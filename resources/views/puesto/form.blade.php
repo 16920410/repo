@@ -7,6 +7,12 @@
             {!! $errors->first('cargo', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 
+        <div class="form-group">
+            {{ Form::label('Único') }}
+            {{ Form::checkbox('unico', true, $puesto->unico) }}
+            {!! $errors->first('unico', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Guardar</button>

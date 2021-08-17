@@ -54,7 +54,12 @@ class DocenteController extends Controller
     public function store(Request $request)
     {
         // $nombreCompleto = $request->input('nombre', $request->nombre_solo.' '.$request->apellido_p.' '.$request->apellido_m);
-        request()->validate(Docente::$rules);
+        // request()->validate(Docente::$rules);
+        $puesto_id = request()->input('puesto_id');
+        $puesto = Puesto::find($puesto_id);
+        if ($puesto->unico) {
+            request()->validate(array_merge(Docente::$rules, ['puesto_id' => ['required','unique:docentes']]));
+        }
 
         $docente = Docente::create($request->all());
 
@@ -101,6 +106,11 @@ class DocenteController extends Controller
     public function update(Request $request, Docente $docente)
     {
         request()->validate(Docente::$rules);
+        $puesto_id = request()->input('puesto_id');
+        $puesto = Puesto::find($puesto_id);
+        if ($puesto->unico) {
+            request()->validate(array_merge(Docente::$rules, ['puesto_id' => ['required','unique:docentes']]));
+        }
 
         $docente->update($request->all());
 

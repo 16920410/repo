@@ -24,6 +24,10 @@
                             <strong>Cargo:</strong>
                             {{ $puesto->cargo }}
                         </div>
+                        <div class="form-group">
+                            <strong>Único:</strong>
+                            {{ $puesto->unico }}
+                        </div>
 
                     </div>
                 </div>

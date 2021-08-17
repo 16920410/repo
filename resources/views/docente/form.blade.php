@@ -36,12 +36,13 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('puesto') }}
-                            <select class="form-control" name="puesto_id">
+                            <select class="form-control {{$errors->has('puesto_id') ? ' is-invalid' : ''}}" name="puesto_id">
                                 @foreach ($puestos as $puesto)
                                 <option value="{{$puesto->id}}">{{$puesto->cargo}}
                                 </option>
                                 @endforeach
                             </select>
+                            {!! $errors->first('puesto_id', '<div class="invalid-feedback">:message</p>') !!}
                 </div>
 
 

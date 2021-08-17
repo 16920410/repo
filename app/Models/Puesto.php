@@ -30,7 +30,7 @@ class Puesto extends Model
      *
      * @var array
      */
-    protected $fillable = ['cargo'];
+    protected $fillable = ['cargo', 'unico'];
 
 
     /**
