@@ -41,6 +41,7 @@ Route::resource('convalidaciones.convalidacion-materias', App\Http\Controllers\C
 Route::resource('liberacions', App\Http\Controllers\LiberacionController::class);
 Route::resource('liberacions.reporte-actividades', App\Http\Controllers\ReporteActividadeController::class);
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
+Route::resource('users', App\Http\Controllers\UserController::class);
 
 Route::get('/materias-convalidadas/{cursada}/{convalidada}', [App\Http\Controllers\ConvalidacionMateriaController::class, 'materiasConvalidadas']);
 

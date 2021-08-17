@@ -14,6 +14,11 @@ use Barryvdh\DomPDF\Facade as PDF;
  */
 class ProyectoController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['except' => []]);
+    }
+
+    
     /**
      * Display a listing of the resource.
      *

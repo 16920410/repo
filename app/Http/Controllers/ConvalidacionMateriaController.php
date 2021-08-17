@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\DB;
  */
 class ConvalidacionMateriaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['except' => []]);
+    }
+
+    
     /**
      * Store a newly created resource in storage.
      *

@@ -15,6 +15,11 @@ use Barryvdh\DomPDF\Facade as PDF;
  */
 class OrdenController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['except' => []]);
+    }
+
+    
     /**
      * Display a listing of the resources.
      * @param  int $id

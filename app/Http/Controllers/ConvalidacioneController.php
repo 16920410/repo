@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Date;
  */
 class ConvalidacioneController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['except' => []]);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -11,6 +11,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    static $rules = [
+        'name' => ['required', 'string', 'max:255'],
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
