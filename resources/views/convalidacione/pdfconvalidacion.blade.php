@@ -42,48 +42,82 @@
             text-align: right;
             padding-right: 1.25em;
         }
+        .escu{
+            text-align: right;
+            padding-right: 1.25em;
+            color: #ABB2B9;
+        }
+        .año{
+            margin: 0 auto;
+            text-align: center;
+            color: #ABB2B9;
+        }.añoo{
+            width: 50%;
+            margin: 0 auto;
+            color: #ABB2B9;
+        }
 
 
     </style>
 
+<header>
+
 
     <table style="border:none;">
             <tr style="logo" margin: 200px align='center'>
-                <td  WIDTH="100" style="border:none;">
-
-
-                        <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/266x269/098876ab69c3cb3ac9d5da55ba47083e/itvo.jpg" width="100" height="100">
-
+                <td  WIDTH="200" style="border:none;">
+                        <img src="https://www.omeyocan.edu.mx/img/logosep.png" width="170" height="55">
                 </td>
-
-
-                <td  WIDTH="750" style="border:none;">
-
-
-                        <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/143x144/b71e1ec458ba74cacd37f8cbadb4ab3d/infor.jpg" width="100" height="100">
-
+                <td  WIDTH="450" style="border:none;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/TecNM_logo.png" width="150" height="55">
                 </td>
-
             </tr>
-
 
     </table>
 
-            <br>
-            <br>
-
-
-
     <div class="info">
+        <div class="escu">
+<h6>
+        Instituto Tecnológico del Valle de Oaxaca<BR>
+        Departamento de Ciencias Económico Administrativas
+</h6>
+        </div>
+    </div>
+    <div class="añoo">
+        <div class="año">
+<h6>
+“2020, Año de Leona Vicario, Benemérita Madre de la Patria”
+</h6>
+        </div>
+    </div>
+
+    </header>
+
+    <div align=center;>
+        <div>
+            <b>
+            ANEXO VI. ANÁLISIS ACADÉMICO DE CONVALIDACIÓN DE ESTUDIOS
+            </b>
+        </div>
+    </div>
+    <br>
+    <div align=center;>
+        <div>
+            <b>
+            Instituto Tecnológico del Valle de Oaxaca<BR>
+            Análisis académico de convalidación de estudios
+    </b>
+</div>
+    </div>
 
 
 
+<br>
+    <div class="info">
         <div class="fecha">Fecha: {{$convalidacion->fecha}}</div>
-
-
-
         <div class="estudiante">Nombre del estudiante: {{$convalidacion->nombre_alumno}}</div>
     </div>
+
     <br>
     <table>
         <thead>
@@ -140,6 +174,54 @@
 
         </tbody>
     </table>
+
+    <div align="center">
+    <h5>
+    Nota: Este formato contiene todas las asignaturas analizadas que ampara el certificado parcial o el kardex presentado.
+    </h5>
+    </div>
+<div>
+    <table style="width: 100% ;border: hidden">
+    <thead style="color: black; ">
+        <tr>
+            <th style="width: 50%;">Documento analizado por:</th>
+            <th>Vo. Bo.</th>
+        </tr>
+    </thead>
+    </table>
+    </div>
+<br>
+<br>
+    <div align="center">
+    <h5>
+    c.c.p. Departamento de Servicios Escolares o su equivalente en los Institutos Tecnológicos
+	Descentralizados.
+    </h5>
+    </div>
+
+<div align="left" style="color:#99A3A4;" >
+    <h5>
+1 Para el porcentaje se considera lo siguiente:<br>
+a) El contenido programado es menor al 60%.<br>
+b) Estas (dos o más) asignaturas cumplen, conjuntamente, con el contenido de la asignatura.
+    </h5>
+    </div>
+
+
+    <footer>
+
+
+    <div align="center" style="color:#99A3A4;" >
+    <h6>
+    Ex hacienda de Nazareno s/n, Santa Cruz Xoxocotlán, Oaxaca; C.P 71230<br>
+    Tel: 5170444-5170788 y 5173385<br>
+    Email:cead_voaxaca64tecnm.mx<br>
+    www.voaxaca.tecnm-mx<br>
+    </h6>
+    </div>
+
+    </footer>
+
     <!-- </div> -->
 </body>
 

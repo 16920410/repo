@@ -3,66 +3,50 @@
 
 <body>
     <table>
-        <tr style="border: hidden" margin: 200px align='center'>
-            <td WIDTH="100">
-
-
+        <tr style="border: hidden" margin: 10px align='center'>
+            <td WIDTH="10">
                 <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/266x269/098876ab69c3cb3ac9d5da55ba47083e/itvo.jpg" width="100" height="100">
-
             </td>
-
-
-            <td WIDTH="750">
-
-
+            <td WIDTH="10">
+                <th>INSTITUTO TECNOLÓGICO DEL VALLE DE OAXACA
+                    INGENIERÍA EN TECNOLOGÍAS DE LA INFORMACIÓN Y
+                    COMUNICACIONES E INGENIERÍA INFORMÁTICA
+                </th>
+            </td>
+            <td WIDTH="10">
                 <img src="https://trello-attachments.s3.amazonaws.com/60d78c2fba08028e7ded9685/143x144/b71e1ec458ba74cacd37f8cbadb4ab3d/infor.jpg" width="100" height="100">
-
             </td>
-
         </tr>
-
-
     </table>
 
-    <br>
-    <br>
-
-
-    <table style="width: 100% ;border-collapse: collapse;">
-        <thead class="thead" style="border: 1px solid black">
+    <table style="width: 100%>
+        <thead class="thead" style="border: 0px solid black">
             <tr>
                 <th>ACTA DE REUNIÓN DE ACADEMIA</th>
             </tr>
         </thead>
-
-
     </table>
-
-
     <br>
     <br>
-
-
 
     <table style="border: hidden">
         <thead class="thead">
             <tr>
-                <th>Fecha</th>
-                <th>Realiza en</th>
+                <th>Fecha:</th>
+                    <td align='center'>{{ $reunion->fecha }}</td>
+                <th>Realiza en:</th>
+                    <td align='center'>{{ $reunion->lugar }}</td>
 
             </tr>
         </thead>
+        <!--
         <tbody>
-
             <tr>
                 <td>{{ $reunion->fecha }}</td>
-
                 <td align='center'>{{ $reunion->lugar }}</td>
-
-
             </tr>
-
         </tbody>
+-->
     </table>
 
     <br>
@@ -176,6 +160,17 @@
         </tr>
     </tfoot>
 </table>
+
+<script type="text/php">
+        if ( isset($pdf) ) {
+            $pdf->page_script('
+                $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
+                $pdf->text(480, 780, "Página $PAGE_NUM de $PAGE_COUNT", $font, 10);
+            ');
+        }
+	</script>
+
+
 </body>
 
 </html>

@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Plan Id</th>
 										<th>Materia Id</th>
 
@@ -46,7 +46,7 @@
                                     @foreach ($materiasPlans as $materiasPlan)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $materiasPlan->plan_id }}</td>
 											<td>{{ $materiasPlan->materia_id }}</td>
 
@@ -56,7 +56,7 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('materias-plans.edit',$materiasPlan->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>
