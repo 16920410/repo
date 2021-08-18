@@ -164,8 +164,8 @@ class ReunioneController extends Controller
             ->select(['ordenes.descripcion as orden', 'ordenes.num_orden', 'acuerdos.descripcion as acuerdo'])
             ->orderBy('num_orden')->get();
         $ordenes = json_decode($ordenes, true);
-        
-      
+
+
         // exit();
         $puestos = Puesto::all();
         $carreras = Carrera::all();

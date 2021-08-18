@@ -25,11 +25,12 @@
 
 
 
+
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light" style="background-color: #1b396a;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('images/itvo.jpg')}}" alt="" width="100" height="100">
+                    <img src="{{asset('images/IT.PNG')}}" alt="" width="100" height="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -40,25 +41,47 @@
 
 
                     @if (Auth::check())
-                    <ul class="navbar-nav mr-auto">
-                        <a class="nav-link" href="{{ route('puestos.index') }}">{{ __('Puestos') }}</a>
-                        <a class="nav-link" href="{{ route('docentes.index') }}">{{ __('Docentes') }}</a>
-                        <a class="nav-link" href="{{ route('reuniones.index') }}">{{ __('Reunion Academia') }}</a>
+
+
+
+
+
+                    <ul class="navbar-nav mr-auto"  >
+
+
+
+
+
+
+                    <a class="nav-link" style="color:#F0F3F4;"  href="{{ route('puestos.index') }}">{{ __('Puestos') }}</a>
+
+
+                        <a class="nav-link" style="color:#F0F3F4;" href="{{ route('docentes.index') }}">{{ __('Docentes') }}</a>
+                        <a class="nav-link" style="color:#F0F3F4;" href="{{ route('reuniones.index') }}">{{ __('Reunion Academia') }}</a>
                         <!-- <a class="nav-link" href="{{ route('carreras.index') }}">{{ __('Carreras') }}</a> -->
-                        <a class="nav-link" href="{{ route('tecnologicos.index') }}">{{ __('Tecnologicos') }}</a>
-                        <a class="nav-link" href="{{ route('materias.index') }}">{{ __('Materias') }}</a>
+                        <a class="nav-link" style="color:#F0F3F4;" href="{{ route('tecnologicos.index') }}">{{ __('Tecnologicos') }}</a>
+                        <a class="nav-link" style="color:#F0F3F4;" href="{{ route('materias.index') }}">{{ __('Materias') }}</a>
                         <!-- <a class="nav-link" href="{{ route('materiacursadas.index') }}">{{ __('Materias cursadas') }}</a> -->
 
-                        <a class="nav-link" href="{{ route('plan-estudios.index') }}">{{ __('Planes de estudio') }}</a>
-                        <a class="nav-link" href="{{ route('convalidaciones.index') }}">{{ __('Convalidación') }}</a>
+                        <a class="nav-link" style="color:#F0F3F4;" href="{{ route('plan-estudios.index') }}">{{ __('Planes de estudio') }}</a>
+                        <a class="nav-link" style="color:#F0F3F4;" href="{{ route('convalidaciones.index') }}">{{ __('Convalidación') }}</a>
 
-                        <a class="nav-link" href="{{ route('liberacions.index') }}">{{ __('Liberación Ac') }}</a>
+                        <a class="nav-link" style="color:#F0F3F4;" href="{{ route('liberacions.index') }}">{{ __('Liberación Ac') }}</a>
 
 
-                        <a class="nav-link" href="{{ route('proyectos.index') }}">{{ __('Proyectos Residencia') }}</a>
+                        <a class="nav-link" style="color:#F0F3F4;" href="{{ route('proyectos.index') }}">{{ __('Proyectos Residencia') }}</a>
 
                         <!--<a class="nav-link" href="{{ URL::to('/liberacion') }}">{{ __('Liberación Act.') }}</a>
                         -->
+
+
+
+
+
+
+
+
+
 
 
                     </ul>
@@ -73,18 +96,18 @@
                         @guest
                         @if (Route::has('login'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Acceso') }}</a>
+                            <a class="nav-link" style="color:#F0F3F4;" href="{{ route('login') }}">{{ __('Acceso') }}</a>
                         </li>
                         @endif
 
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
+                            <a class="nav-link" style="color:#F0F3F4;" href="{{ route('register') }}">{{ __('Registro') }}</a>
                         </li>
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown"  style="color:#F0F3F4;" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -103,7 +126,7 @@
 
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <img src="{{asset('images/infor.jpg')}}" alt="" width="100" height="100">
+                        <img src="{{asset('images/TB.png')}}" alt="" width="150" height="70">
                     </ul>
 
 
