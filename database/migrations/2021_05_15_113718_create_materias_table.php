@@ -17,6 +17,8 @@ class CreateMateriasTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('clave');
+            $table->integer('creditos');
+            $table->string('SATCA');
             $table->timestamps();
         });
     }
