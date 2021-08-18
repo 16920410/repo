@@ -48,7 +48,9 @@ class PuestoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Puesto::$rules);
+        request()->validate([
+            'cargo' => ['required', 'unique:puestos'],
+        ]);
 
         $puesto = Puesto::create($request->all());
 
