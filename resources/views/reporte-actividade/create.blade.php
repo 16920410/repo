@@ -32,16 +32,20 @@ Create Reporte Actividade
                                         <h5>Cumplimiento</h5>
                                     </div>
                                 </div>
+                                <form method="POST" action="{{ route('reporte-actividades.update', $liberacion->id) }}" role="form" enctype="multipart/form-data">
+                                    {{ method_field('PATCH') }}
+                                    @csrf
 
 
                                     @include('reporte-actividade.form')
+                                </form>
 
 
                             </div>
 
                         </div>
                         <div class="box-footer mt20">
-                            <a href="{{route('liberacions.index')}}" class="btn btn-primary" >salir</a>
+                            <a href="{{route('liberacions.index')}}" class="btn btn-primary">salir</a>
                             <a class="btn  btn-primary" href="{{ URL::to('/pdfliberacion',$liberacion->id) }}"><i class="fa fa-fw fa-file-pdf-o "></i> Imprimir-pdf</a>
 
                         </div>

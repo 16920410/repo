@@ -57,8 +57,8 @@ class LiberacionController extends Controller
 
         $liberacion = Liberacion::create($request->all());
 
-        return redirect()->route('liberacions.reporte-actividades.create',['liberacion'=>$liberacion->id])
-            ->with('success', 'Liberacion created successfully.');
+        return redirect("reporte-actividades/$liberacion->id")
+            ->with('success', 'Liberacion created successfully');
     }
 
     /**
@@ -101,7 +101,7 @@ class LiberacionController extends Controller
 
         $liberacion->update($request->all());
 
-        return redirect()->route('liberacions.reporte-actividades.create',['liberacion'=>$liberacion->id])
+        return redirect("reporte-actividades/$liberacion->id")
             ->with('success', 'Liberacion updated successfully');
     }
 

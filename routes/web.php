@@ -39,7 +39,12 @@ Route::resource('plan-estudios.materias-plan', App\Http\Controllers\MateriasPlan
 Route::resource('convalidaciones', App\Http\Controllers\ConvalidacioneController::class);
 Route::resource('convalidaciones.convalidacion-materias', App\Http\Controllers\ConvalidacionMateriaController::class);
 Route::resource('liberacions', App\Http\Controllers\LiberacionController::class);
-Route::resource('liberacions.reporte-actividades', App\Http\Controllers\ReporteActividadeController::class);
+// Route::resource('liberacions.reporte-actividades', App\Http\Controllers\ReporteActividadeController::class);
+// Route::post('liberacions/{liberacion}/reporte-actividades', [App\Http\Controllers\ReporteActividadeController::class, 'reporte_actividades']);
+Route::get('reporte-actividades/{liberacion}/', [App\Http\Controllers\ReporteActividadeController::class, 'reporte_actividades']);
+Route::get('reporte-actividades/{liberacion}/', [App\Http\Controllers\ReporteActividadeController::class, 'reporte_actividades']);
+Route::patch('reporte-actividades/{liberacion}/', [App\Http\Controllers\ReporteActividadeController::class, 'update'])->name(('reporte-actividades.update'));
+
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
 Route::resource('users', App\Http\Controllers\UserController::class);
 

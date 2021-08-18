@@ -62,6 +62,15 @@ class Liberacion extends Model
         return $this->hasOne('App\Models\Docente', 'id', 'valido_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function actividades()
+    {
+        return $this->hasOne('App\Models\ReporteActividade', 'liberacion_id', 'id');
+    }
+
+
     
 
 }
