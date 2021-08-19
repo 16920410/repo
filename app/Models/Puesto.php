@@ -20,7 +20,7 @@ class Puesto extends Model
 {
     
     static $rules = [
-		'cargo' => ['required', 'unique:puestos'],
+		'cargo' => ['required'],
     ];
 
     protected $perPage = 20;
