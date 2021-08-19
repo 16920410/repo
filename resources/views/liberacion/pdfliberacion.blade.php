@@ -14,103 +14,94 @@
         width: 100%;
     }
 
-    .categoriesDiv {
+    .header {
         width: 80%;
-        margin: auto;
+        margin: 0 auto;
+        margin-top: 2em;
+    }
+
+    .header>* {
+        display: inline-block;
+    }
+
+    .header-logo-1 {
+        width: 200px;
+        height: 85px;
+    }
+
+    .header-logo-2 {
+        width: 250px;
+        height: 85px;
+    }
+
+    .contenedor {
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .indent {
+        text-indent: 2em
+    }
+
+    .spacer {
+        width: 25%;
     }
 </style>
 
 <body>
 
+    <div class="header">
 
-    <br>
-    <br>
+        <img class="header-logo-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SEP_Logo_2019.svg/1200px-SEP_Logo_2019.svg.png">
+        <div class="spacer"></div>
+        <img class="header-logo-2" src="https://www.voaxaca.tecnm.mx/wp-content/themes/TecNM-ITVO/images/pleca-ITVO.png">
 
-
-
-
-    <div class="categoriesDiv" style="width:90%">
-        <table style="border: hidden">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SEP_Logo_2019.svg/1200px-SEP_Logo_2019.svg.png" width="200" height="100" HSPACE="130">
-<img src="https://www.voaxaca.tecnm.mx/wp-content/themes/TecNM-ITVO/images/pleca-ITVO.png" width="200" height="100" align="right">
-
-        </table>
-    </div>
-    <br>
-    <br>
-
-
-    <table style="border: hidden">
-        <thead>
-            <th>ANEXO XXXVII. CARTA DE LIBERACIÓN DE ACTIVIDADES ACADÉMICAS</th>
-
-        </thead>
-    </table>
-
-    <table style="border: hidden">
-        <thead>
-            <th>Departamento Académico de: Ciencias Económico – Administrativas</th>
-        </thead>
-
-    </table>
-
-    <br>
-    <div class="categoriesDiv">
-        <table style="border: hidden">
-            <thead>
-
-                <th>Ex Hacienda de Nazareno Xoxocotlán Oax., a {{date('d-m-Y', strtotime($liberacion->created_at))}}</th>
-            </thead>
-        </table>
     </div>
 
-    <br>
-    <div class="categoriesDiv">
-        <table style="border: hidden; text-align:right">
-            <thead>
+    <div class="contenedor">
+        <div class="text-center">
 
-                <th>Asunto: Constancia de liberación de actividades académicas.</th>
-            </thead>
-        </table>
+
+            <h3>ANEXO XXXVII. CARTA DE LIBERACIÓN DE ACTIVIDADES ACADÉMICAS</h3>
+
+
+            <p>Departamento Académico de: <u>Ciencias Económico – Administrativas</u></p>
+
+        </div>
+        <div class="text-right">
+
+
+            <p>Ex Hacienda de Nazareno Xoxocotlán Oax., a <u>{{date('d-m-Y', strtotime($liberacion->created_at))}}</u></p>
+            <p>Asunto: Constancia de liberación de actividades académicas.</p>
+        </div>
+
+        <div class="text-left" style="width:22%">
+            <p><b>C. {{$liberacion->docente->nombre}}</b></p>
+            <p>PRESENTE</p>
+        </div>
+        <div class="text-center">
+
+        </div>
+
+
+        <p class="indent">Por medio de la presente, se hace de su conocimiento que durante el
+            semestre <u> {{$liberacion->semestre}} </u>, se evaluó el cumplimiento de las siguientes
+            actividades:
+        </p>
+
     </div>
-
-    <br>
-    <div class="categoriesDiv" style="width:22%">
-        <table style="border: hidden">
-            <th>C.{{$liberacion->docente->nombre}}</th>
-        </table>
-    </div>
-
-    <div class="categoriesDiv" style="width:26%">
-        <table style="border: hidden">
-            <th>PRESENTE</th>
-        </table>
-    </div>
-    <br>
-
-
-    <div>
-        <table style="border: hidden">
-            <th>Por medio de la presente, se hace de su conocimiento que durante el
-                semestre
-            </th>
-            <th><u>__{{$liberacion->semestre}}__ </u>, se evaluó el cumplimiento de las siguientes
-                actividades:
-            </th>
-
-
-        </table>
-    </div>
-    <br>
-
-
-
-
-
-
-    <br>
-
 
     <table style="width: 80% ;border-collapse: collapse; margin:auto">
         <thead class="thead" style="border: 1px solid black">
@@ -133,8 +124,6 @@
             </tr>
             @endforeach
             <tr>
-
-            <tr>
                 <td>Otros (especificar):</td>
                 <td></td>
                 <td></td>
@@ -150,49 +139,34 @@
         </tbody>
 
     </table>
+    <br><br>
 
-    <br>
-    <br>
+    <table style="width: 80% ;border-collapse: collapse; margin:auto; border: 1px solid black ">
+        <thead>
+            <tr>
+                <th valign="top">{{$liberacion->elaboro->puesto->cargo}}</th>
+                <th style="border: 1px solid black;border-bottom: none; width: 70px"> </th>
+                <th valign="top">{{$liberacion->valido->puesto->cargo}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @if ($liberacion->elaboro)
+                <td valign="bottom">{{$liberacion->elaboro->nombre}}</td>
+                @else
+                <td valign="bottom">No se ha elegido</td>
+                @endif
 
-    <div>
-        <table style="border: 1px solid black; width: 80%; height: 150px;  border-collapse: collapse; ">
-            <thead>
-                <tr>
-                    <th valign="top" WIDTH="300">Presidente de la Academia</th>
-                    <th WIDTH="50" style="border-bottom: none;"></th>
-                    <th valign="top" WIDTH="300">Vo. Bo. Jefe del Departamento academico</th>
+                <td style="border-top: none;"></td>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    @if ($presidente)
-
-                    <th valign="bottom">{{$presidente->nombre}}</th>
-                    @else
-
-                    <th valign="bottom">No hay presidente elegido</th>
-                    @endif
-
-
-                    <td WIDTH="50" style="border-top: none;"></td>
-                    @if ($secretario)
-                    <th valign="bottom">{{$secretario->nombre}}</th>
-                    @else
-
-                    <th valign="bottom">No hay secretario elegido</th>
-                    @endif
-
-                </tr>
-            </tbody>
-
-
-
-        </table>
-        <br>
-
-
-
+                @if ($liberacion->valido)
+                <td valign="bottom">{{$liberacion->valido->nombre}}</td>
+                @else
+                <td valign="bottom">No se ha elegido</td>
+                @endif
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 
