@@ -19,8 +19,8 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('semestre') }}
-            {{ Form::text('semestre', $liberacion->semestre, ['class' => 'form-control' . ($errors->has('semestre') ? ' is-invalid' : ''), 'placeholder' => 'Semestre']) }}
+            {{ Form::label('Periodo') }}
+            {{ Form::text('semestre', $liberacion->semestre, ['class' => 'form-control' . ($errors->has('semestre') ? ' is-invalid' : ''), 'placeholder' => 'Periodo']) }}
             {!! $errors->first('semestre', '<div class="invalid-feedback">:message</p>') !!}
         </div>
 

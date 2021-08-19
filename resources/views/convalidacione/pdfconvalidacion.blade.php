@@ -1,8 +1,4 @@
 <html>
-
-
-
-
 <body>
     <style>
         body {
@@ -56,11 +52,9 @@
             margin: 0 auto;
             color: #ABB2B9;
         }
-
-
     </style>
 
-<header>
+
 
 
     <table style="border:none;">
@@ -74,6 +68,8 @@
             </tr>
 
     </table>
+
+
 
     <div class="info">
         <div class="escu">
@@ -91,7 +87,7 @@
         </div>
     </div>
 
-    </header>
+
 
     <div align=center;>
         <div>
@@ -208,7 +204,7 @@ b) Estas (dos o más) asignaturas cumplen, conjuntamente, con el contenido de la
     </div>
 
 
-    <footer>
+
 
 
     <div align="center" style="color:#99A3A4;" >
@@ -220,7 +216,7 @@ b) Estas (dos o más) asignaturas cumplen, conjuntamente, con el contenido de la
     </h6>
     </div>
 
-    </footer>
+
 
     <!-- </div> -->
 </body>

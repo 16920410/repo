@@ -18,7 +18,7 @@ class LiberacionController extends Controller
         $this->middleware('auth', ['except' => []]);
     }
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -129,7 +129,6 @@ class LiberacionController extends Controller
 
         //  return view('liberacion.pdfliberacion', compact('lista_actividades','liberacion','presidente', 'secretario'));
         $pdf = PDF::loadView('liberacion.pdfliberacion',compact('lista_actividades','liberacion','presidente', 'secretario'));
-
 
         return $pdf->download('Liberación.pdf');
     }
