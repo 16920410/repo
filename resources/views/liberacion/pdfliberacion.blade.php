@@ -1,14 +1,17 @@
 <html>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <style>
     table {
         /* width: 200px; */
         margin: 0 auto;
     }
-
     td {
         border: 1px solid black;
     }
 </style>
+
 <style>
     body {
         width: 100%;
@@ -103,24 +106,24 @@
 
     </div>
 
-    <table style="width: 80% ;border-collapse: collapse; margin:auto">
+    <table style="width: 100% ;border-collapse: collapse; margin:auto">
         <thead class="thead" style="border: 1px solid black">
             <tr>
-                <th>Actividades</th>
-                <th style="width: 7%">Si</th>
-                <th style="width: 7%">No</th>
-                <th style="width: 7%">NA</th>
+                <th style="text-align: center">Actividades</th>
+                <th style="width: 7%; text-align: center">Si</th>
+                <th style="width: 7%; text-align: center">No</th>
+                <th style="width: 7%; text-align: center">NA</th>
 
             </tr>
         </thead>
-        <tbody style="border: 1px solid black; border-top: none">
+        <tbody style="border: 1px solid black; border-top: none; font-size:80%;">
 
             @foreach ($lista_actividades as $actividad)
             <tr>
                 <td>{{$actividad->actividade->descripcion}}</td>
-                <td style="text-align: center;">{{$actividad->evaluacion == 2? 'X': ''}}</td>
-                <td style="text-align: center;">{{$actividad->evaluacion == 1? 'X': ''}}</td>
-                <td style="text-align: center;">{{$actividad->evaluacion == 0? 'X': ''}}</td>
+                <td style="text-align: center; font-size:70%;">{{$actividad->evaluacion == 2? 'X': ''}}</td>
+                <td style="text-align: center; font-size:70%;">{{$actividad->evaluacion == 1? 'X': ''}}</td>
+                <td style="text-align: center; font-size:70%;">{{$actividad->evaluacion == 0? 'X': ''}}</td>
             </tr>
             @endforeach
             <tr>
@@ -129,12 +132,9 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
-                <td style="font-weight: bold;">¿Cumplió con las actividades académicas encomendadas al 100%?</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+
+
+
 
         </tbody>
 

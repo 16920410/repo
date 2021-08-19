@@ -1,8 +1,4 @@
 <html>
-
-
-
-
 <body>
     <style>
         body {
@@ -64,7 +60,6 @@
         }
     </style>
 
-    <header>
 
 
         <table style="border:none;">
@@ -95,7 +90,7 @@
             </div>
         </div>
 
-    </header>
+
 
     <div align=center;>
         <div>
@@ -224,7 +219,7 @@
     </div>
 
 
-    <footer>
+
 
 
         <div align="center" style="color:#99A3A4;">
@@ -236,7 +231,7 @@
             </h6>
         </div>
 
-    </footer>
+
 
     <!-- </div> -->
 </body>
