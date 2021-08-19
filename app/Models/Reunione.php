@@ -25,7 +25,8 @@ class Reunione extends Model
 		'lugar' => 'required',
     'hora_inicio'=>'required',
     'hora_fin'=>'required',
-
+    'elaboro_id'=>'required',
+    'valido_id'=>'required',
     ];
 
     protected $perPage = 20;
@@ -35,7 +36,22 @@ class Reunione extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha','lugar','orden','hora_inicio','hora_fin'];
+    protected $fillable = ['fecha','lugar','orden','hora_inicio','hora_fin','elaboro_id','valido_id'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function elaboro()
+    {
+        return $this->hasOne('App\Models\Docente', 'id', 'elaboro_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function valido()
+    {
+        return $this->hasOne('App\Models\Docente', 'id', 'valido_id');
+    }
 
 
 

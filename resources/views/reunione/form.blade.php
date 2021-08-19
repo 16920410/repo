@@ -40,7 +40,36 @@
             </div>
 
         </div>
-        
+        <div class="row justify-content-md-center">
+            <div class="col-md-5">
+                <div class="form-group">
+                    {{ Form::label('Elaboró') }}
+                    <select class="form-control" name="elaboro_id">
+                        @foreach ($docentes as $docente)
+                        <option value="{{$docente->id}}">{{$docente->nombre}}
+                        </option>
+                        @endforeach
+                    </select>
+                    {!! $errors->first('elaboro_id', '<p class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-5">
+
+                <div class="form-group">
+                    {{ Form::label('Da fe:') }}
+                    <select class="form-control" name="valido_id">
+                        @foreach ($docentes as $docente)
+                        <option value="{{$docente->id}}">{{$docente->nombre}}
+                        </option>
+                        @endforeach
+                    </select>
+                    {!! $errors->first('valido_id', '<p class="invalid-feedback">:message</p>') !!}
+                </div>
+            </div>
+        </div>
+
         <div class="row justify-content-md-center">
             <div class="col-md-8">
                 <div class="card">

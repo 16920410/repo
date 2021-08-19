@@ -19,6 +19,13 @@ class CreateReunionesTable extends Migration
             $table->string('lugar');
             $table->string('orden');
             $table->timestamps();
+            $table->unsignedBigInteger('elaboro_id');
+            $table->unsignedBigInteger('valido_id');
+            
+            $table->foreign('elaboro_id')
+            ->references('id')->on('docentes')->onDelete('cascade');
+            $table->foreign('valido_id')
+            ->references('id')->on('docentes')->onDelete('cascade');
         });
     }
 

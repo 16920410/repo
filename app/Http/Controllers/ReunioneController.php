@@ -51,9 +51,10 @@ class ReunioneController extends Controller
     {
         $reunione = new Reunione();
         $asistentes = Docente::orderBy('apellido_p')->get();
+        $docentes =  Docente::all();
         $acuerdos = [];
         $listaAsistentes = [];
-        return view('reunione.create', compact('reunione', 'asistentes', 'listaAsistentes', 'acuerdos'));
+        return view('reunione.create', compact('reunione', 'asistentes', 'listaAsistentes', 'acuerdos', 'docentes'));
     }
 
     /**

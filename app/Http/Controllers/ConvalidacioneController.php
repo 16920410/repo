@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Convalidacione;
 use App\Models\ConvalidacionMateria;
+use App\Models\Docente;
 use App\Models\Materia;
 use App\Models\Materias;
 use App\Models\MateriasPlan;
@@ -19,7 +20,8 @@ use Illuminate\Support\Facades\Date;
  */
 class ConvalidacioneController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth', ['except' => []]);
     }
     /**
@@ -51,7 +53,8 @@ class ConvalidacioneController extends Controller
         $convalidacione = new Convalidacione();
         $planes = PlanEstudio::all()->pluck('nombre', 'id');
         $tecnologicos = Tecnologico::all()->pluck('nombre', 'id');
-        return view('convalidacione.create', compact('convalidacione', 'planes', 'tecnologicos'));
+        $docentes = Docente::all();
+        return view('convalidacione.create', compact('convalidacione', 'planes', 'tecnologicos', 'docentes'));
     }
 
     /**
@@ -65,7 +68,7 @@ class ConvalidacioneController extends Controller
         var_dump(request()->all());
 
         $validated = request()->validate(Convalidacione::$rules);
-        $formatDate = date('d-m-Y',strtotime($validated['fecha']));
+        $formatDate = date('d-m-Y', strtotime($validated['fecha']));
         $validated['fecha'] = $formatDate;
         // var_dump($formatDate);
         // exit();
@@ -98,7 +101,7 @@ class ConvalidacioneController extends Controller
     {
         $planes = PlanEstudio::all()->pluck('nombre', 'id');
         $tecnologicos = Tecnologico::all()->pluck('nombre', 'id');
-        $convalidacione = Convalidacione::where('id',$id)->get()[0];
+        $convalidacione = Convalidacione::where('id', $id)->get()[0];
         // var_dump($convalidacione);
         // exit();
         $materia = new ConvalidacionMateria();
@@ -107,10 +110,11 @@ class ConvalidacioneController extends Controller
         $materias_convalidar = MateriasPlan::where('plan_id', $convalidacione->plan_interno)
             ->join('materias', 'materias.id', '=', 'materias_plan.materia_id')->select(['clave', 'nombre', 'materias.id'])->get();
         $materias_convalidadas = ConvalidacionMateria::where('convalidacion_id', $convalidacione->id)->get();
+        $docentes = Docente::all();
 
         // $materias_cursadas= $materias_cursadas->pluck('clave','id');
         // $materias_convalidar=$materias_convalidar->pluck('clave','id');
-        return view('convalidacione.edit', compact('convalidacione', 'materia', 'materias_cursadas', 'materias_convalidar', 'planes', 'tecnologicos', 'materias_convalidadas'));
+        return view('convalidacione.edit', compact('convalidacione', 'materia', 'materias_cursadas', 'materias_convalidar', 'planes', 'tecnologicos', 'materias_convalidadas', 'docentes'));
     }
 
     /**
@@ -145,17 +149,7 @@ class ConvalidacioneController extends Controller
 
     public function pdfconvalidacion($id)
     {
-        $convalidacion = Convalidacione::where('convalidaciones.id',$id)->
-        join('plan_estudios as p', 'p.id', '=', 'convalidaciones.plan_externo')
-            ->join('plan_estudios as p1', 'p1.id', '=', 'convalidaciones.plan_interno')
-            ->join('tecnologicos as t', 't.id', '=', 'convalidaciones.tecnologico_procedente')
-            ->join('tecnologicos as t1', 't1.id', '=', 'convalidaciones.tecnologico_receptor')
-            ->select([
-                'p.nombre as plan_externo', 'p1.nombre as plan_interno',
-                'p.clave as plan_externo_clave', 'p1.clave as plan_interno_clave',
-                't.nombre as tecnologico_procedente', 't1.nombre as tecnologico_receptor',
-                'convalidaciones.id', 'convalidaciones.nombre_alumno', 'convalidaciones.fecha'
-            ])->get()[0];
+        $convalidacion = Convalidacione::find($id);
         // var_dump($convalidacion,$id);
         // exit();
         $materias_convalidadas = ConvalidacionMateria::where('convalidacion_id', $id)

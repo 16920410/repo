@@ -34,6 +34,8 @@ class Convalidacione extends Model
 		'tecnologico_procedente' => 'required',
 		'tecnologico_receptor' => 'required',
 		'fecha' => 'required',
+		'elaboro_id' => 'required',
+		'valido_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -43,7 +45,7 @@ class Convalidacione extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre_alumno','plan_externo','plan_interno','tecnologico_procedente','tecnologico_receptor', 'fecha'];
+    protected $fillable = ['nombre_alumno','plan_externo','plan_interno','tecnologico_procedente','tecnologico_receptor', 'fecha', 'elaboro_id', 'valido_id'];
 
 
     /**
@@ -57,10 +59,19 @@ class Convalidacione extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function planEstudio()
+    public function planInterno()
     {
         $this->hasOne('App\Models\PlanEstudio', 'id', 'plan_externo');
         return $this->hasOne('App\Models\PlanEstudio', 'id', 'plan_interno');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function planExterno()
+    {
+        
+        return $this->hasOne('App\Models\PlanEstudio', 'id', 'plan_externo');
     }
     
     // /**
@@ -74,10 +85,16 @@ class Convalidacione extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function tecnologico()
+    public function tecnologicoProcedente()
     {
         return $this->hasOne('App\Models\Tecnologico', 'id', 'tecnologico_procedente');
-        $this->hasOne('App\Models\Tecnologico', 'id', 'tecnologico_receptor');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function tecnologicoReceptor()
+    {
+        return $this->hasOne('App\Models\Tecnologico', 'id', 'tecnologico_receptor');
     }
     
     // /**
@@ -87,6 +104,20 @@ class Convalidacione extends Model
     // {
     //     return $this->hasOne('App\Models\Tecnologico', 'id', 'tecnologico_receptor');
     // }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function elaboro()
+    {
+        return $this->hasOne('App\Models\Docente', 'id', 'elaboro_id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function valido()
+    {
+        return $this->hasOne('App\Models\Docente', 'id', 'valido_id');
+    }
     
 
 }

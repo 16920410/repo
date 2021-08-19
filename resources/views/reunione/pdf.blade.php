@@ -149,14 +149,14 @@
             <td style="border-right:1px solid black; padding-left:1em;"></td>
         </tr>
         <tr>
-            <td style="border-right:1px solid black; padding-left:1em; text-align: center;"><b>{{$secretario?$secretario->nombre: 'No asignado'}}</b></td>
-            <td style="border-right:1px solid black; padding-left:1em; text-align: center;">{{$presidente? $presidente->nombre: 'No asignado'}}</td>
+            <td style="border-right:1px solid black; padding-left:1em; text-align: center;"><b>{{$reunion->elaboro?$reunion->elaboro->nombre: 'No asignado'}}</b></td>
+            <td style="border-right:1px solid black; padding-left:1em; text-align: center;">{{$reunion->valido?$reunion->valido->nombre: 'No asignado'}}</td>
         </tr>
     </tbody>
     <tfoot style="color: white; background: #000; font-weight: bold;">
         <tr>
-            <td style="border-right:1px solid black; padding-left:1em; text-align: center;">{{$secretario?$secretario->cargo: 'No asignado'}}</td>
-            <td style="border-right:1px solid black; padding-left:1em; text-align: center;">{{$presidente? $presidente->cargo: 'No asignado'}}</td>
+            <td style="border-right:1px solid black; padding-left:1em; text-align: center;">{{$reunion->elaboro?$reunion->elaboro->puesto->nombre: 'No asignado'}}</td>
+            <td style="border-right:1px solid black; padding-left:1em; text-align: center;">{{$reunion->valido?$reunion->valido->puesto->nombre: 'No asignado'}}</td>
         </tr>
     </tfoot>
 </table>

@@ -59,6 +59,10 @@ class CreatePlanEstudiosTable extends Migration
             $table->unsignedBigInteger('plan_interno');
             $table->unsignedBigInteger('tecnologico_procedente');
             $table->unsignedBigInteger('tecnologico_receptor');
+            $table->unsignedBigInteger('elaboro_id');
+            $table->unsignedBigInteger('valido_id');
+            
+           
 
 
             $table->timestamps();
@@ -68,6 +72,10 @@ class CreatePlanEstudiosTable extends Migration
             $table->foreign('plan_interno')->references('id')->on('plan_estudios')->onDelete('restrict');
             $table->foreign('tecnologico_procedente')->references('id')->on('tecnologicos')->onDelete('restrict');
             $table->foreign('tecnologico_receptor')->references('id')->on('tecnologicos')->onDelete('restrict');
+            $table->foreign('elaboro_id')
+            ->references('id')->on('docentes')->onDelete('cascade');
+            $table->foreign('valido_id')
+            ->references('id')->on('docentes')->onDelete('cascade');
         });
         Schema::create('convalidacion_materias', function (Blueprint $table) {
             $table->id();
