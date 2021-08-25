@@ -11,14 +11,14 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ secure_asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-md navbar-light" style="background-color: #1b396a;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('images/IT.PNG')}}" alt="" width="100" height="100">
+                    <img src="{{secure_asset('images/IT.png')}}" alt="" width="100" height="100">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -132,7 +132,7 @@
 
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <img src="{{asset('images/TB.png')}}" alt="" width="150" height="70">
+                        <img src="{{secure_asset('images/TB.png')}}" alt="" width="150" height="70">
                     </ul>
 
 
