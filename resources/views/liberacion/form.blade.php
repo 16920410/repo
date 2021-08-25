@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('Da fe:') }}
+            {{ Form::label('Visto Bueno') }}
                             <select class="form-control" name="valido_id">
                                 @foreach ($docentes as $docente)
                                 <option value="{{$docente->id}}">{{$docente->nombre}}
