@@ -10,14 +10,19 @@
     td {
         border: 1px solid black;
     }
-</style>
-
-<style>
     body {
         width: 100%;
     }
+    @page {
+        margin: 100px 25px;
+    }
 
     .header {
+        position: fixed;
+        top: -60px;
+        left: 0px;
+        right: 0px;
+        height: 60px;
         width: 80%;
         margin: 0 auto;
         margin-top: 0em;
