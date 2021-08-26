@@ -7,12 +7,15 @@
         /* width: 200px; */
         margin: 0 auto;
     }
+
     td {
         border: 1px solid black;
     }
+
     body {
         width: 100%;
     }
+
     @page {
         margin: 100px 25px;
     }
@@ -36,6 +39,11 @@
         width: 100%;
         margin-right: 20;
         margin-top: 0em;
+        position: fixed;
+        bottom: -60px;
+        left: 0px;
+        right: 0px;
+        height: 50px;
     }
 
     .footer>* {
@@ -97,11 +105,12 @@
     .spacer {
         width: 25%;
     }
+
     .spacer2 {
         width: 50%;
         align: center;
-        margin-left:50;
-        position:relative;
+        margin-left: 50;
+        position: relative;
     }
 </style>
 
@@ -112,6 +121,24 @@
         <img class="header-logo-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SEP_Logo_2019.svg/1200px-SEP_Logo_2019.svg.png">
         <div class="spacer"></div>
         <img class="header-logo-2" src="http://itguaymas.edu.mx/img/logo_tecnm_2.png">
+
+    </div>
+    <div class="footer">
+
+        <img class="footer-logo-1" src="http://rf.voaxaca.tecnm.mx/assets/files/main/img/ITVO.png">
+
+        <div class="spacer2" style="font-size:10px; color:#7F8C8D; text-align: center">
+            Ex-hacienda de Nazareno, Xoxocotlán,Oaxaca, C.P. 71230<br>
+            Tel. y fax 01 (951) 5170444, 5170788, e-mail: itvalleoaxaca@hotmail.com<br>
+            <u>www.tecnm.mx | www.voaxaca.tecnm.mx</u>
+        </div>
+
+        <img class="footer-logo-1" src="https://mcd.unison.mx/wp-content/uploads/2020/08/conacyt-300x256.png">
+        <img class="footer-logo-1" src="http://www.fcb.uanl.mx/nw/images/caceb-log3.png">
+
+
+        <img class="footer-logo-3" src="https://its-purhepecha.edu.mx/wp-content/uploads/2018/05/Logo3.png">
+
 
     </div>
     <br>
@@ -135,9 +162,9 @@
         <div>
             <p><b>C. {{$liberacion->docente->nombre}}</b></p>
             <div>
-            <p>PRESENTE</p>
+                <p>PRESENTE</p>
             </div>
-</div>
+        </div>
 
 
 
@@ -197,12 +224,12 @@
             </tr>
 -->
 
-<tr valign="top">
+            <tr valign="top">
                 <th style="text-align: center;">Presidente de la academia</th>
 
-                <th style="border: 1px solid black;border-bottom: none; width: 70px" > </th>
+                <th style="border: 1px solid black;border-bottom: none; width: 70px"> </th>
 
-                <th style="text-align: center;" >Vo.Bo.<br>
+                <th style="text-align: center;">Vo.Bo.<br>
                     Jefe(a) del departamento academico</th>
 
 
@@ -235,7 +262,7 @@
 -->
 
 
-<tr>
+            <tr>
                 @if ($liberacion->elaboro)
                 <td valign="bottom" style="text-align: center; border: inset 0pt">{{$liberacion->elaboro->nombre}}</td>
 
@@ -253,8 +280,8 @@
 
                 @else
                 <td valign="bottom">No se ha elegido</td>
-<td>
-</td>
+                <td>
+                </td>
                 @endif
             </tr>
 
@@ -263,29 +290,12 @@
 
         </tbody>
     </table>
-<br>
-<br>
-<br>
+    <br>
+    <br>
+    <br>
 
 
-<div class="footer">
 
-            <img class="footer-logo-1" src="http://rf.voaxaca.tecnm.mx/assets/files/main/img/ITVO.png">
-
-            <div class="spacer2" style="font-size:10px; color:#7F8C8D; text-align: center">
-            Ex-hacienda de Nazareno, Xoxocotlán,Oaxaca, C.P. 71230<br>
-            Tel. y fax 01 (951) 5170444, 5170788, e-mail: itvalleoaxaca@hotmail.com<br>
-            <u>www.tecnm.mx | www.voaxaca.tecnm.mx</u>
-            </div>
-
-            <img class="footer-logo-1" src="https://mcd.unison.mx/wp-content/uploads/2020/08/conacyt-300x256.png">
-            <img class="footer-logo-1" src="http://www.fcb.uanl.mx/nw/images/caceb-log3.png">
-
-
-            <img class="footer-logo-3" src="https://its-purhepecha.edu.mx/wp-content/uploads/2018/05/Logo3.png">
-
-
-</div>
 
 
 </body>

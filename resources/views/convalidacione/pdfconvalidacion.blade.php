@@ -15,9 +15,10 @@
         left: 0px;
         right: 0px;
         height: 60px;
+        text-align: center;
     }
 
-    footer {
+    .footer {
         position: fixed;
         bottom: -60px;
         left: 0px;
@@ -245,7 +246,7 @@
             
             
             
-            <div align="center" style="color:#99A3A4;">
+            <div class="footer" align="center" style="color:#99A3A4;">
                 <h6>
                     Ex hacienda de Nazareno s/n, Santa Cruz Xoxocotlán, Oaxaca; C.P 71230<br>
                     Tel: 5170444-5170788 y 5173385<br>
