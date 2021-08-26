@@ -95,9 +95,19 @@
         </tr>
 
     </table>
+
+    <div class="footer" align="center" style="color:#99A3A4;">
+        <h6>
+            Ex hacienda de Nazareno s/n, Santa Cruz Xoxocotlán, Oaxaca; C.P 71230<br>
+            Tel: 5170444-5170788 y 5173385<br>
+            Email:cead_voaxaca64tecnm.mx<br>
+            www.voaxaca.tecnm-mx<br>
+        </h6>
+    </div>
+
     <main>
 
-        
+
         <div class="info">
             <div class="escu">
                 <h6>
@@ -113,9 +123,9 @@
                 </h6>
             </div>
         </div>
-        
-        
-        
+
+
+
         <div align=center;>
             <div>
                 <b>
@@ -132,15 +142,15 @@
                 </b>
             </div>
         </div>
-        
-        
-        
+
+
+
         <br>
         <div class="info">
             <div class="fecha">Fecha: {{$convalidacion->fecha}}</div>
             <div class="estudiante">Nombre del estudiante: {{$convalidacion->nombre_alumno}}</div>
         </div>
-        
+
         <br>
         <table>
             <thead>
@@ -168,97 +178,90 @@
         <!-- </div> -->
         <br><br><br>
         <!-- <div class="tabla-conv"> -->
-            <table>
-                <thead>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Asignatura cursada</th>
+                    <th>Clave de asignatura</th>
+                    <th>Calificación</th>
+                    <th>Asignatura a convalidar</th>
+                    <th>Clave de asignatura a convalidar</th>
+                    <th> Porcentaje %</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($materias_convalidadas as $key => $materia)
+                <tr>
+                    <td>{{$key+1}}</td>
+                    <td>{{$materia->cursada}}</td>
+                    <td>{{$materia->cursada_clave}}</td>
+                    <td>{{$materia->calificacion}}</td>
+                    <td>{{$materia->convalidada}}</td>
+                    <td>{{$materia->convalidada_clave}}</td>
+                    <td>{{$materia->porcentaje}}</td>
+                </tr>
+
+                @endforeach
+
+
+            </tbody>
+        </table>
+
+        <div align="center">
+            <h5>
+                Nota: Este formato contiene todas las asignaturas analizadas que ampara el certificado parcial o el kardex presentado.
+            </h5>
+        </div>
+        <div>
+            <table style="width: 100% ;border: hidden">
+                <thead style="color: black; ">
                     <tr>
-                        <th>No.</th>
-                        <th>Asignatura cursada</th>
-                        <th>Clave de asignatura</th>
-                        <th>Calificación</th>
-                        <th>Asignatura a convalidar</th>
-                        <th>Clave de asignatura a convalidar</th>
-                        <th> Porcentaje %</th>
+                        <th style="width: 50%;">Documento analizado por:</th>
+                        <th>Vo. Bo.</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($materias_convalidadas as $key => $materia)
                     <tr>
-                        <td>{{$key+1}}</td>
-                        <td>{{$materia->cursada}}</td>
-                        <td>{{$materia->cursada_clave}}</td>
-                        <td>{{$materia->calificacion}}</td>
-                        <td>{{$materia->convalidada}}</td>
-                        <td>{{$materia->convalidada_clave}}</td>
-                        <td>{{$materia->porcentaje}}</td>
+
+                        <th> {{$convalidacion->elaboro?$convalidacion->elaboro->nombre:''}}</th>
+                        <th> {{$convalidacion->valido?$convalidacion->valido->nombre:''}}</th>
                     </tr>
-                    
-                    @endforeach
-                    
-                    
+                    <tr>
+
+                        <th> {{$convalidacion->elaboro?$convalidacion->elaboro->puesto->nombre:''}}</th>
+                        <th> {{$convalidacion->valido?$convalidacion->valido->puesto->nombre:''}}</th>
+                    </tr>
                 </tbody>
             </table>
-            
-            <div align="center">
-                <h5>
-                    Nota: Este formato contiene todas las asignaturas analizadas que ampara el certificado parcial o el kardex presentado.
-                </h5>
-            </div>
-            <div>
-                <table style="width: 100% ;border: hidden">
-                    <thead style="color: black; ">
-                        <tr>
-                            <th style="width: 50%;">Documento analizado por:</th>
-                            <th>Vo. Bo.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            
-                            <th> {{$convalidacion->elaboro?$convalidacion->elaboro->nombre:''}}</th>
-                            <th> {{$convalidacion->valido?$convalidacion->valido->nombre:''}}</th>
-                        </tr>
-                        <tr>
-                            
-                            <th> {{$convalidacion->elaboro?$convalidacion->elaboro->puesto->nombre:''}}</th>
-                            <th> {{$convalidacion->valido?$convalidacion->valido->puesto->nombre:''}}</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <br>
-            <br>
-            <div align="center">
-                <h5>
-                    c.c.p. Departamento de Servicios Escolares o su equivalente en los Institutos Tecnológicos
-                    Descentralizados.
-                </h5>
-            </div>
-            
-            <div align="left" style="color:#99A3A4;">
-                <h5>
-                    1 Para el porcentaje se considera lo siguiente:<br>
-                    a) El contenido programado es menor al 60%.<br>
-                    b) Estas (dos o más) asignaturas cumplen, conjuntamente, con el contenido de la asignatura.
-                </h5>
-            </div>
-            
-            
-            
-            
-            
-            <div class="footer" align="center" style="color:#99A3A4;">
-                <h6>
-                    Ex hacienda de Nazareno s/n, Santa Cruz Xoxocotlán, Oaxaca; C.P 71230<br>
-                    Tel: 5170444-5170788 y 5173385<br>
-                    Email:cead_voaxaca64tecnm.mx<br>
-                    www.voaxaca.tecnm-mx<br>
-                </h6>
-            </div>
-            
-            
-        </main>
-            
-            <!-- </div> -->
-        </body>
-        
-        </html>
+        </div>
+        <br>
+        <br>
+        <div align="center">
+            <h5>
+                c.c.p. Departamento de Servicios Escolares o su equivalente en los Institutos Tecnológicos
+                Descentralizados.
+            </h5>
+        </div>
+
+        <div align="left" style="color:#99A3A4;">
+            <h5>
+                1 Para el porcentaje se considera lo siguiente:<br>
+                a) El contenido programado es menor al 60%.<br>
+                b) Estas (dos o más) asignaturas cumplen, conjuntamente, con el contenido de la asignatura.
+            </h5>
+        </div>
+
+
+
+
+
+
+
+
+    </main>
+
+    <!-- </div> -->
+</body>
+
+</html>
