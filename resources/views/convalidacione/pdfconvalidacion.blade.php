@@ -90,7 +90,7 @@
                 <img src="https://www.omeyocan.edu.mx/img/logosep.png" width="170" height="55">
             </td>
             <td WIDTH="450" style="border:none;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/TecNM_logo.png" width="150" height="55">
+                <img src="http://upload.wikimedia.org/wikipedia/commons/9/9d/TecNM_logo.png" width="150" height="55">
             </td>
         </tr>
 
