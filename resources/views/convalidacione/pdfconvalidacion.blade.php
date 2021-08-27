@@ -65,6 +65,7 @@
         border: 1px solid black;
         border-collapse: collapse;
     }
+    
 
     .container {
         width: 80%;
@@ -354,7 +355,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="padding-top: 5em;">
+                    <tr>
+
+                        <td style="height: 3em;"> </td>
+                        <td style="height: 3em;"> </td>
+                    </tr>
+                    <tr>
 
                         <td> {{$convalidacion->elaboro?$convalidacion->elaboro->nombre:''}}</td>
                         <td> {{$convalidacion->valido?$convalidacion->valido->nombre:''}}</td>
