@@ -4,7 +4,7 @@
 
 <style>
     @page {
-        margin: 100px 25px 100px 25px;
+        margin: 150px 25px 110px 25px;
     }
 
     body {
