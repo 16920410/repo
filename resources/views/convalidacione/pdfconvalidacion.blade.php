@@ -4,29 +4,34 @@
 
 <style>
     @page {
-        margin: 100px 25px;
+        margin: 100px 25px 100px 25px;
     }
 
     body {
         width: 100%;
     }
 
+    img {
+        width: 100%;
+    }
+
     .header {
         position: fixed;
-        top: -60px;
+        top: -50px;
         left: 0px;
         right: 0px;
-        height: 80px;
-        text-align: center;
+        /* height: 150px; */
     }
 
     .footer {
+        /* background: #000; */
         position: fixed;
-        bottom: -30px;
+        bottom: -50px;
         left: 0px;
         right: 0px;
-        height: 50px;
+        height: 60px;
     }
+
     .footer-logo-1 {
         width: 60px;
         height: 60px;
@@ -61,9 +66,14 @@
         border-collapse: collapse;
     }
 
-    .info {
+    .container {
         width: 80%;
         margin: 0 auto;
+    }
+
+    .info {
+        /* background: #000; */
+        width: 100%;
 
     }
 
@@ -82,6 +92,9 @@
         text-align: right;
         padding-right: 1.25em;
         color: #ABB2B9;
+        font-weight: bold;
+        font-size: .8em;
+        margin-top: 4em;
     }
 
     .año {
@@ -95,6 +108,7 @@
         margin: 0 auto;
         color: #ABB2B9;
     }
+
     .spacer {
         width: 25%;
     }
@@ -105,61 +119,125 @@
         margin-left: 50;
         position: relative;
     }
+
+
+    div.wrap {
+        width: 100%;
+        margin: 0 auto;
+        /* border: 1px solid #f00; */
+        /* height: 250px; */
+        min-height: 4em;
+        position: relative;
+    }
+
+    .wrap>* {
+        /* border: 1px solid blue; */
+        position: absolute;
+        bottom: -20px;
+    }
+
+    .wrap>*:nth-of-type(1) {
+        width: 250px;
+        height: 50px;
+        left: 0;
+    }
+
+    .wrap>*:nth-of-type(2) {
+        width: 250px;
+        height: 50px;
+        right: 0;
+    }
+
+    div.wrap2 {
+        width: 100%;
+        margin: 0 auto;
+        /* border: 1px solid #f00; */
+        /* height: 250px; */
+        min-height: 4em;
+        position: relative;
+    }
+
+    .wrap2>div {
+        /* border: 1px solid blue; */
+        position: absolute;
+        bottom: 15px;
+    }
+
+    .wrap2>div:nth-of-type(1) {
+        width: 250px;
+        height: 50px;
+        left: 0;
+    }
+
+    .wrap2>div:nth-of-type(2) {
+        width: 250px;
+        height: 50px;
+        right: 0;
+    }
+
+    .group {
+        display: inline-block;
+    }
 </style>
 
 <body>
 
-<div class="header">
-    <table style="border:none;" class="header">
-        <tr margin: 200px align='center'>
-            <td WIDTH="200" style="border:none;">
-                <img src="https://www.omeyocan.edu.mx/img/logosep.png" width="170" height="55">
-            </td>
-            <td WIDTH="450" style="border:none;">
-                <img src="http://itguaymas.edu.mx/img/logo_tecnm_2.png" width="200" height="50">
-            </td>
-        </tr>
 
-    </table>
-    <br>
-    <br>
-    <br>
 
-    <div class="info">
-            <div class="escu">
-                <h6>
-                    Instituto Tecnológico del Valle de Oaxaca<BR>
-                    Departamento de Ciencias Económico Administrativas
-                </h6>
-                <h6 align="center">
-                    “2020, Año de Leona Vicario, Benemérita Madre de la Patria”
-                </h6>
+    <div class="header">
+        <div class="container">
+
+
+            <div class="wrap">
+                <img src="https://www.omeyocan.edu.mx/img/logosep.png" />
+                <img src="http://itguaymas.edu.mx/img/logo_tecnm_2.png" />
+            </div>
+            <div class="info">
+                <div class="escu">
+                    <p>
+                        Instituto Tecnológico del Valle de Oaxaca<BR>
+                        Departamento de Ciencias Económico Administrativas
+                    </p>
+                    <p class="text-center">
+                        “2020, Año de Leona Vicario, Benemérita Madre de la Patria”
+                    </p>
+                </div>
+
+
             </div>
 
-
         </div>
-       </div>
+
+    </div>
 
 
 
     <div class="footer">
 
-<img class="footer-logo-1" src="http://rf.voaxaca.tecnm.mx/assets/files/main/img/ITVO.png">
 
-<div  style="font-size:10px; color:#7F8C8D; text-align: center">
-    Ex-hacienda de Nazareno, Xoxocotlán,Oaxaca, C.P. 71230<br>
-    Tel. y fax 01 (951) 5170444, 5170788, e-mail: itvalleoaxaca@hotmail.com<br>
-    <u>www.tecnm.mx | www.voaxaca.tecnm.mx</u>
-</div>
+        <div style="font-size:10px; color:#7F8C8D; text-align: center">
+            Ex-hacienda de Nazareno, Xoxocotlán,Oaxaca, C.P. 71230<br>
+            Tel. y fax 01 (951) 5170444, 5170788, e-mail: itvalleoaxaca@hotmail.com<br>
+            <u>www.tecnm.mx | www.voaxaca.tecnm.mx</u>
+        </div>
 
-<img class="footer-logo-1" src="https://mcd.unison.mx/wp-content/uploads/2020/08/conacyt-300x256.png">
-<img class="footer-logo-1" src="http://www.fcb.uanl.mx/nw/images/caceb-log3.png">
+        <div class="wrap2">
+            <div>
+                <img class="footer-logo-1" src="http://rf.voaxaca.tecnm.mx/assets/files/main/img/ITVO.png">
+            </div>
+            <div class="group">
 
 
-<img class="footer-logo-3" src="https://its-purhepecha.edu.mx/wp-content/uploads/2018/05/Logo3.png">
+                <img class="footer-logo-1" src="https://mcd.unison.mx/wp-content/uploads/2020/08/conacyt-300x256.png">
+                <img class="footer-logo-1" src="http://www.fcb.uanl.mx/nw/images/caceb-log3.png">
 
 
-</div>
+                <img class="footer-logo-3" src="https://its-purhepecha.edu.mx/wp-content/uploads/2018/05/Logo3.png">
+            </div>
+        </div>
+
+
+    </div>
 
     <!--
 
@@ -180,10 +258,10 @@
 -->
     <main>
 
-<br>
+        <br>
 
-<br>
-<br><br><br>
+        <br>
+        <br><br><br>
 
 
 
