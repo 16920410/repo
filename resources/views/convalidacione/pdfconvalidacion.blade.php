@@ -94,7 +94,7 @@
         color: #ABB2B9;
         font-weight: bold;
         font-size: .8em;
-        margin-top: 4em;
+        margin-top: 2em;
     }
 
     .año {
@@ -257,14 +257,6 @@
     </div>
 -->
     <main>
-
-        <br>
-
-        <br>
-        <br><br><br>
-
-
-
 
         <div align=center;>
             <div>
