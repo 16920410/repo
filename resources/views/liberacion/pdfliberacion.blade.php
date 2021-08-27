@@ -59,6 +59,7 @@
     .header-logo-2 {
         width: 260px;
         height: 50px;
+
     }
 
     .footer-logo-1 {
@@ -112,6 +113,11 @@
         margin-left: 50;
         position: relative;
     }
+    .spacer3 {
+        align: center;
+        margin-left: 210;
+
+    }
 </style>
 
 <body>
@@ -119,7 +125,7 @@
     <div class="header">
 
         <img class="header-logo-1" src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SEP_Logo_2019.svg/1200px-SEP_Logo_2019.svg.png">
-        <div class="spacer"></div>
+        <div class="spacer3"></div>
         <img class="header-logo-2" src="http://itguaymas.edu.mx/img/logo_tecnm_2.png">
 
     </div>

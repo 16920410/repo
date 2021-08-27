@@ -1,5 +1,7 @@
 <html>
 
+
+
 <style>
     @page {
         margin: 100px 25px;
@@ -14,15 +16,29 @@
         top: -60px;
         left: 0px;
         right: 0px;
-        height: 60px;
+        height: 80px;
         text-align: center;
     }
 
     .footer {
         position: fixed;
-        bottom: -60px;
+        bottom: -30px;
         left: 0px;
         right: 0px;
+        height: 50px;
+    }
+    .footer-logo-1 {
+        width: 60px;
+        height: 60px;
+    }
+
+    .footer-logo-2 {
+        width: 100px;
+        height: 50px;
+    }
+
+    .footer-logo-3 {
+        width: 90px;
         height: 50px;
     }
 
@@ -79,22 +95,79 @@
         margin: 0 auto;
         color: #ABB2B9;
     }
+    .spacer {
+        width: 25%;
+    }
+
+    .spacer2 {
+        width: 50%;
+        align: center;
+        margin-left: 50;
+        position: relative;
+    }
 </style>
 
 <body>
 
-
+<div class="header">
     <table style="border:none;" class="header">
         <tr margin: 200px align='center'>
             <td WIDTH="200" style="border:none;">
                 <img src="https://www.omeyocan.edu.mx/img/logosep.png" width="170" height="55">
             </td>
             <td WIDTH="450" style="border:none;">
-                <img src="http://upload.wikimedia.org/wikipedia/commons/9/9d/TecNM_logo.png" width="150" height="55">
+                <img src="http://itguaymas.edu.mx/img/logo_tecnm_2.png" width="200" height="50">
             </td>
         </tr>
 
     </table>
+    <br>
+    <br>
+    <br>
+
+    <div class="info">
+            <div class="escu">
+                <h6>
+                    Instituto Tecnológico del Valle de Oaxaca<BR>
+                    Departamento de Ciencias Económico Administrativas
+                </h6>
+                <h6 align="center">
+                    “2020, Año de Leona Vicario, Benemérita Madre de la Patria”
+                </h6>
+            </div>
+
+
+        </div>
+       </div>
+
+
+
+    <div class="footer">
+
+<img class="footer-logo-1" src="http://rf.voaxaca.tecnm.mx/assets/files/main/img/ITVO.png">
+
+<div  style="font-size:10px; color:#7F8C8D; text-align: center">
+    Ex-hacienda de Nazareno, Xoxocotlán,Oaxaca, C.P. 71230<br>
+    Tel. y fax 01 (951) 5170444, 5170788, e-mail: itvalleoaxaca@hotmail.com<br>
+    <u>www.tecnm.mx | www.voaxaca.tecnm.mx</u>
+</div>
+
+<img class="footer-logo-1" src="https://mcd.unison.mx/wp-content/uploads/2020/08/conacyt-300x256.png">
+<img class="footer-logo-1" src="http://www.fcb.uanl.mx/nw/images/caceb-log3.png">
+
+
+<img class="footer-logo-3" src="https://its-purhepecha.edu.mx/wp-content/uploads/2018/05/Logo3.png">
+
+
+</div>
+
+    <!--
+
+   base
+
+
+
+
 
     <div class="footer" align="center" style="color:#99A3A4;">
         <h6>
@@ -104,25 +177,14 @@
             www.voaxaca.tecnm-mx<br>
         </h6>
     </div>
-
+-->
     <main>
 
+<br>
 
-        <div class="info">
-            <div class="escu">
-                <h6>
-                    Instituto Tecnológico del Valle de Oaxaca<BR>
-                    Departamento de Ciencias Económico Administrativas
-                </h6>
-            </div>
-        </div>
-        <div class="añoo">
-            <div class="año">
-                <h6>
-                    “2020, Año de Leona Vicario, Benemérita Madre de la Patria”
-                </h6>
-            </div>
-        </div>
+<br>
+<br><br><br>
+
 
 
 
