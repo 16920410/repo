@@ -354,7 +354,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="margin-top: 2em;">
+                    <tr style="margin-top: 8em;">
 
                         <td> {{$convalidacion->elaboro?$convalidacion->elaboro->nombre:''}}</td>
                         <td> {{$convalidacion->valido?$convalidacion->valido->nombre:''}}</td>
