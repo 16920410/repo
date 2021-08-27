@@ -65,7 +65,7 @@
         border: 1px solid black;
         border-collapse: collapse;
     }
-    
+
 
     .container {
         width: 80%;
@@ -350,31 +350,44 @@
             <table style="width: 100% ;border: hidden">
                 <thead style="color: black; ">
                     <tr>
-                        <th style="width: 50%;">Documento analizado por:</th>
-                        <th>Vo. Bo.</th>
+                        <th style="font-size:15px; " >Documento analizado por:<br><br>
+
+                         <u>{{$convalidacion->elaboro?$convalidacion->elaboro->nombre:''}}</u>
+                            <br><br>
+                            Nombre y firma del (de la)<br>
+                            Presidente(a) de la Academia<br>
+                            de <u>Ingeniería Informática e Ingeniería en<br>
+                            Tecnologías de la Información y Comunicaciones</u>
+                        </th>
+                        <th style="font-size:15px; border: hidden">Vo. Bo.<br><br>
+                        {{$convalidacion->valido?$convalidacion->valido->nombre:''}}<br><br>
+                            Jefe(a) del Departamento Académico<br>
+                            de <u>Ciencias  Económico Administrativas</u>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
 
-                        <td style="height: 3em;"> </td>
-                        <td style="height: 3em;"> </td>
+                        <td style="height: 3em; border: hidden"> </td>
+                        <td style="height: 3em; border: hidden"> </td>
+                    </tr>
+                    <tr>
+                        <td style="border: hidden" ></td>
+                        <!--<td align="center"> {{$convalidacion->elaboro?$convalidacion->elaboro->nombre:''}}</td>-->
+                        <td style="border: hidden" ></td>
+
+                        <!--<td align="center"> {{$convalidacion->valido?$convalidacion->valido->nombre:''}}</td>-->
                     </tr>
                     <tr>
 
-                        <td> {{$convalidacion->elaboro?$convalidacion->elaboro->nombre:''}}</td>
-                        <td> {{$convalidacion->valido?$convalidacion->valido->nombre:''}}</td>
-                    </tr>
-                    <tr>
-
-                        <td> {{$convalidacion->elaboro?$convalidacion->elaboro->puesto->nombre:''}}</td>
-                        <td> {{$convalidacion->valido?$convalidacion->valido->puesto->nombre:''}}</td>
+                        <td style="border: hidden"> {{$convalidacion->elaboro?$convalidacion->elaboro->puesto->nombre:''}}</td>
+                        <td style="border: hidden"> {{$convalidacion->valido?$convalidacion->valido->puesto->nombre:''}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <br>
-        <br>
+
         <div align="center">
             <h5>
                 c.c.p. Departamento de Servicios Escolares o su equivalente en los Institutos Tecnológicos
