@@ -115,7 +115,7 @@
 
     .spacer2 {
         width: 50%;
-        align: center;
+        text-align: center;
         margin-left: 50;
         position: relative;
     }
@@ -354,15 +354,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr style="margin-top: 2em;">
 
-                        <th> {{$convalidacion->elaboro?$convalidacion->elaboro->nombre:''}}</th>
-                        <th> {{$convalidacion->valido?$convalidacion->valido->nombre:''}}</th>
+                        <td> {{$convalidacion->elaboro?$convalidacion->elaboro->nombre:''}}</td>
+                        <td> {{$convalidacion->valido?$convalidacion->valido->nombre:''}}</td>
                     </tr>
                     <tr>
 
-                        <th> {{$convalidacion->elaboro?$convalidacion->elaboro->puesto->nombre:''}}</th>
-                        <th> {{$convalidacion->valido?$convalidacion->valido->puesto->nombre:''}}</th>
+                        <td> {{$convalidacion->elaboro?$convalidacion->elaboro->puesto->nombre:''}}</td>
+                        <td> {{$convalidacion->valido?$convalidacion->valido->puesto->nombre:''}}</td>
                     </tr>
                 </tbody>
             </table>
