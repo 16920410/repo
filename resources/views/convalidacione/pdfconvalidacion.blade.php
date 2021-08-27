@@ -4,7 +4,7 @@
 
 <style>
     @page {
-        margin: 150px 25px 110px 25px;
+        margin: 200px 25px 110px 25px;
     }
 
     body {
@@ -17,7 +17,7 @@
 
     .header {
         position: fixed;
-        top: -50px;
+        top: -150px;
         left: 0px;
         right: 0px;
         /* height: 150px; */
