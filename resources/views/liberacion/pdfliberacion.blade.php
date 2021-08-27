@@ -124,7 +124,7 @@
 
     <div class="header">
 
-        <img class="header-logo-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SEP_Logo_2019.svg/1280px-SEP_Logo_2019.svg.png">
+        <img class="header-logo-1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/SEP_Logo_2019.svg/512px-SEP_Logo_2019.svg.png">
         <div class="spacer3"></div>
         <img class="header-logo-2" src="http://itguaymas.edu.mx/img/logo_tecnm_2.png">
 
